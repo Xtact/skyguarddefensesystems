@@ -64,25 +64,23 @@
             </nav>
         </div>
     </header>
-
     <main>
         <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-overlay"></div>
-            <div class="container hero-container">
-                <div class="hero-content fade-in visible">
-                    <div class="status-indicator"><span class="blink"></span> SYSTEM ACTIVE</div>
-                    <h1 class="text-gradient">Next-Generation <br>Anti-Drone Defense</h1>
-                    <h2 style="font-family: var(--font-head); color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 1.5rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">Passive Protection Systems for Critical Infrastructure</h2>
-                    <p>The world's premier Kinetic-Passive Hybrid Solution. Neutralize unauthorized UAV threats with zero electronic signature and maximum tactical reliability.</p>
-                    <div class="hero-actions">
-                        <a href="#products" class="btn btn-primary">DEPLOY SYSTEMS</a>
-                        <a href="#contact" class="btn btn-outline">REQUEST BRIEFING</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="hero-container" style="position: relative; height: 100vh; overflow: hidden;">
+  <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    style="position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); object-fit: cover;">
+    <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="hero-text" style="position: relative; z-index: 1; color: white; text-align: center; top: 50%; transform: translateY(-50%);">
+    <h1>Skyguard Defense Systems</h1>
+  </div>
+</section>
 
         <!-- PRODUCTS SECTION -->
         <section id="products" class="section-padding section-anchor">
