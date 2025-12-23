@@ -620,58 +620,38 @@
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
     </script>
-    <section id="faq" class="section-padding bg-darker section-anchor">
+    <section id="faq" class="section-padding section-anchor" style="background: var(--bg-darker); position: relative; z-index: 10;">
     <div class="container">
-        <div class="section-header fade-in">
-            <h2 class="section-title">C-UAS INTELLIGENCE & SYSTEMS FAQ</h2>
+        <div class="section-header">
+            <h2 class="section-title" style="opacity: 1 !important;">SYSTEMS & C-UAS FAQ</h2>
             <div class="section-line"></div>
-            <p class="section-subtitle">Core concepts of Counter-UAS and detailed specifications for SkyGuard mission-critical solutions.</p>
         </div>
 
-        <div class="grid-2">
-            <div class="hud-card fade-in">
-                <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
+        <div class="specs-grid">
+            <div class="hud-card visible"> <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                 <div class="card-header">
                     <span class="badge badge-blue">KNOWLEDGE BASE</span>
-                    <h3>What is C-UAS and Why is it Essential?</h3>
+                    <h3>What is C-UAS?</h3>
                 </div>
-                <p class="desc"><strong>C-UAS (Counter-Unmanned Aircraft Systems)</strong> is the specialized technology used to protect airspace from rogue drones. As UAS threats evolve, passive kinetic systems are essential for sites where electronic jamming is legally restricted or ineffective against autonomous "dark" drones.</p>
+                <p class="desc">C-UAS (Counter-Unmanned Aircraft Systems) is the framework for detecting and neutralizing rogue drones. SkyGuard specializes in Passive Kinetic Mitigation—physically stopping drones using high-tensile mesh systems.</p>
             </div>
 
-            <div class="hud-card fade-in">
-                <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
-                <div class="card-header">
-                    <span class="badge badge-blue">KNOWLEDGE BASE</span>
-                    <h3>Detection vs. Mitigation: What is the Difference?</h3>
-                </div>
-                <p class="desc"><strong>Detection</strong> is identifying a drone using sensors like our <strong>ImpactSense™</strong> fiber-optics. <strong>Mitigation</strong> is the act of stopping it. SkyGuard focuses on <strong>Passive Kinetic Mitigation</strong>—physically stopping a drone with specialized mesh rather than signal disruption.</p>
-            </div>
-
-            <div class="hud-card fade-in">
+            <div class="hud-card visible">
                 <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                 <div class="card-header">
                     <span class="badge badge-gold">APEX SYSTEM</span>
-                    <h3>How does APEX Canopy™ protect high-value assets?</h3>
+                    <h3>How does APEX Canopy™ work?</h3>
                 </div>
-                <p class="desc">The <strong>APEX Canopy System™</strong> is a TIER 1 asset solution designed for 360° overhead protection. It uses <strong>TensionLock™ Cable Architecture</strong> to intercept high-velocity impacts, safeguarding nuclear facilities and fuel depots from top-down UAS threats.</p>
+                <p class="desc">The APEX Canopy System™ provides TIER 1 360° protection. It utilizes TensionLock™ Cable Architecture to intercept high-velocity UAS and payload detonations over critical infrastructure like nuclear facilities.</p>
             </div>
 
-            <div class="hud-card fade-in">
-                <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
-                <div class="card-header">
-                    <span class="badge badge-blue">SENTINEL / FORTRESS</span>
-                    <h3>What is the difference between SENTINEL and FORTRESS?</h3>
-                </div>
-                <p class="desc"><strong>SENTINEL Perimeter Shield™</strong> is a modular vertical barrier for low-altitude ingress. The <strong>FORTRESS Hybrid System™</strong> adds a "smart" layer with automated deployment and <strong>ImpactSense™</strong> monitoring for autonomous 24/7 facility defense.</p>
-            </div>
-
-            <div class="hud-card fade-in">
+            <div class="hud-card visible">
                 <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                 <div class="card-header">
                     <span class="badge badge-blue">RANGER MOBILE</span>
-                    <h3>Can SkyGuard systems be deployed tactically?</h3>
+                    <h3>Is the RANGER system deployable?</h3>
                 </div>
-                <p class="desc">Yes. The <strong>RANGER Mobile Defense™</strong> is a trailer-mounted system that uses <strong>RapidRise™ Deployment</strong> technology, allowing a single operator to activate a full-tension defensive mesh in under 120 seconds for temporary or high-security events.</p>
+                <p class="desc">Yes. RANGER Mobile Defense™ is a trailer-mounted system featuring RapidRise™ Deployment, allowing a single operator to establish a defensive barrier in under 120 seconds.</p>
             </div>
         </div>
     </div>
