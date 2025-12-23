@@ -3,46 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyGuard Defense Systems: Premier Kinetic-Passive Hybrid Anti-Drone Solutions for Critical Infrastructure Protection. Deploy advanced canopy and perimeter shields.">
+    <meta name="keywords" content="Anti-drone, C-UAS, Kinetic Mesh, Defense Systems, SkyGuard, Drone Defense, Perimeter Security, Critical Infrastructure">
+    <meta name="author" content="SkyGuard Defense Systems">
+    <meta property="og:title" content="SkyGuard Defense Systems | Next-Gen C-UAS Protection">
+    <meta property="og:description" content="Advanced passive kinetic anti-drone architectures for high-value assets and strategic facilities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skyguarddefense.com">
     <title>SkyGuard Defense Systems | Passive C-UAS Protection</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Single Page Enhancements */
-        html { scroll-behavior: smooth; }
     
-        /* News Section Styling */
-        .timeline { border-left: 2px solid var(--accent-blue); padding-left: 2.5rem; margin-left: 1rem; position: relative; }
-        
-        /* Specialized Timeline Animation */
-        .timeline-item { 
-            margin-bottom: 3.5rem; 
-            position: relative; 
-            opacity: 0;
-            transform: translateX(-30px); /* Start from the left marker side */
-            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        
-        .timeline-item.visible { 
-            opacity: 1;
-            transform: translateX(0);
-        }
+    <!-- Preload Hero Video for Instant Playback -->
+    <link rel="preload" as="video" href="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+    
+    <link rel="stylesheet" href="styles.css">
 
-        .timeline-marker { position: absolute; left: -3.1rem; top: 0; width: 16px; height: 16px; background: var(--bg-dark); border: 2px solid var(--accent-blue); border-radius: 50%; box-shadow: 0 0 10px var(--accent-blue); }
-        .timeline-date { font-family: var(--font-head); color: var(--accent-blue); font-weight: 700; margin-bottom: 0.5rem; font-size: 0.9rem; letter-spacing: 1px; }
-
-        /* Contact Form & Section Styling */
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; font-family: var(--font-head); font-size: 0.8rem; color: var(--accent-gold); margin-bottom: 0.5rem; letter-spacing: 1px; }
-        .form-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-light); color: #fff; padding: 1rem; font-family: var(--font-body); transition: all 0.3s ease; }
-        .form-input:focus { outline: none; border-color: var(--accent-blue); background: rgba(255,255,255,0.08); box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); }
-        
-        /* Layout Adjustments */
-        header { position: sticky; top: 0; }
-        .section-anchor { scroll-margin-top: var(--header-height); }
-    </style>
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "SkyGuard Defense Systems",
+          "url": "https://skyguarddefense.com",
+          "logo": "https://skyguarddefense.com/logo.png",
+          "description": "Leader in kinetic-passive hybrid C-UAS solutions for critical infrastructure.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "areaServed": "US",
+            "availableLanguage": "en"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "APEX Canopy System™",
+          "description": "Multi-layer suspension coverage engineered to absorb high-velocity UAS.",
+          "brand": { "@type": "Brand", "name": "SkyGuard" },
+          "category": "Defense System"
+        },
+        {
+          "@type": "Product",
+          "name": "SENTINEL Perimeter Shield™",
+          "description": "Vertical barrier walls with integrated passive sensor grid.",
+          "brand": { "@type": "Brand", "name": "SkyGuard" },
+          "category": "Perimeter Security"
+        },
+        {
+          "@type": "Product",
+          "name": "RANGER Mobile Defense™",
+          "description": "Trailer-mounted deployable system with pneumatic masts.",
+          "brand": { "@type": "Brand", "name": "SkyGuard" },
+          "category": "Mobile Defense"
+        },
+        {
+            "@type": "Product",
+            "name": "FORTRESS Hybrid System™",
+            "description": "Active-Passive Integration with smart mesh and RF sensors.",
+            "brand": { "@type": "Brand", "name": "SkyGuard" },
+            "category": "Integrated Defense"
+        }
+      ]
+    }
+    </script>
 </head>
 <body id="home">
     <div class="grid-overlay"></div>
@@ -54,6 +81,13 @@
                     <div class="logo-mark">SG</div>
                     <div class="logo-text"><h1>SKYGUARD</h1><span>DEFENSE SYSTEMS</span></div>
                 </a>
+                
+                <div class="menu-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
                 <ul class="nav-links">
                     <li><a href="#home">HOME</a></li>
                     <li><a href="#products">SYSTEMS</a></li>
@@ -64,23 +98,20 @@
             </nav>
         </div>
     </header>
+
     <main>
         <!-- HERO SECTION -->
-<section class="hero-container" style="position: relative; height: 100vh; overflow: hidden;">
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    style="position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); object-fit: cover;">
-    <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
-  </video>
+        <section class="hero-container">
+            <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.jpg">
+                <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
 
-  <div class="hero-text" style="position: relative; z-index: 1; color: white; text-align: center; top: 50%; transform: translateY(-50%);">
-    <h1>Skyguard Defense Systems</h1>
-    <h2>NEXT-GENERATION ANTI-DRONE DEFENSE</h2>
-  </div>
-</section>
+            <div class="hero-text fade-in">
+                <h1>Skyguard Defense Systems</h1>
+                <h2>NEXT-GENERATION ANTI-DRONE DEFENSE</h2>
+            </div>
+        </section>
 
         <!-- PRODUCTS SECTION -->
         <section id="products" class="section-padding section-anchor">
@@ -92,7 +123,7 @@
                 </div>
 
                 <div class="grid-4">
-                    <div class="hud-card fade-in">
+                    <article class="hud-card fade-in delay-100">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
                         <div class="card-header">
@@ -101,40 +132,40 @@
                         </div>
                         <p class="desc">Mission critical 360° protection. Drone neutralization for nuclear facilities, fuel depots, supply lines, and major outdoor venues.</p>
                         <button class="btn btn-sm btn-primary open-specs" data-product="apex">ACCESS SPECS</button>
-                    </div>
+                    </article>
 
-                    <div class="hud-card fade-in">
+                    <article class="hud-card fade-in delay-200">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
                         <div class="card-header">
                             <span class="badge badge-blue">PERIMETER</span>
-                            <h3>SENTINEL Perimeter Shield™</h3>
+                            <h3>SENTINEL Perimeter™</h3>
                         </div>
                         <p class="desc">360° vertical barrier system preventing low-altitude ingress/egress. Modular linkage design with integrated sensor grid.</p>
                         <button class="btn btn-sm btn-primary open-specs" data-product="sentinel">ACCESS SPECS</button>
-                    </div>
+                    </article>
 
-                    <div class="hud-card fade-in">
+                    <article class="hud-card fade-in delay-300">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
                         <div class="card-header">
                             <span class="badge badge-blue">RAPID RESPONSE</span>
-                            <h3>RANGER Mobile Defense™</h3>
+                            <h3>RANGER Mobile™</h3>
                         </div>
                         <p class="desc">Trailer-mounted deployable system with pneumatic masts for mobile units, tactical deployments, and high-security temporary events.</p>
                         <button class="btn btn-sm btn-primary open-specs" data-product="ranger">ACCESS SPECS</button>
-                    </div>
+                    </article>
 
-                    <div class="hud-card fade-in">
+                    <article class="hud-card fade-in delay-400">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
                         <div class="card-header">
                             <span class="badge badge-gold">ULTRA-PREMIUM</span>
-                            <h3>FORTRESS Hybrid System™</h3>
+                            <h3>FORTRESS Hybrid™</h3>
                         </div>
                         <p class="desc">Active-Passive Integration. Smart mesh with embedded RF sensors and automated deployment for high-value strategic compounds.</p>
                         <button class="btn btn-sm btn-primary open-specs" data-product="fortress">ACCESS SPECS</button>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -149,27 +180,27 @@
                 </div>
 
                 <div class="tech-grid">
-                    <div class="tech-card fade-in">
+                    <div class="tech-card fade-in delay-100">
                         <div class="tech-icon-small">TL-01</div>
                         <h4>TensionLock™ Cable Architecture</h4>
                         <p>High-tensile cabling system engineered to maintain structural integrity under extreme kinetic loads and high-velocity UAS impacts.</p>
                     </div>
-                    <div class="tech-card fade-in">
+                    <div class="tech-card fade-in delay-200">
                         <div class="tech-icon-small">RR-02</div>
                         <h4>RapidRise™ Deployment System</h4>
                         <p>Automated pneumatic deployment mechanism allowing full system activation and mesh tensioning in under 120 seconds.</p>
                     </div>
-                    <div class="tech-card fade-in">
+                    <div class="tech-card fade-in delay-300">
                         <div class="tech-icon-small">IS-03</div>
                         <h4>ImpactSense™ Monitoring</h4>
                         <p>Fiber-optic vibration sensors embedded within the mesh that detect, localize, and report UAS collisions in real-time to central command.</p>
                     </div>
-                    <div class="tech-card fade-in">
+                    <div class="tech-card fade-in delay-400">
                         <div class="tech-icon-small">LS-04</div>
                         <h4>LayerShield™ Multi-Density Mesh</h4>
                         <p>Proprietary multi-layer mesh density gradients designed to effectively entangle rotors and airframes of varying UAS sizes and weights.</p>
                     </div>
-                    <div class="tech-card fade-in">
+                    <div class="tech-card fade-in delay-500">
                         <div class="tech-icon-small">WP-05</div>
                         <h4>WeatherProof™ Treatment</h4>
                         <p>Industrial-grade nano-ceramic coating resistant to UV degradation, salt spray corrosion, and extreme temperature fluctuations (-40°C to +85°C).</p>
@@ -188,31 +219,31 @@
                 </div>
 
                 <div class="timeline">
-                    <article class="timeline-item scroll-animate">
+                    <article class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-date">OCTOBER 15, 2024</div>
                         <div class="hud-card" style="padding: 1.5rem 2.5rem;">
                             <div class="card-corner top-right"></div>
                             <h3>REGIONAL GRID PROTECTION INITIATIVE</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-secondary);">SkyGuard has been selected to provide the primary passive defense layer for four major utility substations in the Pacific Northwest, mitigating increasing UAS surveillance threats.</p>
+                            <p class="text-secondary" style="margin-top: 0.5rem;">SkyGuard has been selected to provide the primary passive defense layer for four major utility substations in the Pacific Northwest, mitigating increasing UAS surveillance threats.</p>
                         </div>
                     </article>
-                    <article class="timeline-item scroll-animate">
+                    <article class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-date">SEPTEMBER 02, 2024</div>
                         <div class="hud-card" style="padding: 1.5rem 2.5rem;">
                             <div class="card-corner top-right"></div>
                             <h3>FORTRESS HYBRID SENSOR UPGRADE</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-secondary);">The latest firmware for the FORTRESS system introduces AI-driven threat classification, allowing the mesh to distinguish between wildlife and unauthorized UAV hardware.</p>
+                            <p class="text-secondary" style="margin-top: 0.5rem;">The latest firmware for the FORTRESS system introduces AI-driven threat classification, allowing the mesh to distinguish between wildlife and unauthorized UAV hardware.</p>
                         </div>
                     </article>
-                    <article class="timeline-item scroll-animate">
+                    <article class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-date">AUGUST 12, 2024</div>
                         <div class="hud-card" style="padding: 1.5rem 2.5rem;">
                             <div class="card-corner top-right"></div>
                             <h3>MIL-SPEC CERTIFICATION ACHIEVED</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-secondary);">The APEX Canopy material has successfully passed extended durability testing, exceeding standard MIL-SPEC requirements for kinetic energy absorption.</p>
+                            <p class="text-secondary" style="margin-top: 0.5rem;">The APEX Canopy material has successfully passed extended durability testing, exceeding standard MIL-SPEC requirements for kinetic energy absorption.</p>
                         </div>
                     </article>
                 </div>
@@ -228,19 +259,19 @@
                     <p class="section-subtitle">Secure communications channel. Inquire about custom facility defense architectures.</p>
                 </div>
 
-                <div class="contact-grid fade-in">
-                    <div class="hud-card">
+                <div class="contact-grid">
+                    <div class="hud-card fade-in delay-100">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
-                        <h2 class="section-title">SkyGuard Defense HQ</h2>
+                        <h2 class="section-title" style="font-size: 1.8rem;">SkyGuard Defense HQ</h2>
                         <p style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 1.5rem;">Location Details</p>
                         <p style="margin-bottom: 1rem;">Denver, Colorado, USA</p>
                         <p style="margin-bottom: 2rem;"><strong>Comms:</strong> Intel-Support Line (24/7)</p>
-                        <p style="font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.4; font-style: italic;">
-                            Notice: All inquiries are subject to strict confidentiality agreements.</p>
+                        <p style="font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.4; font-style: italic; border-top: 1px solid var(--border-light); padding-top: 1rem;">
+                            Notice: All inquiries are subject to strict confidentiality agreements (NDA) prior to technical briefing.</p>
                     </div> 
 
-                    <div class="hud-card">
+                    <div class="hud-card fade-in delay-200">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
                         <!-- Netlify Form Integration -->
@@ -306,6 +337,7 @@
     </footer>
 
     <script>
+        // --- Product Data ---
         const productSpecs = {
             apex: {
                 title: "APEX Canopy System™",
@@ -341,7 +373,7 @@
                     { label: "Materials", value: "Knitted 304 stainless steel mesh with aramid backing" },
                     { label: "Mesh Aperture", value: "50mm aperture, 0.45mm knitted wire" },
                     { label: "Support Structure", value: "FRP composite poles (6m - 12m height)" },
-                    { label: "Weight", value: "45 kg per 10m section" },
+                    { label: "Weight", value: "45 kg (per 10m section)" },
                     { label: "Compliance", value: "MIL-STD, ISO 9001:2015" }
                 ]
             },
@@ -385,14 +417,32 @@
             }
         };
 
+        // --- DOM Elements ---
         const modal = document.getElementById('specs-modal');
         const modalBody = document.getElementById('modal-body');
         const closeBtn = document.querySelector('.close-modal');
-        const heroBg = document.querySelector('.hero-bg');
         const scrollTopBtn = document.getElementById('scroll-top-btn');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinksContainer = document.querySelector('.nav-links');
 
+        // --- Mobile Menu Toggle ---
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            });
+        });
+
+        // --- Modal Logic ---
         document.querySelectorAll('.open-specs').forEach(btn => {
-            btn.onclick = () => {
+            btn.onclick = (e) => {
+                e.stopPropagation(); // Prevent immediate bubbling to window/modal close listeners
                 const productKey = btn.getAttribute('data-product');
                 const data = productSpecs[productKey];
                 modalBody.innerHTML = `
@@ -421,35 +471,38 @@
             };
         });
 
-        closeBtn.onclick = () => {
+        // Close function to reuse
+        const closeSpecsModal = () => {
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         };
 
-        window.onclick = (e) => { 
-            if (e.target == modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        closeBtn.onclick = closeSpecsModal;
+
+        // Click anywhere on the modal (overlay or content) to close
+        // This solves the issue where scrolling down hides the close button
+        modal.onclick = (e) => {
+            // Refined UX: Don't close if the user is selecting text to copy.
+            // Check if there is a text selection active.
+            const selection = window.getSelection().toString();
+            if (selection.length > 0) {
+                return;
             }
+            closeSpecsModal();
         };
 
-        // Scroll to Top behavior
+        // --- Scroll to Top ---
         scrollTopBtn.onclick = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // Navigation Highlight on Scroll, Parallax Effect & Scroll Top Visibility
-        const sections = document.querySelectorAll('section, body');
+        // Navigation Highlight on Scroll & Scroll Top Visibility
+        const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
 
         window.addEventListener('scroll', () => {
             let current = '';
             const scrollY = window.pageYOffset;
-
-            // Subtle Parallax
-            if (heroBg && scrollY < window.innerHeight) {
-                heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
-            }
 
             // Scroll Top Button Visibility
             if (scrollY > window.innerHeight * 0.5) {
@@ -473,20 +526,18 @@
             });
         });
 
-        // Intersection Observer for animations
-        const observerOptions = { threshold: 0.15 };
+        // --- Intersection Observer for animations ---
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Trigger once
                 }
             });
         }, observerOptions);
 
-        // General fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        
-        // Specific timeline items for scroll animation
         document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
     </script>
 </body>
