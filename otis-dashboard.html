@@ -10,8 +10,7 @@
             margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center;
             height: 100vh; overflow: hidden; -webkit-touch-callout: none; -webkit-user-select: none;
         }
- 
-        /* INITIALIZATION SCREEN - GUARANTEED TO SHOW */
+
         #initScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #000000; display: flex; flex-direction: column; 
@@ -24,7 +23,6 @@
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); cursor: pointer; text-transform: uppercase;
         }
 
-        /* DASHBOARD - HIDDEN UNTIL TAPPED */
         #mainDashboard {
             display: none; 
             position: relative; width: 100%; max-width: 1400px; height: 80vh;
@@ -35,4 +33,225 @@
 
         h1 {
             color: #ff3333; letter-spacing: 2px; text-transform: uppercase; margin: 15px 0 5px 0; 
-            font-size: 1.4rem; z-index: 30; text-shadow
+            font-size: 1.4rem; z-index: 30; text-shadow: 0 0 10px rgba(255, 51, 51, 0.5); text-align: center;
+        }
+        
+        .tagline {
+            color: #00ffcc; font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 5px; z-index: 30;
+        }
+
+        .grid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 255, 204, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 204, 0.07) 1px, transparent 1px);
+            background-size: 40px 40px; pointer-events: none; z-index: 2;
+        }
+
+        .reticle {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 200px; height: 200px; border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 50%; pointer-events: none; z-index: 3;
+        }
+        .reticle::before, .reticle::after { content: ''; position: absolute; background: rgba(0, 255, 204, 0.5); }
+        .reticle::before { top: 50%; left: -20px; right: -20px; height: 1px; }
+        .reticle::after { left: 50%; top: -20px; bottom: -20px; width: 1px; }
+
+        #mainVideo { width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 1; }
+
+        /* RESTORED AND MOBILE-SAFE CODE STREAM */
+        #codeStream {
+            position: absolute; top: 20px; left: 20px; width: 200px; height: 250px;
+            font-size: 10px; color: rgba(0, 255, 204, 0.6); overflow: hidden; pointer-events: none; z-index: 5;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .hud-left, .hud-right {
+            position: absolute; top: 20px; display: flex; flex-direction: column; gap: 8px;
+            font-size: 11px; text-shadow: 1px 1px 2px black; pointer-events: none; z-index: 5;
+        }
+        .hud-left { left: 10px; }
+        .hud-right { right: 10px; text-align: right; }
+
+        .hud-item {
+            background: rgba(0, 0, 0, 0.8); padding: 5px 8px; display: flex; align-items: center; gap: 6px;
+        }
+        
+        .status-led {
+            width: 6px; height: 6px; border-radius: 50%; background-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.7);
+        }
+        .led-red { background-color: #ff3333 !important; box-shadow: 0 0 10px rgba(255, 51, 51, 0.9) !important; }
+
+        .hud-right .hud-item { flex-direction: row-reverse; }
+        .insitu-tag { color: #aaaaaa; }
+
+        #pipContainer {
+            display: none; position: absolute; bottom: 20px; right: 20px; 
+            width: 45%; max-width: 400px; border: 2px solid #39FF14; background: #000; z-index: 10;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
+        }
+        #pipContainer::before {
+            content: 'ISOLATION OVERRIDE'; position: absolute; top: -20px; left: 0; color: #ff3333; 
+            font-size: 10px; font-weight: bold;
+        }
+        #xrayVideo { width: 100%; display: block; }
+
+        #alarmOverlay {
+            display: none; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            background-color: rgba(200, 0, 0, 1); color: white; padding: 8px 20px; font-size: 16px; 
+            font-weight: bold; text-align: center; border: 2px solid #ffffff; z-index: 20; width: 80%;
+            text-shadow: 1px 1px 0 #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="initScreen">
+        <button id="startBtn">INITIALIZE O.T.I.S. UPLINK</button>
+    </div>
+
+    <h1>O.T.I.S. // Optical Threat Isolation System</h1>
+    <div class="tagline">- YOUR EYES IN THE SKY -</div>
+
+    <div id="mainDashboard" class="dashboard-container">
+        <div class="grid-overlay"></div>
+        <div class="reticle" id="targetingReticle"></div>
+        <div id="codeStream"></div>
+
+        <div class="hud-left">
+            <div class="hud-item" id="sysContainer"><span class="status-led" id="led-sys"></span><span id="txt-sys">SYS: ONLINE</span></div>
+            <div class="hud-item"><span class="status-led"></span><span id="altReadout">ALT: 40.2 FT</span></div>
+            <div class="hud-item"><span class="status-led"></span><span id="hdgReadout">HDG: 274° W</span></div>
+            <div class="hud-item" id="tgtContainer"><span class="status-led" id="led-tgt"></span><span id="txt-tgt">TGT: ACQUIRING...</span></div>
+        </div>
+
+        <video id="mainVideo" src="https://xtact.github.io/insitu-defense-matrix/insitu_poc.mp4" playsinline webkit-playsinline muted loop preload="none"></video>
+
+        <div id="alarmOverlay">STRUCTURAL ANOMALY DETECTED</div>
+
+        <div class="hud-right">
+            <div class="hud-item"><span class="status-led"></span><span>BAT: 84%</span></div>
+            <div class="hud-item"><span class="status-led"></span><span>LINK: SECURE</span></div>
+            <div class="hud-item" id="camContainer"><span class="status-led" id="led-cam"></span><span id="camStatus">CAM: FPV</span></div>
+            <div class="hud-item insitu-tag" id="insituContainer"><span class="status-led" id="led-insitu"></span><span id="insituStatus">CORE: INSITU LABS</span></div>
+        </div>
+
+        <div id="pipContainer">
+            <video id="xrayVideo" src="https://xtact.github.io/insitu-defense-matrix/true_xray.mp4" playsinline webkit-playsinline muted loop preload="none"></video>
+        </div>
+    </div>
+
+    <script>
+        var startBtn = document.getElementById('startBtn');
+        var initScreen = document.getElementById('initScreen');
+        var mainDashboard = document.getElementById('mainDashboard');
+        var mainVideo = document.getElementById('mainVideo');
+        var xrayVideo = document.getElementById('xrayVideo');
+        var pipContainer = document.getElementById('pipContainer');
+        var codeStream = document.getElementById('codeStream');
+        var alarmOverlay = document.getElementById('alarmOverlay');
+        
+        var interceptTriggered = false;
+        var step1 = false, step2 = false, step3 = false; 
+        var codeInterval;
+
+        var cvCode = [
+            "cv::Mat frame; cap >> frame;",
+            "cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);",
+            "cv::Canny(blur, edges, 40, 120);",
+            "tensor_data = otis_model.forward();",
+            "kalman_filter.predict();"
+        ];
+
+        function pushCodeLine(isThreat) {
+            var line = document.createElement('div');
+            if (isThreat) {
+                line.innerText = "EXCEPTION: void *anomaly(0xFF) -- DEPLOY X-RAY";
+                line.style.color = "#ff3333"; line.style.fontWeight = "bold";
+            } else {
+                var hex = "0x" + Math.random().toString(16).substring(2, 8).toUpperCase();
+                line.innerText = "[" + hex + "] " + cvCode[Math.floor(Math.random() * cvCode.length)];
+            }
+            codeStream.appendChild(line);
+            if (codeStream.childNodes.length > 15) codeStream.removeChild(codeStream.firstChild);
+        }
+
+        startBtn.addEventListener('click', function() {
+            initScreen.style.display = 'none';
+            mainDashboard.style.display = 'flex';
+
+            mainVideo.play();
+            
+            var xPlay = xrayVideo.play();
+            if (xPlay !== undefined) {
+                xPlay.then(function() {
+                    xrayVideo.pause();
+                    xrayVideo.currentTime = 0;
+                }).catch(function(err){});
+            }
+
+            if (!codeInterval) {
+                codeInterval = setInterval(function() { pushCodeLine(false); }, 200);
+            }
+        });
+
+        mainVideo.addEventListener("timeupdate", function() {
+            var time = mainVideo.currentTime;
+            
+            if (time < 1.0 && interceptTriggered) {
+                interceptTriggered = false; step1 = false; step2 = false; step3 = false;
+                
+                pipContainer.style.display = "none";
+                alarmOverlay.style.display = "none";
+                xrayVideo.pause(); xrayVideo.currentTime = 0;
+                
+                document.getElementById('txt-tgt').innerText = "TGT: ACQUIRING...";
+                document.getElementById('tgtContainer').style.color = "#00ffcc";
+                document.getElementById('sysContainer').style.color = "#00ffcc";
+                document.getElementById('camStatus').style.color = "#00ffcc";
+                document.getElementById('insituStatus').style.color = "#aaaaaa"; 
+
+                var leds = document.querySelectorAll('.status-led');
+                for(var i=0; i<leds.length; i++) leds[i].classList.remove('led-red');
+                document.getElementById('targetingReticle').style.borderColor = "rgba(0, 255, 204, 0.3)";
+            }
+
+            if (time >= 2.0 && !step1 && !interceptTriggered) {
+                step1 = true;
+                document.getElementById('led-sys').classList.add('led-red');
+                document.getElementById('txt-sys').innerText = "SYS: OVERLOAD";
+                document.getElementById('sysContainer').style.color = "#ff3333";
+            }
+
+            if (time >= 2.5 && !step2 && !interceptTriggered) {
+                step2 = true;
+                document.getElementById('led-tgt').classList.add('led-red');
+                document.getElementById('txt-tgt').innerText = "TGT: DEVIATING";
+                document.getElementById('tgtContainer').style.color = "#ff3333";
+            }
+
+            if (time >= 3.0 && !step3 && !interceptTriggered) {
+                step3 = true;
+                document.getElementById('led-insitu').classList.add('led-red');
+                document.getElementById('insituStatus').style.color = "#ff3333";
+            }
+
+            if (time >= 3.5 && !interceptTriggered) { 
+                interceptTriggered = true;
+                
+                xrayVideo.currentTime = time;
+                xrayVideo.play();
+                pipContainer.style.display = "block";
+                
+                document.getElementById('led-cam').classList.add('led-red');
+                document.getElementById('camStatus').style.color = "#ff3333";
+                document.getElementById('txt-tgt').innerText = "TGT: LOCK / X-RAY";
+                alarmOverlay.style.display = "block";
+                document.getElementById('targetingReticle').style.borderColor = "rgba(255, 51, 51, 0.8)";
+                
+                for(var j=0; j<5; j++) pushCodeLine(true);
+            }
+        });
+    </script>
+</body>
+</html>
