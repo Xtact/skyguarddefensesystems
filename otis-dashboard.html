@@ -74,4 +74,196 @@
         .hud-right { right: 10px; text-align: right; }
 
         .hud-item {
-            background: rgba
+            background: rgba(0, 0, 0, 0.8); padding: 5px 8px; display: flex; align-items: center; gap: 6px;
+        }
+        
+        .status-led {
+            width: 6px; height: 6px; border-radius: 50%; background-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.7);
+        }
+        .led-red { background-color: #ff3333 !important; box-shadow: 0 0 10px rgba(255, 51, 51, 0.9) !important; }
+
+        .hud-right .hud-item { flex-direction: row-reverse; }
+        .insitu-tag { color: #aaaaaa; }
+
+        #pipContainer {
+            display: none; position: absolute; bottom: 20px; right: 20px; 
+            width: 45%; max-width: 400px; border: 2px solid #39FF14; background: #000; z-index: 10;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
+        }
+        #pipContainer::before {
+            content: 'ISOLATION OVERRIDE'; position: absolute; top: -20px; left: 0; color: #ff3333; 
+            font-size: 10px; font-weight: bold;
+        }
+        #xrayVideo { width: 100%; display: block; }
+
+        #alarmOverlay {
+            display: none; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            background-color: rgba(200, 0, 0, 1); color: white; padding: 8px 20px; font-size: 16px; 
+            font-weight: bold; text-align: center; border: 2px solid #ffffff; z-index: 20; width: 80%;
+            text-shadow: 1px 1px 0 #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="initScreen">
+        <button id="startBtn">INITIALIZE O.T.I.S. UPLINK</button>
+    </div>
+
+    <h1>O.T.I.S. // Optical Threat Isolation System</h1>
+    <div class="tagline">- YOUR EYES IN THE SKY -</div>
+
+    <div id="mainDashboard" class="dashboard-container">
+        <div class="grid-overlay"></div>
+        <div class="reticle" id="targetingReticle"></div>
+        <div id="codeStream"></div>
+
+        <div class="hud-left">
+            <div class="hud-item" id="sysContainer"><span class="status-led" id="led-sys"></span><span id="txt-sys">SYS: ONLINE</span></div>
+            <div class="hud-item"><span class="status-led"></span><span id="altReadout">ALT: 40.2 FT</span></div>
+            <div class="hud-item"><span class="status-led"></span><span id="hdgReadout">HDG: 274° W</span></div>
+            <div class="hud-item" id="tgtContainer"><span class="status-led" id="led-tgt"></span><span id="txt-tgt">TGT: ACQUIRING...</span></div>
+        </div>
+
+        <video id="mainVideo" src="https://xtact.github.io/insitu-defense-matrix/insitu_poc.mp4" playsinline webkit-playsinline muted loop preload="none"></video>
+
+        <div id="alarmOverlay">STRUCTURAL ANOMALY DETECTED</div>
+
+        <div class="hud-right">
+            <div class="hud-item"><span class="status-led"></span><span>BAT: 84%</span></div>
+            <div class="hud-item"><span class="status-led"></span><span>LINK: SECURE</span></div>
+            <div class="hud-item" id="camContainer"><span class="status-led" id="led-cam"></span><span id="camStatus">CAM: FPV</span></div>
+            <div class="hud-item insitu-tag" id="insituContainer"><span class="status-led" id="led-insitu"></span><span id="insituStatus">CORE: INSITU LABS</span></div>
+        </div>
+
+        <div id="pipContainer">
+            <video id="xrayVideo" src="https://xtact.github.io/insitu-defense-matrix/true_xray.mp4" playsinline webkit-playsinline muted loop preload="none"></video>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        var startBtn = document.getElementById('startBtn');
+        var initScreen = document.getElementById('initScreen');
+        var mainDashboard = document.getElementById('mainDashboard');
+        var mainVideo = document.getElementById('mainVideo');
+        var xrayVideo = document.getElementById('xrayVideo');
+        var pipContainer = document.getElementById('pipContainer');
+        var codeStream = document.getElementById('codeStream');
+        var alarmOverlay = document.getElementById('alarmOverlay');
+        
+        // State Trackers
+        var interceptTriggered = false;
+        var step1 = false, step2 = false, step3 = false; 
+        var codeInterval;
+
+        // C++ Code Simulator
+        var cvCode = [
+            "cv::Mat frame; cap >> frame;",
+            "cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);",
+            "cv::Canny(blur, edges, 40, 120);",
+            "tensor_data = otis_model.forward();",
+            "kalman_filter.predict();"
+        ];
+
+        function pushCodeLine(isThreat) {
+            var line = document.createElement('div');
+            if (isThreat) {
+                line.innerText = "EXCEPTION: void *anomaly(0xFF) -- DEPLOY X-RAY";
+                line.style.color = "#ff3333"; line.style.fontWeight = "bold";
+            } else {
+                var hex = "0x" + Math.random().toString(16).substring(2, 8).toUpperCase();
+                line.innerText = "[" + hex + "] " + cvCode[Math.floor(Math.random() * cvCode.length)];
+            }
+            codeStream.appendChild(line);
+            if (codeStream.childNodes.length > 15) codeStream.removeChild(codeStream.firstChild);
+        }
+
+        // --- THE ONLY THING THAT MATTERS: THE TAP ---
+        startBtn.addEventListener('click', function() {
+            // Hide intro, show dashboard
+            initScreen.style.display = 'none';
+            mainDashboard.style.display = 'flex';
+
+            // Play main video instantly
+            mainVideo.play();
+            
+            // Unlock X-Ray video for iOS by playing and immediately pausing
+            var xPlay = xrayVideo.play();
+            if (xPlay !== undefined) {
+                xPlay.then(function() {
+                    xrayVideo.pause();
+                    xrayVideo.currentTime = 0;
+                }).catch(function(err){});
+            }
+
+            if (!codeInterval) {
+                codeInterval = setInterval(function() { pushCodeLine(false); }, 200);
+            }
+        });
+
+        // --- TIME LOGIC ---
+        mainVideo.addEventListener("timeupdate", function() {
+            var time = mainVideo.currentTime;
+            
+            // FLAWLESS LOOP RESET: If the video loops back to the start and alarms are active, reset everything.
+            if (time < 1.0 && interceptTriggered) {
+                interceptTriggered = false; step1 = false; step2 = false; step3 = false;
+                
+                pipContainer.style.display = "none";
+                alarmOverlay.style.display = "none";
+                xrayVideo.pause(); xrayVideo.currentTime = 0;
+                
+                document.getElementById('txt-tgt').innerText = "TGT: ACQUIRING...";
+                document.getElementById('tgtContainer').style.color = "#00ffcc";
+                document.getElementById('sysContainer').style.color = "#00ffcc";
+                document.getElementById('camStatus').style.color = "#00ffcc";
+                document.getElementById('insituStatus').style.color = "#aaaaaa"; 
+
+                var leds = document.querySelectorAll('.status-led');
+                for(var i=0; i<leds.length; i++) leds[i].classList.remove('led-red');
+                document.getElementById('targetingReticle').style.borderColor = "rgba(0, 255, 204, 0.3)";
+            }
+
+            // Sequential Warnings
+            if (time >= 2.0 && !step1 && !interceptTriggered) {
+                step1 = true;
+                document.getElementById('led-sys').classList.add('led-red');
+                document.getElementById('txt-sys').innerText = "SYS: OVERLOAD";
+                document.getElementById('sysContainer').style.color = "#ff3333";
+            }
+
+            if (time >= 2.5 && !step2 && !interceptTriggered) {
+                step2 = true;
+                document.getElementById('led-tgt').classList.add('led-red');
+                document.getElementById('txt-tgt').innerText = "TGT: DEVIATING";
+                document.getElementById('tgtContainer').style.color = "#ff3333";
+            }
+
+            if (time >= 3.0 && !step3 && !interceptTriggered) {
+                step3 = true;
+                document.getElementById('led-insitu').classList.add('led-red');
+                document.getElementById('insituStatus').style.color = "#ff3333";
+            }
+
+            // The Intercept - 3.5 seconds
+            if (time >= 3.5 && !interceptTriggered) { 
+                interceptTriggered = true;
+                
+                xrayVideo.currentTime = time;
+                xrayVideo.play();
+                pipContainer.style.display = "block";
+                
+                document.getElementById('led-cam').classList.add('led-red');
+                document.getElementById('camStatus').style.color = "#ff3333";
+                document.getElementById('txt-tgt').innerText = "TGT: LOCK / X-RAY";
+                alarmOverlay.style.display = "block";
+                document.getElementById('targetingReticle').style.borderColor = "rgba(255, 51, 51, 0.8)";
+                
+                for(var j=0; j<5; j++) pushCodeLine(true);
+            }
+        });
+    </script>
+</body>
+</html>
