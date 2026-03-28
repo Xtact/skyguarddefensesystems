@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyGuard Defense Systems | Passive C-UAS Kinetic Protection</title>
+    <style>
+        body { background-color: #000000; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        .tech-font { font-family: 'Courier New', Courier, monospace; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        a { color: #00ffcc; text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #ffffff; }
+        
+        header { border-bottom: 1px solid #1a332d; padding: 20px 0; background-color: #050505; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: #ff3333; }
+        .nav-links a { margin-left: 25px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
+        .nav-links a:hover { color: #00ffcc; }
+
+        .hero { padding: 80px 20px; text-align: center; background-color: #050505; border-bottom: 1px solid #1a332d; }
+        .hero h1 { color: #ffffff; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
+        .hero .subtitle { color: #ff3333; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 20px; }
+        
+        .section { padding: 80px 0; border-bottom: 1px solid #1a332d; }
+        .section-title { color: #ffffff; font-size: 2rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 0; margin-bottom: 10px; }
+        .section-desc { color: #aaaaaa; font-size: 1.1rem; max-width: 800px; margin-bottom: 50px; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 50px; align-items: center; }
+        
+        .btn { display: inline-block; padding: 12px 25px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
+        .btn-primary { background-color: #00ffcc; color: #000000; border: 2px solid #00ffcc; }
+        .btn-primary:hover { background-color: transparent; color: #00ffcc; }
+        .btn-outline { background-color: transparent; color: #00ffcc; border: 2px solid #00ffcc; }
+        .btn-outline:hover { background-color: #00ffcc; color: #000000; }
+
+        /* O.T.I.S. Live Preview Container */
+        .otis-preview { position: relative; width: 100%; background: #000; border: 1px solid #333; overflow: hidden; aspect-ratio: 16/9; }
+        .otis-preview video { width: 100%; height: 100%; object-fit: cover; }
+        .otis-code { position: absolute; top: 15px; left: 15px; color: rgba(0, 255, 204, 0.8); font-size: 11px; text-shadow: 1px 1px 2px #000; z-index: 2; line-height: 1.4; }
+        .otis-pip { position: absolute; bottom: 15px; right: 15px; width: 35%; max-width: 250px; border: 2px solid #39FF14; background: #000; z-index: 2; box-shadow: 0 0 15px rgba(57, 255, 20, 0.4); }
+        .otis-pip-label { position: absolute; top: -16px; left: 0; color: #ff3333; font-size: 10px; font-weight: bold; }
+
+        .system-card { margin-bottom: 40px; }
+        .system-card h3 { color: #ff3333; font-size: 1.5rem; margin-top: 5px; margin-bottom: 10px; }
+        .system-tag { color: #00ffcc; font-size: 0.8rem; letter-spacing: 2px; }
+
+        .news-item { margin-bottom: 40px; }
+        .news-date { color: #00ffcc; font-size: 0.9rem; letter-spacing: 2px; }
+        .news-title { color: #ffffff; font-size: 1.2rem; margin: 5px 0 10px 0; }
+        
+        footer { padding: 40px 0; text-align: center; color: #555; font-size: 0.8rem; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <header id="home">
+        <div class="container header-content">
+            <div class="logo">SG <span>SKYGUARD</span> DEFENSE SYSTEMS</div>
+            <div class="nav-links tech-font">
+                <a href="#home">Home</a>
+                <a href="#systems">Systems</a>
+                <a href="#tech">Tech</a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Skyguard Defense Systems</h1>
+            <div class="subtitle tech-font">NEXT-GENERATION ANTI-DRONE DEFENSE</div>
+            <p class="tech-font" style="color: #aaaaaa; max-width: 600px; margin: 0 auto;">Passive Kinetic Protection for the 21st Century.</p>
+        </div>
+    </div>
+
+    <div id="cognitive" class="section" style="background-color: #050505;">
+        <div class="container grid-2">
+            <div>
+                <div class="tech-font" style="color: #00ffcc; font-size: 0.85rem; letter-spacing: 4px; margin-bottom: 10px;">A SKYGUARD & INSITU LABS JOINT INITIATIVE</div>
+                <h2 class="section-title">Cognitive Defense & Photogrammetry</h2>
+                <p style="color: #aaaaaa; font-size: 1.1rem; margin-bottom: 20px;">
+                    Headquartered in Boulder, Colorado, our Cognitive Defense division represents a longstanding, highly specialized R&D partnership between SkyGuard Defense Systems and our software engineering partners at InSitu Labs. Born in the lab to solve complex spatial anomalies, our proprietary suite of computer vision and photogrammetry tools translates raw optical data into actionable, kinetic defense.
+                </p>
+                <p style="color: #aaaaaa; font-size: 1.1rem; margin-bottom: 30px;">
+                    We don't just build physical barriers; we engineer real-world software solutions that interface seamlessly with standard Robot Operating System (ROS) architectures and proprietary guidance hardware. By giving autonomous systems the ability to mathematically verify structural geometry in real-time, we neutralize optical spoofing tactics at the code level.
+                </p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="otis-vision.html" class="btn btn-primary tech-font">READ O.T.I.S. SPECS</a>
+                    <a href="otis-dashboard.html" class="btn btn-outline tech-font">LAUNCH LIVE DEMO</a>
+                </div>
+            </div>
+            
+            <div class="otis-preview">
+                <video src="https://xtact.github.io/insitu-defense-matrix/insitu_poc.mp4" autoplay loop muted playsinline style="opacity: 0.6;"></video>
+                <div class="otis-code tech-font">
+                    SYS: STANDBY<br>CORE: INSITU LABS<br><br>
+                    > LOADING SPATIAL MESH... [OK]<br>
+                    > INITIALIZING ROS UPLINK... [OK]<br>
+                    > BYPASSING OPTICAL ILLUSIONS...<br>
+                    <span style="color: #ff3333; font-weight: bold;">> EXCEPTION: ANOMALY DETECTED</span><br>
+                    > DEPLOYING X-RAY EDGE DETECTION<br>
+                    > CALCULATING KINETIC INTERCEPT...
+                </div>
+                <div class="otis-pip">
+                    <div class="otis-pip-label tech-font">ISOLATION OVERRIDE</div>
+                    <video src="https://xtact.github.io/insitu-defense-matrix/true_xray.mp4" autoplay loop muted playsinline></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="systems" class="section">
+        <div class="container">
+            <h2 class="section-title">Defense Solutions</h2>
+            <p class="section-desc">Advanced UAS guidance and drone protection systems engineered for mission-critical applications and high-value strategic assets.</p>
+            
+            <div class="grid-2">
+                <div class="system-card">
+                    <div class="system-tag tech-font">TIER 1 ASSET</div>
+                    <h3>APEX Canopy System™</h3>
+                    <p style="color: #aaaaaa;">Mission critical 360° protection. Drone neutralization for nuclear facilities, fuel depots, supply lines, and major outdoor venues.</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-tag tech-font">PERIMETER</div>
+                    <h3>SENTINEL Perimeter™</h3>
+                    <p style="color: #aaaaaa;">360° vertical barrier system preventing low-altitude ingress/egress. Modular linkage design with integrated sensor grid.</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-tag tech-font">RAPID RESPONSE</div>
+                    <h3>RANGER Mobile™</h3>
+                    <p style="color: #aaaaaa;">Trailer-mounted deployable system with pneumatic masts for mobile units, tactical deployments, and high-security temporary events.</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-tag tech-font">ULTRA-PREMIUM</div>
+                    <h3>FORTRESS Hybrid™</h3>
+                    <p style="color: #aaaaaa;">Active-Passive Integration. Smart mesh with embedded RF sensors and automated deployment for high-value strategic compounds.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech" class="section" style="background-color: #050505;">
+        <div class="container">
+            <h2 class="section-title">Proprietary Technologies</h2>
+            <p class="section-desc">The engineering foundations of the SkyGuard ecosystem, delivering unparalleled reliability and performance.</p>
+            
+            <div class="grid-2">
+                <div>
+                    <h4 style="color: #ffffff; margin-bottom: 5px;"><span style="color: #ff3333;" class="tech-font">TL-01</span> TensionLock™ Cable Architecture</h4>
+                    <p style="color: #aaaaaa; font-size: 0.95rem;">High-tensile cabling system engineered to maintain structural integrity under extreme kinetic loads and high-velocity UAS impacts.</p>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; margin-bottom: 5px;"><span style="color: #ff3333;" class="tech-font">RR-02</span> RapidRise™ Deployment System</h4>
+                    <p style="color: #aaaaaa; font-size: 0.95rem;">Automated pneumatic deployment mechanism allowing full system activation and mesh tensioning in under 120 seconds.</p>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; margin-bottom: 5px;"><span style="color: #ff3333;" class="tech-font">IS-03</span> ImpactSense™ Monitoring</h4>
+                    <p style="color: #aaaaaa; font-size: 0.95rem;">Fiber-optic vibration sensors embedded within the mesh that detect, localize, and report UAS collisions in real-time to central command.</p>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; margin-bottom: 5px;"><span style="color: #ff3333;" class="tech-font">LS-04</span> LayerShield™ Multi-Density Mesh</h4>
+                    <p style="color: #aaaaaa; font-size: 0.95rem;">Proprietary multi-layer mesh density gradients designed to effectively entangle rotors and airframes of varying UAS sizes and weights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="news" class="section">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title" style="text-align: center;">News & Intelligence</h2>
+            <p class="section-desc" style="text-align: center; margin-bottom: 50px;">Operational intelligence and technical updates from the SkyGuard engineering division.</p>
+            
+            <div class="news-item">
+                <div class="news-date tech-font">MARCH 27, 2026</div>
+                <h3 class="news-title">STRATEGIC ALLIANCE: INSITU LABS</h3>
+                <p style="color: #aaaaaa;">SkyGuard Defense Systems officially announces a joint R&D initiative with Boulder-based InSitu Labs to integrate advanced photogrammetry and cognitive computer vision into the SkyGuard C-UAS ecosystem.</p>
+            </div>
+
+            <div class="news-item">
+                <div class="news-date tech-font">OCTOBER 15, 2025</div>
+                <h3 class="news-title">REGIONAL GRID PROTECTION INITIATIVE</h3>
+                <p style="color: #aaaaaa;">SkyGuard has been selected to provide the primary passive defense layer for four major utility substations in the Pacific Northwest, mitigating increasing UAS surveillance threats.</p>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-date tech-font">SEPTEMBER 02, 2025</div>
+                <h3 class="news-title">FORTRESS HYBRID SENSOR UPGRADE</h3>
+                <p style="color: #aaaaaa;">The latest firmware for the FORTRESS system introduces AI-driven threat classification, allowing the mesh to distinguish between wildlife and unauthorized UAV hardware.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="tech-font">
+        <div class="container">
+            <p>© 2026 SkyGuard Defense Systems. ITAR CONTROLLED TECHNOLOGY.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
