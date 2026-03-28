@@ -28,25 +28,22 @@
             position: relative; width: 100%; max-width: 1400px; height: 80vh;
             justify-content: center; align-items: center;
             background-color: #050505; border: 1px solid #1a332d; overflow: hidden;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-        /* NEW: Back Button */
+        /* REPOSITIONED BACK BUTTON */
         .back-btn {
-            position: absolute; top: 20px; left: 20px; z-index: 50;
-            color: #00ffcc; font-family: 'Courier New', Courier, monospace; font-size: 14px; font-weight: bold;
+            position: absolute; top: 15px; left: 15px; z-index: 50;
+            color: #00ffcc; font-family: 'Courier New', Courier, monospace; font-size: 13px; font-weight: bold;
             text-decoration: none; border: 1px solid #00ffcc; padding: 8px 15px; background: rgba(0, 0, 0, 0.8);
             text-transform: uppercase; transition: all 0.3s ease;
         }
         .back-btn:hover { background: #00ffcc; color: #000; }
 
+        /* SHRUNKEN HEADER */
         h1 {
-            color: #ff3333; letter-spacing: 2px; text-transform: uppercase; margin: 15px 0 5px 0; 
-            font-size: 1.4rem; z-index: 30; text-shadow: 0 0 10px rgba(255, 51, 51, 0.5); text-align: center;
-        }
-        
-        .tagline {
-            color: #00ffcc; font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 5px; z-index: 30;
+            color: #ff3333; letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; 
+            font-size: 1rem; z-index: 30; text-shadow: 0 0 10px rgba(255, 51, 51, 0.5); text-align: center;
         }
 
         .grid-overlay {
@@ -66,20 +63,22 @@
 
         #mainVideo { width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 1; }
 
+        /* REPOSITIONED DOWNWARD TO CLEAR HUD */
         #codeStream {
-            position: absolute; top: 20px; left: 20px; width: 200px; height: 250px;
+            position: absolute; top: 160px; left: 15px; width: 200px; height: 250px;
             font-size: 10px; color: rgba(0, 255, 204, 0.6); overflow: hidden; pointer-events: none; z-index: 5;
             display: flex; flex-direction: column; justify-content: flex-end;
             text-shadow: 1px 1px 2px black;
         }
 
         .hud-left, .hud-right {
-            position: absolute; top: 20px; display: flex; flex-direction: column; gap: 8px;
+            position: absolute; display: flex; flex-direction: column; gap: 8px;
             font-size: 11px; text-shadow: 1px 1px 2px black; pointer-events: none; z-index: 5;
         }
-        /* Adjusted left HUD to not block the new back button */
-        .hud-left { left: 20px; top: 70px; }
-        .hud-right { right: 10px; text-align: right; }
+        
+        /* REPOSITIONED TO CLEAR BACK BUTTON */
+        .hud-left { left: 15px; top: 70px; }
+        .hud-right { right: 15px; top: 15px; text-align: right; }
 
         .hud-item {
             background: rgba(0, 0, 0, 0.8); padding: 5px 8px; display: flex; align-items: center; gap: 6px;
@@ -94,6 +93,7 @@
         .hud-right .hud-item { flex-direction: row-reverse; }
         .insitu-tag { color: #aaaaaa; }
 
+        /* UNTOUCHED PIP POSITION */
         #pipContainer {
             display: none; position: absolute; bottom: 20px; right: 20px; 
             width: 45%; max-width: 400px; border: 2px solid #39FF14; background: #000; z-index: 10;
@@ -105,8 +105,9 @@
         }
         #xrayVideo { width: 100%; display: block; }
 
+        /* DROPPED DOWN TO CLEAR BACK BUTTON ON MOBILE */
         #alarmOverlay {
-            display: none; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            display: none; position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
             background-color: rgba(200, 0, 0, 1); color: white; padding: 8px 20px; font-size: 16px; 
             font-weight: bold; text-align: center; border: 2px solid #ffffff; z-index: 20; width: 80%;
             text-shadow: 1px 1px 0 #000;
@@ -116,12 +117,11 @@
 <body>
 
     <div id="initScreen">
-        <a href="index.html" class="back-btn">&lt; RETURN TO HQ</a>
+        <a href="index.html" class="back-btn" style="top: 20px; left: 20px;">&lt; RETURN TO HQ</a>
         <button id="startBtn">INITIALIZE O.T.I.S. UPLINK</button>
     </div>
 
     <h1>O.T.I.S. // Optical Threat Isolation System</h1>
-    <div class="tagline">- YOUR EYES IN THE SKY -</div>
 
     <div id="mainDashboard" class="dashboard-container">
         
