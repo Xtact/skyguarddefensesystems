@@ -5,52 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cognitive Defense | SkyGuard Defense Systems</title>
     <style>
-        body {
-            background-color: #000000; color: #ffffff; font-family: sans-serif;
-            margin: 0; padding: 0; line-height: 1.6;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        body { background-color: #000000; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .tech-font { font-family: 'Courier New', Courier, monospace; }
-         
-        /* Hero Section */
-        .hero {
-            background-color: #050505; border-bottom: 2px solid #1a332d;
-            padding: 100px 20px 60px 20px; text-align: center;
-            background-image: linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        .hero h1 { color: #ff3333; letter-spacing: 3px; text-transform: uppercase; font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 0 15px rgba(255, 51, 51, 0.4); }
-        .hero .subtitle { color: #00ffcc; font-size: 1rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
         
-        /* Content Blocks */
+        a { color: #00ffcc; text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #ffffff; }
+
+        header { border-bottom: 1px solid #1a332d; padding: 20px 0; background-color: #050505; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: #ff3333; }
+        .nav-links a { margin-left: 25px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
+        .nav-links a:hover { color: #00ffcc; }
+
+        .hero { padding: 80px 20px 40px 20px; text-align: center; border-bottom: 1px solid #1a332d; background-image: linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .hero h1 { color: #ff3333; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
+        .hero .subtitle { color: #00ffcc; font-size: 1rem; letter-spacing: 4px; margin-bottom: 30px; text-transform: uppercase; }
+        
         .content-section { padding: 60px 0; border-bottom: 1px solid #111; }
-        .content-section h2 { color: #ffffff; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 20px; border-left: 4px solid #ff3333; padding-left: 15px; }
-        .content-section p { color: #aaaaaa; font-size: 1.1rem; margin-bottom: 20px; }
-        
-        /* Tactical Grid Cards */
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .feature-card {
-            background: #0a0a0a; border: 1px solid #333; padding: 30px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5); transition: border-color 0.3s ease;
-        }
-        .feature-card:hover { border-color: #00ffcc; }
-        .feature-card h3 { color: #00ffcc; margin-top: 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
-        
-        .btn-return {
-            display: inline-block; margin-top: 40px; padding: 12px 25px; color: #555;
-            border: 1px solid #555; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-        }
-        .btn-return:hover { color: #00ffcc; border-color: #00ffcc; }
+        h2 { color: #ffffff; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 20px; border-left: 4px solid #ff3333; padding-left: 15px; text-transform: uppercase; }
+        h3 { color: #00ffcc; font-size: 1.2rem; margin-bottom: 5px; text-transform: uppercase; }
+        p { color: #aaaaaa; font-size: 1.1rem; margin-bottom: 20px; }
+
+        .btn { display: inline-block; padding: 15px 30px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; margin: 10px; }
+        .btn-primary { background-color: #00ffcc; color: #000000; border: 2px solid #00ffcc; }
+        .btn-primary:hover { background-color: transparent; color: #00ffcc; }
+        .btn-outline { background-color: transparent; color: #555; border: 2px solid #555; }
+        .btn-outline:hover { background-color: #555; color: #ffffff; }
+
+        footer { padding: 40px 0; text-align: center; color: #555; font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid #1a332d; margin-top: 40px; }
     </style>
 </head>
 <body>
 
+    <header>
+        <div class="container header-content">
+            <div class="logo">SG <span>SKYGUARD</span> DEFENSE SYSTEMS</div>
+            <div class="nav-links tech-font">
+                <a href="index.html">Return to HQ</a>
+            </div>
+        </div>
+    </header>
+
     <div class="hero">
         <div class="container">
-            <div class="tech-font" style="color:#555; margin-bottom:15px;">// BOULDER, CO. USA</div>
-            <h1>Cognitive Defense & Computer Vision</h1>
+            <div class="tech-font" style="color:#555; margin-bottom:15px; letter-spacing: 2px;">// BOULDER, CO. USA</div>
+            <h1>Cognitive Defense Division</h1>
             <div class="subtitle tech-font">Weaponized Photogrammetry for Autonomous Architectures</div>
-            <p style="max-width: 800px; margin: 0 auto; color: #888; font-size: 1.1rem;">
+            <p style="max-width: 800px; margin: 0 auto; color: #aaaaaa;">
                 A longstanding R&D initiative engineered in "the lab" by SkyGuard Defense Systems and InSitu Labs. We develop proprietary algorithms that force drones and guidance systems to see the world mathematically, eliminating optical vulnerabilities.
             </p>
         </div>
@@ -59,55 +62,46 @@
     <div class="content-section">
         <div class="container">
             <h2>Defeating the "Flytrap" Vulnerability</h2>
-            <p>
-                In standard C-UAS and drone defense environments, rogue operators frequently utilize optical illusions and spatial camouflage to bypass standard AI targeting matrices. The most notorious of these is the "Flytrap" tactic—deploying high-contrast geometric patterns (such as heavily engineered umbrellas or tarps) designed to confuse a drone's depth perception, tricking the hardware into closing the distance where it can be physically captured or destroyed by the hostile operator.
-            </p>
-            <p>
-                SkyGuard recognized that relying purely on standard RGB camera feeds was a fatal flaw. In partnership with the computer vision architects at InSitu Labs, we developed a system that ignores surface-level imagery and instead builds a real-time, structural X-Ray of the environment.
-            </p>
+            <p>In standard C-UAS and drone defense environments, rogue operators frequently utilize optical illusions and spatial camouflage to bypass standard AI targeting matrices. The most notorious of these is the "Flytrap" tactic—deploying high-contrast geometric patterns (such as heavily engineered umbrellas or tarps) designed to confuse a drone's depth perception, tricking the hardware into closing the distance where it can be physically captured or destroyed by the hostile operator.</p>
+            <p>SkyGuard recognized that relying purely on standard RGB camera feeds was a fatal flaw. In partnership with the computer vision architects at InSitu Labs, we developed a system that ignores surface-level imagery and instead builds a real-time, structural X-Ray of the environment.</p>
         </div>
     </div>
 
     <div class="content-section" style="background-color: #050505;">
         <div class="container">
             <h2>O.T.I.S. // Optical Threat Isolation System</h2>
-            <p>
-                O.T.I.S. is our flagship proprietary software suite. It is an enterprise, military-grade computer vision overlay that strips away visual noise, concrete texture, and optical camouflage to reveal the raw structural math of a target. When a spatial anomaly is detected, O.T.I.S. instantly overrides standard camera feeds, deploying high-contrast edge-detection to isolate the hostiles structural geometry.
-            </p>
-            <p>
-                Once O.T.I.S. achieves a structural lock on a "Flytrap" anomaly, it interfaces directly with the drone's firing and payload mechanisms, neutralizing the target via a targeted kinetic strike before the hostile operator can bring the hardware into capture range.
-            </p>
+            <p>O.T.I.S. is our flagship proprietary software suite. It is an enterprise, military-grade computer vision overlay that strips away visual noise, concrete texture, and optical camouflage to reveal the raw structural math of a target. When a spatial anomaly is detected, O.T.I.S. instantly overrides standard camera feeds, deploying high-contrast edge-detection to isolate the hostile's structural geometry.</p>
+            <p>Once O.T.I.S. achieves a structural lock on a "Flytrap" anomaly, it interfaces directly with the drone's firing and payload mechanisms, neutralizing the target via a targeted kinetic strike before the hostile operator can bring the hardware into capture range.</p>
             
-            <div class="feature-grid">
-                <div class="feature-card">
+            <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="background: #0a0a0a; border: 1px solid #1a332d; padding: 25px;">
                     <h3>ROS Native Integration</h3>
-                    <p class="tech-font" style="font-size: 0.9rem; color: #888;">
-                        Engineered to be hardware-agnostic. O.T.I.S. interfaces seamlessly with standard Robot Operating System (ROS) architectures, allowing for rapid deployment across legacy drone fleets and modern autonomous guidance systems.
-                    </p>
+                    <p class="tech-font" style="font-size: 0.9rem; margin-bottom: 0;">Engineered to be hardware-agnostic. O.T.I.S. interfaces seamlessly with standard Robot Operating System (ROS) architectures.</p>
                 </div>
-                <div class="feature-card">
+                <div style="background: #0a0a0a; border: 1px solid #1a332d; padding: 25px;">
                     <h3>Live DP Mesh Generation</h3>
-                    <p class="tech-font" style="font-size: 0.9rem; color: #888;">
-                        Utilizes proprietary Live Depth Perception (DP) to generate on-the-fly topographical maps of the battlefield. It does not look at the picture; it evaluates the physics of the space.
-                    </p>
+                    <p class="tech-font" style="font-size: 0.9rem; margin-bottom: 0;">Utilizes proprietary Live Depth Perception (DP) to generate on-the-fly topographical maps of the battlefield.</p>
                 </div>
-                <div class="feature-card">
+                <div style="background: #0a0a0a; border: 1px solid #1a332d; padding: 25px;">
                     <h3>Automated Neutralization</h3>
-                    <p class="tech-font" style="font-size: 0.9rem; color: #888;">
-                        Zero human-latency. O.T.I.S. handles the spatial math from acquisition to intercept, enabling immediate automated strikes on hostile assets attempting to spoof the optical systems.
-                    </p>
+                    <p class="tech-font" style="font-size: 0.9rem; margin-bottom: 0;">Zero human-latency. O.T.I.S. handles the spatial math from acquisition to intercept, enabling immediate automated strikes.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="content-section text-center" style="text-align: center; padding-bottom: 80px;">
+    <div class="content-section" style="text-align: center; padding-bottom: 40px;">
         <div class="container">
-            <h3 style="color: #555; letter-spacing: 2px;">SECURE R&D PARTNERSHIP</h3>
-            <p class="tech-font" style="color: #00ffcc; font-size: 1.2rem; margin-top: 10px;">SKYGUARD DEFENSE SYSTEMS  x  INSITU LABS</p>
-            <a href="index.html" class="btn-return tech-font">&lt; RETURN TO COMMAND CENTER</a>
+            <a href="otis-dashboard.html" class="btn btn-primary tech-font">LAUNCH O.T.I.S. LIVE DEMO</a>
+            <a href="index.html" class="btn btn-outline tech-font">&lt; RETURN TO HQ</a>
         </div>
     </div>
+
+    <footer class="tech-font">
+        <div class="container">
+            <p>© 2026 SkyGuard Defense Systems. ITAR CONTROLLED TECHNOLOGY.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
