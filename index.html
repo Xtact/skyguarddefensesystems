@@ -155,31 +155,18 @@
 <body id="home">
     <div class="grid-overlay"></div>
     
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#home" class="logo">
-                    <div class="logo-mark">SG</div>
-                    <div class="logo-text"><h1>SKYGUARD</h1><span>DEFENSE SYSTEMS</span></div>
-                </a>
-                
-                <div class="menu-toggle" aria-label="Toggle Navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <ul class="nav-links">
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#products">SYSTEMS</a></li>
-                    <li><a href="#tech">TECH</a></li>
-                    <li><a href="#news">NEWS</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </nav>
+       <header id="home">
+        <div class="container header-content">
+            <div class="logo">SG <span>SKYGUARD</span> DEFENSE SYSTEMS</div>
+            <div class="nav-links tech-font">
+                <a href="index.html">HQ</a>
+                <a href="index.html#systems">Systems</a>
+                <a href="index.html#tech">Tech</a>
+                <a href="news-flytrap-umbrella-attack.html">Press</a>
+                <a href="otis-vision.html">O.T.I.S.</a>
+            </div>
         </div>
     </header>
-
     <main>
         <!-- HERO SECTION -->
         <section class="hero-container">
@@ -459,7 +446,6 @@
                 </div>
                 <p class="desc"><strong>SENTINEL Perimeter Shield™</strong> is a modular vertical barrier for low-altitude ingress. The <strong>FORTRESS Hybrid System™</strong> adds a "smart" layer with automated deployment and <strong>ImpactSense™</strong> monitoring for autonomous 24/7 facility defense.</p>
             </div>
-
             <div class="hud-card fade-in">
                 <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                 <div class="card-header">
@@ -470,9 +456,7 @@
             </div>
         </div>
     </div>
-</section>
-
-        
+</section>        
 </section>
     <!-- SPECS MODAL -->
     <div id="specs-modal" class="modal-overlay">
@@ -483,36 +467,22 @@
             <div id="modal-body" class="modal-inner"></div>
         </div>
     </div>
-
     <!-- SCROLL TO TOP -->
     <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Return to top">
         <span class="btn-icon">▲</span>
         <span class="btn-text">TOP</span>
     </button>
-
-    <footer>
+        <footer class="tech-font">
         <div class="container">
-            <div class="footer-layout">
-                <div class="footer-brand">
-                    <div class="logo-mark" style="width:30px; height:30px; font-size: 0.8rem;">SG</div>
-                    <h3>SKYGUARD DEFENSE</h3>
-                    <p>Passive Kinetic Protection for the 21st Century.</p>
-                </div>
-                <div class="footer-links">
-                    <p class="link-label">COMMAND LINKS</p>
-                    <a href="#home">Home</a>
-                    <a href="#products">Systems</a>
-                    <a href="#tech">Technologies</a>
-                    <a href="#news">News</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
-                <p>&copy; 2025 SkyGuard Defense Systems. <span class="text-gold">ITAR CONTROLLED TECHNOLOGY.</span></p>
-            </div>
+            <p>© 2026 SkyGuard Defense Systems. ITAR CONTROLLED TECHNOLOGY.</p>
+            <p style="margin-top: 15px;">
+                <a href="index.html" style="margin: 0 10px;">HQ</a> | 
+                <a href="otis-vision.html" style="margin: 0 10px;">Cognitive Defense Specs</a> | 
+                <a href="otis-dashboard.html" style="margin: 0 10px;">Live O.T.I.S. Demo</a> | 
+                <a href="news-flytrap-umbrella-attack.html" style="margin: 0 10px;">Latest Intelligence</a>
+            </p>
         </div>
     </footer>
-
     <script>
         // --- Product Data ---
         const productSpecs = {
