@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show HN: Defeating the DPA/Flytrap Drone Vulnerability | SkyGuard</title>
+    
+    <meta name="description" content="Technical breakdown: How SkyGuard and InSitu Labs use ROS-native photogrammetry and structural X-Ray meshes to neutralize Distance-Pulling Attacks (DPA) and adversarial umbrellas.">
+    <meta name="keywords" content="Show HN, Hacker News, Flytrap umbrella attack, distance-pulling attack, DPA, ROS computer vision, C-UAS photogrammetry, adversarial umbrella, autonomous target tracking ATT, drone spoofing fix">
+    <link rel="canonical" href="https://skyguarddefense.com/hn-flytrap-override.html" />
+
+    <meta property="og:title" content="Show HN: Neutralizing the Flytrap DPA Vulnerability at the Code Level">
+    <meta property="og:description" content="We built a ROS-native computer vision override that ignores optical camouflage and uses raw structural math to defeat Distance-Pulling Attacks on autonomous drones.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://skyguarddefense.com/hn-flytrap-override.html">
+    <meta property="og:image" content="https://xtact.github.io/skyguarddefensesystems/insitu_poc.mp4">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Optical Threat Isolation System (O.T.I.S.)",
+      "operatingSystem": "ROS (Robot Operating System)",
+      "applicationCategory": "SecurityApplication",
+      "description": "A proprietary computer vision and photogrammetry suite designed to neutralize Distance-Pulling Attacks (DPA) and 'Flytrap' adversarial umbrellas against C-UAS platforms.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "SkyGuard Defense Systems & InSitu Labs"
+      }
+    }
+    </script>
+
+    <style>
+        body { background-color: #000000; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        .tech-font { font-family: 'Courier New', Courier, monospace; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        
+        a { color: #00ffcc; text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #ffffff; }
+
+        header { border-bottom: 1px solid #1a332d; padding: 20px 0; background-color: #050505; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: #ff3333; }
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .nav-links a { font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; border: 1px solid transparent; padding: 5px 10px; }
+        .nav-links a:hover { color: #00ffcc; border: 1px solid #00ffcc; }
+
+        .hero { padding: 60px 20px 40px 20px; border-bottom: 1px solid #1a332d; background-image: linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .hero h1 { color: #ff3333; font-size: 2.2rem; letter-spacing: 1px; margin-bottom: 15px; line-height: 1.2; }
+        .hero .greeting { color: #00ffcc; font-size: 1rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
+        
+        .content-section { padding: 50px 0; border-bottom: 1px solid #111; }
+        .hn-body p { color: #aaaaaa; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.8; }
+        .hn-body h2 { color: #ffffff; font-size: 1.4rem; letter-spacing: 1px; margin-top: 40px; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; text-transform: uppercase; }
+        
+        /* Code Block Styling for Engineers */
+        pre { background: #0a0a0a; border: 1px solid #1a332d; padding: 20px; overflow-x: auto; color: #00ffcc; font-size: 0.9rem; margin-bottom: 25px; border-left: 4px solid #ff3333; }
+
+        .action-links { text-align: center; margin: 50px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-primary { padding: 12px 25px; font-weight: bold; color: #000; background: #00ffcc; text-decoration: none; text-transform: uppercase; border: 2px solid #00ffcc; }
+        .btn-primary:hover { background: transparent; color: #00ffcc; }
+        .btn-outline { padding: 12px 25px; font-weight: bold; color: #aaaaaa; background: transparent; text-decoration: none; text-transform: uppercase; border: 1px solid #555; }
+        .btn-outline:hover { background: #555; color: #ffffff; }
+
+        footer { padding: 40px 0; text-align: center; color: #555; font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid #1a332d; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">SG <span>SKYGUARD</span> DEFENSE SYSTEMS</div>
+            <div class="nav-links tech-font">
+                <a href="index.html">HQ</a>
+                <a href="index.html#systems">Systems</a>
+                <a href="index.html#tech">Tech</a>
+                <a href="news-flytrap-umbrella-attack.html">Press</a>
+                <a href="otis-vision.html">O.T.I.S.</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <div class="greeting tech-font">> Welcome Hacker News</div>
+            <h1>Show HN: Neutralizing the Flytrap DPA Vulnerability at the Code Level</h1>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="container hn-body">
+            
+            <p>Hey HN,</p>
+            <p>We are a defense technology team operating out of the Denver/Boulder aerospace corridor. Recently, the security research community highlighted a critical flaw in standard Autonomous Target Tracking (ATT) matrices used by C-UAS drones: <strong>The Distance-Pulling Attack (DPA)</strong>.</p>
+            
+            <h2>The Exploit: Adversarial Umbrellas</h2>
+            <p>If a tracking drone relies heavily on RGB cameras for depth perception and bounding-box generation, a hostile operator can deploy an adversarial umbrella (a "Flytrap"). These feature high-contrast, geometric patterns explicitly engineered to spoof the drone's optical sensors. The drone miscalculates the physical distance, forcing it to continuously close the gap until the operator can capture or destroy the hardware.</p>
+
+            <h2>The Fix: Weaponized Photogrammetry</h2>
+            <p>To patch this, SkyGuard Defense Systems partnered with InSitu Labs to bypass RGB limitations entirely. We built the <strong>Optical Threat Isolation System (O.T.I.S.)</strong>.</p>
+            
+            <p>O.T.I.S. is a ROS-native node that strips away optical camouflage. Instead of looking at the picture, it generates a real-time Live Depth Perception (DP) mesh—essentially a structural X-Ray of the battlefield.</p>
+
+            <pre class="tech-font">
+// Conceptual execution pipeline
+if (optical_variance > DPA_THRESHOLD) {
+    initiate_override();
+    deploy_structural_mesh();
+    target_lock = isolate_geometry(anomaly);
+    execute_kinetic_intercept(target_lock);
+}
+            </pre>
+
+            <p>When the bounding box detects geometric spoofing, O.T.I.S. overrides the standard feed, isolates the raw structural math of the target, and calculates a zero human-latency kinetic intercept before the drone is pulled into the danger zone.</p>
+
+            <h2>Live Architecture Demo</h2>
+            <p>We built a frontend UI to simulate exactly how O.T.I.S. handles the spatial math during an intercept, including the X-Ray PIP deployment. You can run the live demo below.</p>
+
+            <div class="action-links tech-font">
+                <a href="otis-dashboard.html" class="btn-primary">Execute Live Demo</a>
+                <a href="otis-vision.html" class="btn-outline">View Architecture Specs</a>
+            </div>
+
+            <p>We’d love feedback from anyone currently working with ROS navigation stacks or computer vision obstacle avoidance on how you are handling adversarial physical inputs.</p>
+
+        </div>
+    </div>
+
+    <footer class="tech-font">
+        <div class="container">
+            <p>© 2026 SkyGuard Defense Systems. ITAR CONTROLLED TECHNOLOGY.</p>
+            <p style="margin-top: 15px;">
+                <a href="index.html" style="margin: 0 10px;">HQ</a> | 
+                <a href="otis-vision.html" style="margin: 0 10px;">Cognitive Defense Specs</a> | 
+                <a href="otis-dashboard.html" style="margin: 0 10px;">Live O.T.I.S. Demo</a> | 
+                <a href="news-flytrap-umbrella-attack.html" style="margin: 0 10px;">Latest Intelligence</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
