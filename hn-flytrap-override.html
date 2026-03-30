@@ -68,19 +68,61 @@
     </style>
 </head>
 <body>
+    <style>
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505; }
+        .global-header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .global-nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .global-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+        .global-logo h1 { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
+        .global-logo span { color: #ff3333; }
+        
+        .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
+        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; text-decoration: none; transition: color 0.3s; }
+        .global-nav-links a:hover { color: #00ffcc; }
 
-    <header>
-        <div class="container header-content">
-            <div class="logo">SG <span>SKYGUARD</span> DEFENSE SYSTEMS</div>
-            <div class="nav-links tech-font">
-                <a href="index.html">HQ</a>
-                <a href="index.html#systems">Systems</a>
-                <a href="index.html#tech">Tech</a>
-                <a href="news-flytrap-umbrella-attack.html">Press</a>
-                <a href="otis-vision.html">O.T.I.S.</a>
-            </div>
+        .global-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .global-menu-toggle span { width: 25px; height: 2px; background-color: #00ffcc; transition: 0.3s; }
+
+        @media (max-width: 900px) {
+            .global-menu-toggle { display: flex; }
+            .global-nav-links { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #050505; flex-direction: column; padding: 20px 0; border-bottom: 1px solid #1a332d; z-index: 1000; text-align: center; }
+            .global-nav-links.active { display: flex; }
+            .global-nav-links li { margin: 10px 0; }
+        }
+    </style>
+
+    <header class="global-header">
+        <div class="container">
+            <nav class="global-nav">
+                <a href="index.html" class="global-logo">
+                    <img src="skyguard_logo.png" alt="SkyGuard Logo">
+                    <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
+                </a>
+                
+                <div class="global-menu-toggle" id="mobile-menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <ul class="global-nav-links" id="mobile-nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#products">SYSTEMS</a></li>
+                    <li><a href="index.html#tech">TECH</a></li>
+                    <li><a href="index.html#news">NEWS</a></li>
+                    <li><a href="index.html#contact">CONTACT</a></li>
+                    <li><a href="otis-vision.html">O.T.I.S.</a></li>
+                    <li><a href="otis-dashboard.html">DEMO</a></li>
+                    <li><a href="news-flytrap-umbrella-attack.html">PRESS</a></li>
+                    <li><a href="hn-flytrap-override.html">OVERRIDE</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-nav-links').classList.toggle('active');
+        });
+    </script>
 
     <div class="hero">
         <div class="container">
