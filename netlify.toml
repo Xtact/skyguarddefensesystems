@@ -1,0 +1,26 @@
+# ==========================================
+# SKYGUARD CONTINUOUS DEPLOYMENT (CD) CONFIG
+# ==========================================
+
+[build]
+  # Tells Netlify to publish the root directory where your HTML lives
+  publish = "."
+  
+  # Tells Netlify there is no complex build pipeline (like React or Node)
+  # Just take the raw HTML/CSS/JS files and push them live instantly.
+  command = ""
+
+# Explicitly lock production deployments to your main GitHub branch
+[context.production]
+  branch = "main"
+
+# ==========================================
+# SEO & REDIRECT RULES
+# ==========================================
+
+# Fixes the Bing duplicate content error by forcing /index.html to the root domain
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
