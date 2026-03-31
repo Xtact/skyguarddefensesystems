@@ -10,6 +10,30 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
+        /* --- GLOBAL HEADER STYLES --- */
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505; font-family: sans-serif; }
+        .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .global-nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .global-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+        .global-logo h1 { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
+        .global-logo span { color: #ff3333; }
+        
+        .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
+        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; text-decoration: none; transition: color 0.3s; }
+        .global-nav-links a:hover { color: #00ffcc; }
+
+        .global-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .global-menu-toggle span { width: 25px; height: 2px; background-color: #00ffcc; transition: 0.3s; }
+
+        @media (max-width: 900px) {
+            .global-menu-toggle { display: flex; }
+            .global-nav-links { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #050505; flex-direction: column; padding: 20px 0; border-bottom: 1px solid #1a332d; z-index: 1000; text-align: center; }
+            .global-nav-links.active { display: flex; }
+            .global-nav-links li { margin: 10px 0; }
+        }
+
+        /* --- HN PAGE SPECIFIC STYLES --- */
         :root {
             --bg-color: #0d1117;
             --text-main: #c9d1d9;
@@ -29,19 +53,19 @@
             padding: 0;
         }
 
-        .container {
+        .content-container {
             max-width: 850px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        header {
+        .hn-header {
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
             margin-bottom: 40px;
         }
 
-        h1 {
+        .hn-header h1 {
             color: #ffffff;
             font-size: 1.8rem;
             margin-bottom: 10px;
@@ -133,6 +157,14 @@
             text-transform: uppercase;
         }
 
+        .strike-video {
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin: 20px 0;
+            background-color: #000;
+        }
+
         .resource-links {
             text-align: right;
             font-size: 0.9rem;
@@ -174,25 +206,52 @@
             font-weight: bold;
         }
 
-        a {
+        .content-container a {
             color: var(--accent-blue);
             text-decoration: none;
         }
 
-        a:hover {
+        .content-container a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
+    <header class="global-header">
+        <div class="nav-container">
+            <nav class="global-nav">
+                <a href="index.html" class="global-logo">
+                    <img src="skyguard_logo.png" alt="SkyGuard Logo">
+                    <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
+                </a>
+                
+                <div class="global-menu-toggle" id="mobile-menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <ul class="global-nav-links" id="mobile-nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#products">SYSTEMS</a></li>
+                    <li><a href="index.html#tech">TECH</a></li>
+                    <li><a href="index.html#news">NEWS</a></li>
+                    <li><a href="index.html#contact">CONTACT</a></li>
+                    <li><a href="otis-vision.html">O.T.I.S.</a></li>
+                    <li><a href="otis-dashboard.html">DEMO</a></li>
+                    <li><a href="news-flytrap-umbrella-attack.html">PRESS</a></li>
+                    <li><a href="hn-flytrap-override.html">OVERRIDE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<div class="content-container">
+    <div class="hn-header">
         <h1>Show HN: Bypassing optical spoofing (DPA/Flytrap) with live spatial skeletonization</h1>
         <div style="color: var(--text-muted); font-size: 0.9rem;">
             By SkyGuard_Lead | SkyGuard Defense Systems (InSitu Labs) | Denver, CO
         </div>
-    </header>
+    </div>
 
     <main>
         <p>Modern Autonomous Target Tracking (ATT) matrices are fundamentally flawed. If your interceptor relies on surface-level photon reflection—whether it is parsing RGB, tracking HSV/HSL contours, relying on YCbCr video transmission, or even utilizing shallow Near-Infrared (NIR)—it is operating on a vulnerable medium. It can be blinded, tricked, or hijacked by 2D projections and geometric noise.</p>
@@ -238,7 +297,7 @@
         <p>To achieve the <span class="highlight-red">INTERCEPT LOCK</span> you see in the override window, we push the sensor data through a deterministic, four-stage pipeline:</p>
 
         <h3>1. Spectral Delamination Matrix (SDM)</h3>
-        <p>Our proprietary color-separation and multispectral decoupling algorithm. It aggressively strips away optical camouflage, high-contrast spoofing patterns, and adversarial noise across all standard and non-standard color spaces (RGB, HSV, YUV, NIR). It renders the illusion mathematically inert.</p>
+        <p>A color-separation and multispectral decoupling node we built to aggressively strip away optical camouflage, high-contrast spoofing patterns, and adversarial noise across all standard and non-standard color spaces (RGB, HSV, YUV, NIR). It renders the illusion mathematically inert.</p>
 
         <h3>2. Kinetic Contour Mapping (KCM)</h3>
         <p>Once the spectral noise is stripped, KCM initiates a dynamic edge-detection protocol. It utilizes topological light rendering to instantly separate true physical edges from projected shadows or 2D illusions.</p>
@@ -246,7 +305,7 @@
         <h3>3. Volumetric Stereo-Triangulation (VST)</h3>
         <p>This is where we break the DPA and future-proof the intercept. VST is our live depth-perception engine that generates an un-spoofable spatial mesh. By calculating depth continuously, distance-manipulation tactics become useless.</p>
 
-        <p>Our proprietary disparity calculation minimizes spatial error by enforcing structural smoothness while aggressively preserving the hard boundaries identified by KCM:</p>
+        <p>Our disparity calculation minimizes spatial error by enforcing structural smoothness while aggressively preserving the hard boundaries identified by KCM:</p>
 
         <div class="math-block">
             $$E(\mathbf{p}) = \sum_{\mathbf{q} \in \mathcal{N}(\mathbf{p})} w_{\mathbf{q}} \left\| I_L(\mathbf{q}) - I_R(\mathbf{q} - \mathbf{d}(\mathbf{p})) \right\|^2 + \lambda \|\nabla \mathbf{d}(\mathbf{p})\|^2$$
@@ -255,14 +314,27 @@
         <h3>4. Structural Skeletonization (The "X-Ray" Override)</h3>
         <p>The final stage. O.T.I.S. renders the target down to its raw geometric wireframe. The spoofed exterior disappears entirely from the tracking matrix. The system locks a red wireframe precisely onto the true center mass to calculate a zero-latency kinetic intercept.</p>
 
+        <h2>Closing the Loop: The Kinetic Intercept</h2>
+        <p>Academics and researchers recently tried to spoof drone systems with a printed adversarial umbrella. We built software that saw right through it. Here is a visualization of O.T.I.S. executing a kinetic strike on that exact spoofing attempt.</p>
+
+        <video class="strike-video" autoplay loop muted playsinline>
+            <source src="strike_intercept.mp4" type="video/mp4">
+        </video>
+
         <div class="cta-box">
-            <h2 style="margin-top: 0; border: none;">We Isolate the Math.</h2>
-            <p>SkyGuard Defense Systems (headquartered in Denver, CO) builds the cognitive architecture that directs kinetic intercepts. If your defense platforms are still relying on vulnerable optical feeds, your tracking matrix is already obsolete. We can fix that.</p>
-            <a href="mailto:integration@skyguarddefense.com" class="cta-button">Request O.T.I.S. Integration Brief</a>
+            <h2 style="margin-top: 0; border: none;">Roast Our Architecture.</h2>
+            <p>We are a small R&D team operating out of Denver/Boulder. We built the cognitive architecture that directs these kinetic intercepts, but we know there are edge cases we haven't seen. We’d love brutal, honest feedback from anyone here who works with ROS navigation stacks, stereo-vision disparity, or C-UAS matrices.</p>
+            <a href="mailto:integration@skyguarddefense.com" class="cta-button">Email the Engineering Team</a>
         </div>
 
     </main>
 </div>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-nav-links').classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>
