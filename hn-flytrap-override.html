@@ -83,25 +83,59 @@
             overflow-x: auto;
         }
 
-        .dashboard-embed {
+        /* --- NATIVE PIP VIDEO STYLES --- */
+        .video-wrapper {
+            position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
             background-color: #000;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin: 30px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-decoration: none;
+            margin: 30px 0 10px 0;
             overflow: hidden;
         }
 
-        iframe {
+        .main-video {
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover;
+        }
+
+        .pip-container {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 32%;
+            aspect-ratio: 16 / 9;
+            border: 2px solid var(--accent-green);
+            background-color: #000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+            z-index: 10;
+        }
+
+        .pip-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pip-label {
+            position: absolute;
+            top: -22px;
+            left: -2px; /* Aligns with the border */
+            background-color: var(--accent-red);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .resource-links {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
         }
 
         .cta-box {
@@ -170,29 +204,43 @@
 
         <h2>The Optical Lie vs. The Mathematical Truth</h2>
 
-        <p>Below is a raw ROS environment capture of the Optical Threat Isolation System (O.T.I.S.) dashboard defeating a live DPA Flytrap attack.</p>
+        <p>Below is a raw ROS environment capture of the Optical Threat Isolation System (O.T.I.S.) defeating a live DPA Flytrap attack.</p>
 
         <div class="terminal-block">
-            > INITIALIZING O.T.I.S. DUAL-SCREEN DASHBOARD...<br>
-            > [LEFT] SYSTEM_OPTICAL: ENGAGED (STATUS: FAILING_LOCK)<br>
-            > [RIGHT] SYSTEM_OTIS: ENGAGED (STATUS: INTERCEPT_READY)
+            > INITIALIZING O.T.I.S. DUAL-SCREEN OVERRIDE...<br>
+            > [MAIN] SYSTEM_OPTICAL: ENGAGED (STATUS: FAILING_LOCK)<br>
+            > [PiP] SYSTEM_OTIS: ENGAGED (STATUS: INTERCEPT_READY)
         </div>
 
-        <div class="dashboard-embed">
-            <iframe src="https://skyguarddefense.com/otis-dashboard" title="O.T.I.S. Dashboard Live ROS Capture" allowfullscreen></iframe>
+        <div class="video-wrapper">
+            <video class="main-video" autoplay loop muted playsinline>
+                <source src="/assets/videos/flytrap-rgb-main.mp4" type="video/mp4">
+            </video>
+            
+            <div class="pip-container">
+                <div class="pip-label">OVERRIDE</div>
+                <video class="pip-video" autoplay loop muted playsinline>
+                    <source src="/assets/videos/flytrap-otis-wireframe.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        
+        <div class="resource-links">
+            <a href="https://skyguarddefense.com/otis-dashboard" target="_blank">[ View Full Dashboard Environment ]</a> &nbsp;|&nbsp;
+            <a href="https://skyguarddefense.com/otis-vision" target="_blank">[ Read O.T.I.S. Vision Architecture Specs ]</a>
         </div>
 
-        <p>Watch the left screen lie, and the right screen do the math. The tracking failure on the left is what happens when you trust photons over geometry.</p>
+        <p>Watch the primary feed lie, and the PiP screen do the math. The tracking failure on the main is what happens when you trust photons over geometry.</p>
 
         <h2>The O.T.I.S. Override Pipeline</h2>
 
-        <p>To achieve the <span class="highlight-red">INTERCEPT LOCK</span> you see on the right screen, we push the sensor data through a deterministic, four-stage pipeline:</p>
+        <p>To achieve the <span class="highlight-red">INTERCEPT LOCK</span> you see in the override window, we push the sensor data through a deterministic, four-stage pipeline:</p>
 
         <h3>1. Spectral Delamination Matrix (SDM)</h3>
         <p>Our proprietary color-separation and multispectral decoupling algorithm. It aggressively strips away optical camouflage, high-contrast spoofing patterns, and adversarial noise across all standard and non-standard color spaces (RGB, HSV, YUV, NIR). It renders the illusion mathematically inert.</p>
 
         <h3>2. Kinetic Contour Mapping (KCM)</h3>
-        <p>Once the spectral noise is stripped, KCM initiates a dynamic edge-detection protocol. It utilizes topological light rendering to instantly separate true physical edges from projected shadows or 2D illusions. You can see this as the glowing blue lines tracing the operator underneath the umbrella.</p>
+        <p>Once the spectral noise is stripped, KCM initiates a dynamic edge-detection protocol. It utilizes topological light rendering to instantly separate true physical edges from projected shadows or 2D illusions.</p>
 
         <h3>3. Volumetric Stereo-Triangulation (VST)</h3>
         <p>This is where we break the DPA and future-proof the intercept. VST is our live depth-perception engine that generates an un-spoofable spatial mesh. By calculating depth continuously, distance-manipulation tactics become useless.</p>
@@ -205,11 +253,6 @@
 
         <h3>4. Structural Skeletonization (The "X-Ray" Override)</h3>
         <p>The final stage. O.T.I.S. renders the target down to its raw geometric wireframe. The spoofed exterior disappears entirely from the tracking matrix. The system locks a red wireframe precisely onto the true center mass to calculate a zero-latency kinetic intercept.</p>
-
-        <h2>System Specifications & Architecture</h2>
-        <p>Optical illusions don't stop kinetic intercepts. We don't jam signals. We break rotors. If you want to dive deeper into our sensor fusion parameters, compute load, and hardware integration specs, you can read our full technical documentation here:</p>
-        
-        <p><strong><a href="https://skyguarddefense.com/otis-vision" target="_blank">>> View the O.T.I.S. Vision Architecture Specs</a></strong></p>
 
         <div class="cta-box">
             <h2 style="margin-top: 0; border: none;">We Isolate the Math.</h2>
