@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show HN: Bypassing DPA/Flytrap with Live Spatial Skeletonization | SkyGuard</title>
+    <meta name="description" content="SkyGuard Defense Systems breaks down the O.T.I.S. architecture used to bypass optical spoofing and render un-spoofable spatial meshes for kinetic intercepts.">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent-red: #ff7b72;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --border-color: #30363d;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-top: 40px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .terminal-block {
+            background-color: #161b22;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .math-block {
+            background-color: #000000;
+            border-left: 3px solid var(--accent-blue);
+            padding: 20px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        .dashboard-embed {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .cta-box {
+            background-color: #161b22;
+            border: 1px solid var(--accent-red);
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .cta-button:hover {
+            opacity: 0.8;
+        }
+
+        .highlight-green {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .highlight-red {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Show HN: Bypassing optical spoofing (DPA/Flytrap) with live spatial skeletonization</h1>
+        <div style="color: var(--text-muted); font-size: 0.9rem;">
+            By SkyGuard_Lead | SkyGuard Defense Systems (InSitu Labs) | Denver, CO
+        </div>
+    </header>
+
+    <main>
+        <p>Modern Autonomous Target Tracking (ATT) matrices are fundamentally flawed. If your interceptor relies purely on RGB visual feeds, it can be blinded, tricked, or hijacked by 2D projections and geometric noise.</p>
+        
+        <p>Adversaries and researchers know this. They deploy Distance-Pulling Attacks (DPA) using high-contrast printed "Flytrap" umbrellas to spoof optical sensors. The standard drone hovers, confused. Tracking boxes flicker randomly. The gimbal twitches. The intercept fails.</p>
+
+        <p>At SkyGuard, we bypass standard visual feeds entirely. We don't care what a threat looks like; we only calculate what is mathematically and structurally present in physical space. We do not just build kinetic barriers; we build the cognitive architecture that tells autonomous systems exactly when and where to deploy them.</p>
+
+        <h2>The Optical Lie vs. The Mathematical Truth</h2>
+
+        <p>Below is a raw ROS environment capture of the Optical Threat Isolation System (O.T.I.S.) dashboard defeating a live DPA Flytrap attack.</p>
+
+        <div class="terminal-block">
+            > INITIALIZING O.T.I.S. DUAL-SCREEN DASHBOARD...<br>
+            > [LEFT] SYSTEM_RGB: ENGAGED (STATUS: FAILING_LOCK)<br>
+            > [RIGHT] SYSTEM_OTIS: ENGAGED (STATUS: INTERCEPT_READY)
+        </div>
+
+        <div class="dashboard-embed">
+            <iframe src="https://skyguarddefense.com/otis-dashboard" title="O.T.I.S. Dashboard Live ROS Capture" allowfullscreen></iframe>
+        </div>
+
+        <p>Watch the left screen lie, and the right screen do the math. The tracking failure on the left is what happens when you trust photons over geometry.</p>
+
+        <h2>The O.T.I.S. Override Pipeline</h2>
+
+        <p>To achieve the <span class="highlight-red">INTERCEPT LOCK</span> you see on the right screen, we push the sensor data through a deterministic, four-stage pipeline:</p>
+
+        <h3>1. Spectral Delamination Matrix (SDM)</h3>
+        <p>Our proprietary color-separation and multispectral decoupling algorithm. It aggressively strips away optical camouflage, high-contrast spoofing patterns, and adversarial noise. It turns the "Flytrap" umbrella into a blank, mathematically inert dome.</p>
+
+        <h3>2. Kinetic Contour Mapping (KCM)</h3>
+        <p>Once the noise is stripped, KCM initiates a dynamic edge-detection protocol. It utilizes topological light rendering to instantly separate true physical edges from projected shadows or 2D illusions. You can see this as the glowing blue lines tracing the operator underneath the umbrella.</p>
+
+        <h3>3. Volumetric Stereo-Triangulation (VST)</h3>
+        <p>This is where we break the DPA. VST is our live depth-perception engine that generates an un-spoofable spatial mesh. By calculating depth continuously, distance-manipulation tactics become useless.</p>
+
+        <p>Our proprietary disparity calculation minimizes spatial error by enforcing structural smoothness while aggressively preserving the hard boundaries identified by KCM:</p>
+
+        <div class="math-block">
+            $$E(\mathbf{p}) = \sum_{\mathbf{q} \in \mathcal{N}(\mathbf{p})} w_{\mathbf{q}} \left\| I_L(\mathbf{q}) - I_R(\mathbf{q} - \mathbf{d}(\mathbf{p})) \right\|^2 + \lambda \|\nabla \mathbf{d}(\mathbf{p})\|^2$$
+        </div>
+
+        <h3>4. Structural Skeletonization (The "X-Ray" Override)</h3>
+        <p>The final stage. O.T.I.S. renders the target down to its raw geometric wireframe. The umbrella disappears entirely from the tracking matrix. The system locks a red wireframe precisely onto the true center mass to calculate a zero-latency kinetic intercept.</p>
+
+        <h2>System Specifications & Architecture</h2>
+        <p>Optical illusions don't stop kinetic intercepts. We don't jam signals. We break rotors. If you want to dive deeper into our sensor fusion parameters, compute load, and latency constraints, you can read our full technical documentation here:</p>
+        
+        <p><strong><a href="https://skyguarddefense.com/otis-vision" target="_blank">>> View the O.T.I.S. Vision Architecture Specs</a></strong></p>
+
+        <div class="cta-box">
+            <h2 style="margin-top: 0; border: none;">We Isolate the Math.</h2>
+            <p>SkyGuard Defense Systems (headquartered in Denver, CO) is actively expanding its core engineering team. If you want to engineer interceptors that cannot be lied to, we need to talk.</p>
+            <a href="#" class="cta-button">Apply: Lead Perception Engineer</a>
+        </div>
+
+    </main>
+</div>
+
+</body>
+</html>
