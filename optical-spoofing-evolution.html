@@ -110,6 +110,19 @@
             margin-bottom: 20px;
         }
 
+        .infographic-wrapper {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .infographic-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 255, 204, 0.15);
+        }
+
         .threat-block {
             background-color: #161b22;
             border-left: 4px solid var(--accent-red);
@@ -209,6 +222,10 @@
         <p>If your Autonomous Target Tracking (ATT) matrix relies purely on RGB feeds, bounding-box algorithms, or even basic LiDAR, you are operating on a vulnerable medium. At SkyGuard, we recognized that trying to out-process optical lies is a losing game. You don't filter the illusion; you bypass the visual feed entirely and isolate the math.</p>
 
         <p>Here is how the landscape of sensor spoofing has evolved, and how the <strong>Optical Threat Isolation System (O.T.I.S.)</strong> renders these attacks obsolete.</p>
+
+        <div class="infographic-wrapper">
+            <img src="drone_spoofing_attacks.PNG" alt="The Evolution of Sensor Spoofing: An Arms Race in Autonomous Navigation" class="infographic-image">
+        </div>
 
         <section>
             <h2>Generation 1: The Adversarial Patch (CNN Exploits)</h2>
