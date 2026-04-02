@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Evolution of Sensor Spoofing: From Adversarial Patches to O.T.I.S. | SkyGuard</title>
+    <meta name="description" content="Explore the history of C-UAS spoofing attacks—from CNN adversarial patches to LiDAR ghosting—and how SkyGuard's O.T.I.S. architecture neutralizes optical illusions through mathematical skeletonization.">
+    <meta name="keywords" content="C-UAS, optical spoofing, adversarial patches, LiDAR ghosting, distance-pulling attack, DPA, Flytrap attack, autonomous target tracking, SkyGuard Defense Systems">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "The Evolution of Sensor Spoofing: Why Legacy C-UAS Is Failing",
+      "author": {
+        "@type": "Organization",
+        "name": "SkyGuard Defense Systems (InSitu Labs)"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SkyGuard Defense Systems",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://skyguarddefense.com/skyguard_logo.png"
+        }
+      },
+      "description": "A technical breakdown of adversarial patches, LiDAR injection, and distance-pulling attacks (DPA), and how the Optical Threat Isolation System (O.T.I.S.) bypasses visual lies.",
+      "about": ["Computer Vision", "C-UAS Defense", "Autonomous Target Tracking", "Spoofing Attacks"]
+    }
+    </script>
+
+    <style>
+        /* --- GLOBAL HEADER STYLES --- */
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505; font-family: sans-serif; }
+        .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .global-nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .global-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+        .global-logo h1 { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
+        .global-logo span { color: #ff3333; }
+        
+        .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
+        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; text-decoration: none; transition: color 0.3s; }
+        .global-nav-links a:hover { color: #00ffcc; }
+
+        .global-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .global-menu-toggle span { width: 25px; height: 2px; background-color: #00ffcc; transition: 0.3s; }
+
+        @media (max-width: 900px) {
+            .global-menu-toggle { display: flex; }
+            .global-nav-links { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #050505; flex-direction: column; padding: 20px 0; border-bottom: 1px solid #1a332d; z-index: 1000; text-align: center; }
+            .global-nav-links.active { display: flex; }
+            .global-nav-links li { margin: 10px 0; }
+        }
+
+        /* --- ARTICLE STYLES --- */
+        :root {
+            --bg-color: #0d1117;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent-red: #ff7b72;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --border-color: #30363d;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .article-header h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-top: 50px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .threat-block {
+            background-color: #161b22;
+            border-left: 4px solid var(--accent-red);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .solution-block {
+            background-color: #0a1914;
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background-color: #1f2428;
+            border: 1px solid var(--border-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        .cta-box {
+            background-color: #161b22;
+            border: 1px solid var(--accent-red);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: opacity 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            opacity: 0.8;
+        }
+
+        .highlight-green { color: var(--accent-green); font-weight: bold; }
+        .highlight-red { color: var(--accent-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header class="global-header">
+        <div class="nav-container">
+            <nav class="global-nav">
+                <a href="index.html" class="global-logo">
+                    <img src="skyguard_logo.png" alt="SkyGuard Logo">
+                    <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
+                </a>
+                
+                <div class="global-menu-toggle" id="mobile-menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <ul class="global-nav-links" id="mobile-nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#products">SYSTEMS</a></li>
+                    <li><a href="index.html#tech">TECH</a></li>
+                    <li><a href="index.html#news">NEWS</a></li>
+                    <li><a href="index.html#contact">CONTACT</a></li>
+                    <li><a href="otis-vision.html">O.T.I.S.</a></li>
+                    <li><a href="otis-dashboard.html">DEMO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<main class="content-container">
+    <header class="article-header">
+        <h1>The Evolution of Sensor Spoofing: Why Legacy C-UAS Is Failing</h1>
+        <div style="color: var(--text-muted); font-size: 0.95rem;">
+            Published by InSitu Labs R&D | SkyGuard Defense Systems | Denver, CO
+        </div>
+    </header>
+
+    <article>
+        <p>The arms race between autonomous navigation and adversarial interference operates on a brutal feedback loop. Every time an interception platform relies on a specific sensor to map physical space, adversaries find a way to spoof the data feeding into that sensor.</p>
+
+        <p>If your Autonomous Target Tracking (ATT) matrix relies purely on RGB feeds, bounding-box algorithms, or even basic LiDAR, you are operating on a vulnerable medium. At SkyGuard, we recognized that trying to out-process optical lies is a losing game. You don't filter the illusion; you bypass the visual feed entirely and isolate the math.</p>
+
+        <p>Here is how the landscape of sensor spoofing has evolved, and how the <strong>Optical Threat Isolation System (O.T.I.S.)</strong> renders these attacks obsolete.</p>
+
+        <section>
+            <h2>Generation 1: The Adversarial Patch (CNN Exploits)</h2>
+            <p>Early autonomous tracking systems relied heavily on Convolutional Neural Networks (CNNs). These networks scan environments looking for specific textures and contrast gradients to classify objects.</p>
+            
+            <div class="threat-block">
+                <strong>THE EXPLOIT:</strong> Attackers realized that by printing highly specific, chaotic "noise" patterns onto a poster board or wearable clothing, they could break the CNN's classification logic. A human walking directly in front of a drone holding an adversarial patch might be classified as a "bird," a "toaster," or completely ignored as background static. The system sees the target, but the cognitive software fails to acknowledge it as a threat.
+            </div>
+
+            <div class="solution-block">
+                <strong>THE SKYGUARD OVERRIDE (SDM):</strong> To defeat adversarial patches, O.T.I.S. deploys the <span class="highlight-green">Spectral Delamination Matrix (SDM)</span>. SDM does not care about classification textures or optical camouflage. It aggressively strips away high-contrast spoofing patterns across all color spaces. Before the CNN even attempts to classify the target, the optical "noise" is mathematically erased, exposing the physical shape beneath.
+            </div>
+        </section>
+
+        <section>
+            <h2>Generation 2: LiDAR Injection (Ghosting)</h2>
+            <p>As optical cameras proved vulnerable, defense platforms pivoted heavily to LiDAR, firing lasers to physically map 3D space. It didn't take long for adversaries to spoof the light itself.</p>
+
+            <div class="threat-block">
+                <strong>THE EXPLOIT:</strong> By firing a laser back into a drone's LiDAR sensor at the exact correct frequency, an attacker can trick the sensor into registering a "ghost obstacle." The drone's collision avoidance system suddenly registers a concrete wall directly in its flight path, forcing it to violently veer off course or abort the intercept.
+            </div>
+
+            <div class="solution-block">
+                <strong>THE SKYGUARD OVERRIDE (VST):</strong> While standard pulse encoding mitigates some LiDAR attacks, O.T.I.S. cross-references positional data using <span class="highlight-green">Volumetric Stereo-Triangulation (VST)</span>. VST generates an un-spoofable spatial mesh by calculating depth continuously through dual-lens disparity. If a LiDAR sensor reports a wall, but the VST spatial mesh registers empty geometry, the system instantly identifies the LiDAR injection and ignores the ghost obstacle.
+            </div>
+        </section>
+
+        <section>
+            <h2>Generation 3: The Distance-Pulling Attack (Flytrap)</h2>
+            <p>The bleeding edge of optical interference is the Distance-Pulling Attack (DPA), most recently demonstrated by the "Flytrap" adversarial umbrella. Instead of masking identity, DPA masks physical proximity.</p>
+
+            <div class="threat-block">
+                <strong>THE EXPLOIT:</strong> Drones often use the perceived pixel-size of a recognized object (like a human silhouette) to estimate distance. The Flytrap umbrella displays a mathematically warped projection that forces the drone’s bounding-box to miscalculate scale. The drone thinks the target is 50 meters away when it is actually 5 meters away, causing kinetic strikes to miss entirely.
+            </div>
+
+            <div class="solution-block">
+                <strong>THE SKYGUARD OVERRIDE (Structural Skeletonization):</strong> O.T.I.S. completely neutralizes the Flytrap exploit through <span class="highlight-green">Kinetic Contour Mapping (KCM)</span> and Structural Skeletonization. We strip away the 2D projected illusion and reduce the target to its raw geometric wireframe. Because we calculate distance based on true structural depth rather than optical scaling, distance-manipulation tactics become completely useless. We see the true center mass, and we lock the kinetic intercept.
+            </div>
+        </section>
+
+        <aside class="cta-box">
+            <h2 style="margin-top: 0; border: none;">Stop Trusting Photons. Isolate the Geometry.</h2>
+            <p>If your autonomous defense platforms are still relying on legacy optical feeds or easily spoofed LiDAR arrays, your tracking matrix is already obsolete. SkyGuard builds the cognitive architecture that bypasses the illusion and guarantees the intercept.</p>
+            <a href="mailto:integration@skyguarddefense.com" class="cta-button">Deploy the O.T.I.S. Architecture</a>
+        </aside>
+
+    </article>
+</main>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-nav-links').classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
