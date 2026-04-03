@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Era 2: GPS/GNSS Spoofing | Spoofing Evolution | SkyGuard</title>
+    <meta name="description" content="A deep technical analysis of Era 2: GPS/GNSS Spoofing—how adversaries hijack navigation signals to steer drones off course, and how SkyGuard mitigates this attack.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
+
+    <style>
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; color: #c9d1d9; }
+        .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
+        .era-header H1 { color: #ffffff; font-size: 2.2rem; letter-spacing: 1px; }
+        .era-header .subtitle { color: var(--accent-blue); font-size: 1rem; text-transform: uppercase; }
+        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        H2 { color: #ffffff; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed #30363d; padding-bottom: 10px; }
+        H3 { color: var(--accent-blue); font-size: 1.2rem; margin-top: 30px; }
+        .technical-deep-dive { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 25px; margin: 30px 0; }
+        .technical-deep-dive H3 { margin-top: 0; color: var(--accent-green); }
+        .fix-block { border-left: 3px solid var(--accent-blue); padding-left: 20px; margin: 30px 0; }
+        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914; padding: 20px; border-radius: 6px; }
+        .accent-red { color: var(--accent-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <main class="article-content">
+    <header class="era-header">
+        <div class="subtitle">Chronicles of Sensor Spoofing</div>
+        <H1>Era 2: GPS/GNSS Spoofing</H1>
+    </header>
+
+    <p>As drones moved into wide-area surveillance and BVLOS (Beyond Visual Line of Sight) operations, they became critically dependent on satellite navigation. This dependency created a massive hardware vulnerability. Adversaries stopped trying to confuse the camera and started attacking the platform's fundamental understanding of <span class="accent-red">where it was located</span>.</p>
+
+    <img src="gps_spoofing_diagram.PNG" alt="Tactical illustration of GPS/GNSS spoofing on a military drone, showing a ground station emitting a conflicting signal that hijacks the navigation path (Era 2: image_12.png)" class="main-visual">
+
+    <p>Look at the diagram above. A high-altitude military drone is shown flying. Faint cyan lines from satellites establish its true location. But on the ground, a mobile 'Spoofing Station' (a truck with a specialized antenna) is emitting powerful, pulsating orange radio waves. A graphical interface overlay ('SPOOFING STATUS: TAKEOVER DETECTED') projects the <span class="accent-red">signal hijack</span>. Arrows show the ground station forcing its conflicting coordinate data over the weak satellite feed, successfully steering the platform off its intended route (shown as the deviation between the planned green path and the hijacked red path).</p>
+
+    <h2>The Exploit: Overpowering the faint signal</h2>
+
+    <p>Drones rely on faint GPS/GNSS satellite signals (roughly -130 dBm) to calculate their coordinates. An attacker broadcasts a fake GPS signal on the same frequency (e.g., L1 at 1575.42 MHz) using a powerful ground transmitter (often >10 dBm). This is a brute-force hardware takeover. The drone's receiver, programmed to lock onto the strongest signal, accepts the fake coordinates and rejects the true satellite data.</p>
+
+    <div class="technical-deep-dive">
+        <H3>Hijacking the PNT Matrix</H3>
+        <p>This is a fundamental failure of the Position, Navigation, and Timing (PNT) matrix. By controlling the GPS input, the attacker can force the drone to believe it is miles away from its true location. A skilled adversary can utilize this to "steer" the drone into a mountain, force an emergency landing in hostile territory (relic of the RQ-170 capture), or simply render the Autonomous Target Tracking (ATT) matrix useless as the drone drifts off station, confused about its own spatial context.</p>
+    </div>
+
+    <h2>The Countermeasure Arms Race</h2>
+
+    <div class="fix-block">
+        <H3>Military Fix: CRPA (Controlled Reception Pattern Antennas)</H3>
+        <p>Defense integrators responded with sophisticated antenna hardware. CRPA arrays use multiple distinct antennas and sophisticated null-steering algorithms. CRPA listens to the arrival angle of incoming signals. It detects that the true GPS is coming from the sky, while the loud spoofing signal is coming from the ground. CRPA mathematically "steers a null" in the direction of the ground station, physically ignoring the interference.</p>
+    </div>
+
+    <div class="skyguard-override">
+        <H3>SkyGuard Mitigation: Visual Odometry & VST</H3>
+        <p>While SkyGuard leverages CRPA hardware on our FORTRESS and RANGER platforms, our primary software defense is **Visual Odometry**. We teach the drone to look at the ground and navigate by matching physical landmarks in real-time, completely bypassing the invisible radio spectrum. Our proprietary depth engine ensures that even if CRPA fails, O.T.I.S. can cross-reference the spoofed GPS data against the VST spatial mesh. If the GPS claims the drone is over open water, but the spatial mesh shows it is over a dense urban center, O.T.I.S. rejects the GNSS input and switches to full Visual Inertial Odometry (VIO).</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+        <p>Passive kinetic mitigation. mathematically undeniable geometry. <a href="demo.html">See the full O.T.I.S. dashboard.</a></p>
+    </div>
+
+</main>
+
+    </body>
+</html>
