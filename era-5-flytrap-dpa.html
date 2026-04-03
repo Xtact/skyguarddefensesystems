@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Era 5: Distance-Pulling Attacks (DPA) | The Spoofing Chronicles | SkyGuard</title>
+    <meta name="description" content="Explore the mechanics of the Distance-Pulling Attack (DPA). Learn how adversarial patterns like the Flytrap exploit bounding-box algorithms, and how SkyGuard neutralizes them.">
+    <meta name="keywords" content="Distance-Pulling Attack, DPA, Flytrap umbrella, adversarial patterns, bounding-box spoofing, cognitive drone manipulation, SkyGuard Defense Systems">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Era 5: The Cognitive Exploit - Mechanics of the Distance-Pulling Attack",
+      "author": {
+        "@type": "Organization",
+        "name": "InSitu Labs (SkyGuard Defense Systems)"
+      },
+      "description": "A detailed analysis of how visual scale manipulation and Distance-Pulling Attacks (DPA) break legacy ATT matrices, concluding the evolution of sensor spoofing.",
+      "articleSection": "Threat Analysis"
+    }
+    </script>
+
+    <style>
+        /* --- GLOBAL HEADER STYLES --- */
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505; font-family: sans-serif; }
+        .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .global-nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .global-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+        .global-logo h1 { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
+        .global-logo span { color: #ff3333; }
+        
+        .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
+        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; text-decoration: none; transition: color 0.3s; }
+        .global-nav-links a:hover { color: #00ffcc; }
+
+        .global-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .global-menu-toggle span { width: 25px; height: 2px; background-color: #00ffcc; transition: 0.3s; }
+
+        @media (max-width: 900px) {
+            .global-menu-toggle { display: flex; }
+            .global-nav-links { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #050505; flex-direction: column; padding: 20px 0; border-bottom: 1px solid #1a332d; z-index: 1000; text-align: center; }
+            .global-nav-links.active { display: flex; }
+            .global-nav-links li { margin: 10px 0; }
+        }
+
+        /* --- ARTICLE SPECIFIC STYLES --- */
+        :root {
+            --bg-color: #0d1117;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent-red: #ff7b72;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --border-color: #30363d;
+        }
+
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; margin: 0; padding: 0; }
+        
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
+        .era-header H1 { color: #ffffff; font-size: 2.2rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .era-header .subtitle { color: var(--accent-blue); font-size: 1rem; text-transform: uppercase; font-weight: bold; }
+        
+        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        
+        H2 { color: #ffffff; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
+        H3 { color: var(--accent-blue); font-size: 1.2rem; margin-top: 30px; }
+        p { margin-bottom: 20px; }
+
+        .technical-deep-dive { background-color: #161b22; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
+        .technical-deep-dive H3 { margin-top: 0; color: var(--accent-red); }
+        
+        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914; padding: 20px; border-radius: 6px; }
+        .skyguard-override H3 { margin-top: 0; color: var(--accent-green); }
+        
+        .accent-red { color: var(--accent-red); font-weight: bold; }
+        .accent-green { color: var(--accent-green); font-weight: bold; }
+        
+        .nav-links-bottom { margin-top: 50px; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .nav-links-bottom a { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
+        .nav-links-bottom a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="global-header">
+        <div class="nav-container">
+            <nav class="global-nav">
+                <a href="index.html" class="global-logo">
+                    <img src="skyguard_logo.png" alt="SkyGuard Logo">
+                    <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
+                </a>
+                
+                <div class="global-menu-toggle" id="mobile-menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <ul class="global-nav-links" id="mobile-nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#products">SYSTEMS</a></li>
+                    <li><a href="optical-spoofing-evolution.html">EVOLUTION</a></li>
+                    <li><a href="otis-vision.html">O.T.I.S.</a></li>
+                    <li><a href="otis-dashboard.html">DEMO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<main class="article-content">
+    <header class="era-header">
+        <div class="subtitle">Chronicles of Sensor Spoofing - Final Chapter</div>
+        <H1>Era 5: Distance-Pulling Attacks (DPA)</H1>
+    </header>
+
+    <p>We have reached the modern apex of adversarial interference. While previous eras targeted sensory inputs (like LiDAR ghosting) or hardware equilibrium (like acoustic resonance), the Distance-Pulling Attack (DPA) targets the cognitive math of perception itself. It is a sophisticated exploit that weaponizes how autonomous software calculates physical proximity, creating an optical lie that renders traditional targeting <span class="accent-red">completely obsolete</span>.</p>
+
+    <img src="flytrap_dpa_vs_otis.PNG" alt="Tactical visualization contrasting Flytrap DPA scale manipulation against true structural geometry." class="main-visual">
+
+    <p>In the visualization above, notice the stark contrast between the two paradigms of machine perception. On the left, the legacy camera feed is paralyzed by the 'FLYTRAP OPTICAL LIE'. The adversarial pattern violently shifts the bounding box scale, resulting in a critical <span class="accent-red">DISTANCE: UNKNOWN</span> error. The drone sees the target, but its logic loop has collapsed. On the right, the O.T.I.S. matrix simply deletes the visual noise, isolating the physical wireframe to generate a perfect, undeniable <span class="accent-green">DISTANCE: 2.1 METERS</span> calculation.</p>
+
+    <h2>The Mechanics of Scale Manipulation</h2>
+
+    <p>To understand why the Flytrap attack is so effective against legacy C-UAS, you have to understand how standard drones perceive depth without active radar. Most autonomous navigation stacks rely on bounding-box algorithms combined with perceived pixel-scale.</p> 
+
+    <p>If the drone's neural network recognizes a human, it assumes a standard height of roughly 1.7 meters. It calculates the distance based on how many pixels that 1.7-meter object occupies on the camera sensor. The DPA exploit breaks this fundamental assumption.</p>
+
+    <div class="technical-deep-dive">
+        <H3>Weaponizing the Bounding Box</H3>
+        <p>A DPA asset—like the Flytrap umbrella—displays a mathematically warped, non-repetitive geometric pattern designed via gradient descent. When the drone's camera views this pattern, the neural network's feature extraction layers become confused about the object's boundaries. It incorrectly expands or shrinks the tracking bounding box. </p>
+        <p>Because the bounding box size suddenly changed, the drone's logic loop determines the target's distance must have also changed. The drone is physically locked onto the target, but mathematically blinded to its proximity. A target sitting 5 meters away can trick the drone into believing it is 50 meters away, completely neutralizing intercept timing.</p>
+    </div>
+
+    <h2>The Paradigm Shift: Undeniable Geometry</h2>
+
+    <p>The defense industry's initial response to DPA was to train AI models on thousands of images of adversarial umbrellas to try and "teach" the drone to ignore them. At SkyGuard, we recognized that playing whack-a-mole with infinite optical variations is a losing battle.</p>
+
+    <div class="skyguard-override">
+        <H3>The InSitu Labs Solution: Kinetic Contour Mapping</H3>
+        <p>We bypass the cognitive gap entirely by stripping the visual feed out of the depth calculation equation. The Optical Threat Isolation System (O.T.I.S.) leverages <span class="accent-green">Kinetic Contour Mapping (KCM)</span> to reduce the environment to pure structural depth.</p>
+        <p>We do not care how many pixels a 2D pattern occupies on a screen. By cross-referencing edge data through dual-lens disparity, we generate a live, volumetric spatial mesh. The Flytrap's optical pattern has zero thickness and zero physical depth in 3D space. O.T.I.S. mathematically delaminates the 2D lie, skeletonizes the physical structure behind it, and locks the kinetic intercept onto the true center mass.</p>
+    </div>
+
+    <div class="nav-links-bottom">
+        <a href="optical-spoofing-evolution.html">← Back to Evolution Hub</a>
+        <a href="hn-flytrap-override.html">Read the ROS Architecture Override →</a>
+    </div>
+
+</main>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
