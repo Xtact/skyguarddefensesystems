@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Era 3: LiDAR Ghosting | Spoofing Evolution | SkyGuard</title>
+    <meta name="description" content="A deep technical analysis of Era 3: LiDAR Injection (Ghosting)—how adversaries use lasers to inject fake objects into a drone's 3D mapping feed.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
+
+    <style>
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; color: #c9d1d9; }
+        .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
+        .era-header H1 { color: #ffffff; font-size: 2.2rem; letter-spacing: 1px; }
+        .era-header .subtitle { color: var(--accent-blue); font-size: 1rem; text-transform: uppercase; }
+        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        H2 { color: #ffffff; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed #30363d; padding-bottom: 10px; }
+        H3 { color: var(--accent-blue); font-size: 1.2rem; margin-top: 30px; }
+        .technical-deep-dive { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 25px; margin: 30px 0; }
+        .technical-deep-dive H3 { margin-top: 0; color: var(--accent-green); }
+        .fix-block { border-left: 3px solid var(--accent-blue); padding-left: 20px; margin: 30px 0; }
+        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914; padding: 20px; border-radius: 6px; }
+        .accent-red { color: var(--accent-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <main class="article-content">
+    <header class="era-header">
+        <div class="subtitle">Chronicles of Sensor Spoofing</div>
+        <H1>Era 3: LiDAR Injection (Ghosting)</H1>
+    </header>
+
+    <p>The arms race between perception and interference has a simple rule: **The adversary always moves up the spectral ladder.** As optical cameras proved vulnerable (Era 1) and GPS proved hackable (Era 2), high-end defense platforms pivoted heavily to LiDAR (Light Detection and Ranging). By firing millions of laser pulses and measuring the return time, drones could generate high-resolution, active 3D maps, seemingly immune to optical tricks. Adversaries simply responded by spoofing the light itself.</p>
+
+    <img src="lidar_ghosting_attack.PNG" alt="Tactical visualization of LiDAR ghosting attack on a drone in a technical lab, showing a hostile laser injecting light into the sensor and creating a red ghost wall on the 3D display (Era 3: image_13.png)" class="main-visual">
+
+    <p>Watch the illustration above. In a controlled, dark tactical lab, a ground-based spoofing device (a specialized laser array) is actively injecting hostile light directly into the drone's LiDAR sensor ('HOSTILE LIGHT INJECTION DETECTED'). The technical overlays demonstrate the <span class="accent-red">perception failure</span>. Arrows point from the laser source to the detection errors ('LIDAR MAP ERROR: GHOST OBSTACLE'). The drone’s 3D point cloud display projects a large, red, pulsating geometric wall—a concrete obstacle that isn't physically there.</p>
+
+    <h2>The Exploit: Timing the returned pulse</h2>
+
+    <p>LiDAR works by timing the time-of-flight of randomized, invisible laser pulses (usually NIR at 905nm or 1550nm). An adversary monitors the targeted drone’s LiDAR frequency and fires a *hostile* laser pulse back into the drone's aperture at the exact right moment. If the hostile pulse arrives *before* the true reflection, the LiDAR sensor registers the closer distance, generating a 'ghost obstacle' in its 3D environment map.</p>
+
+    <div class="technical-deep-dive">
+        <H3>Weaponizing the Collision Avoidance</H3>
+        <p>This is a devastating hardware injection attack that targets the drone’s fundamental flight safety matrix. By projecting ghost walls or fake mountains in front of the drone, the adversary forces the drone's Autonomous Target Tracking (ATT) and obstacle avoidance systems to violently slam on the brakes or veer off station to avoid a non-existent collision. The drone is incapacitated by a perceived architectural illusion, neutralizing the intercept capability.</p>
+    </div>
+
+    <h2>The Countermeasure Arms Race</h2>
+
+    <div class="fix-block">
+        <H3>Military Fix: Pulse Encoding and Randomized Timing</H3>
+        <p>Hardware manufacturers responded through sophisticated encryption and timing randomized timing. Instead of firing a predictable stream of light, modern defense LiDAR encrypts its light pulses with randomized cryptographictiming. If the returning light pulse does not match the strict cryptographic 'handshake' timing of the outgoing pulse, the system rejects it as hostile noise.</p>
+    </div>
+
+    <div class="skyguard-override">
+        <H3>SkyGuard Override: VST Spatial Validation</H3>
+        <p>SkyGuard integrates pulse-encoded LiDAR on all active kinetic platforms. However, our primary defense override is **Sensor Disparity Cross-Referencing**. While LiDAR can be ghosted, dual-lens disparity geometry cannot.</p>
+        <p>When the LiDAR sensor reports an obstacle, O.T.I.S. instantly validates the threat using the <span class="highlight-green">Volumetric Stereo-Triangulation (VST)</span> depth engine. VST generates an un-spoofable spatial mesh through pure math, not received light. If the LiDAR feed claims a wall exists, but the VST depth mesh registers empty physical geometry, O.T.I.S. flags the LiDAR data as hostile and ignores the ghost obstacle, continuing the kinetic intercept based on undeniable geometry.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+        <p>Optical illusions don't stop kinetic intercepts. We bypass the illusion. <a href="demo.html">See the O.T.I.S. override in action.</a></p>
+    </div>
+
+</main>
+
+    </body>
+</html>
