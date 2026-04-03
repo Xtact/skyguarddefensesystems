@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Era 1: Adversarial Patches | Spoofing Evolution | SkyGuard</title>
+    <meta name="description" content="A deep technical analysis of the initial 'Texture War'—how adversarial patches confuse drone computer vision, and how O.T.I.S. bypasses these optical lies.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
+
+    <style>
+        /* --- ARTICLE SPECIFIC STYLES --- */
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            line-height: 1.7;
+            color: #c9d1d9;
+        }
+
+        .era-header {
+            text-align: center;
+            border-bottom: 2px solid #1a332d;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .era-header H1 {
+            color: #ffffff;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        .era-header .subtitle {
+            color: var(--accent-blue);
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .main-visual {
+            width: 100%;
+            margin: 30px 0;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+        }
+
+        H2 {
+            color: #ffffff;
+            font-size: 1.6rem;
+            margin-top: 50px;
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 10px;
+        }
+
+        H3 {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+
+        .technical-deep-dive {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .technical-deep-dive H3 {
+            margin-top: 0;
+            color: var(--accent-green);
+        }
+
+        .technical-deep-dive strong {
+            color: #ffffff;
+        }
+
+        .fix-block {
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .skyguard-override {
+            border-left: 3px solid var(--accent-green);
+            padding-left: 20px;
+            margin: 30px 0;
+            background-color: #0a1914;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .accent-red {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="article-content">
+    <header class="era-header">
+        <div class="subtitle">Chronicles of Sensor Spoofing</div>
+        <H1>Era 1: Adversarial Patches</H1>
+    </header>
+
+    <p>Before autonomous systems were navigating dense cities, they were learning to read textures. Drones relied heavily on Convolutional Neural Networks (CNNs) trained to categorize objects based on texture gradients and contrast. Adversaries quickly realized that these mathematical models, while powerful, could be elegantly <span class="accent-red">exploited by visual noise</span>.</p>
+
+    <img src="adversarial_patches_tactical.PNG" alt="Tactical visualization of an adversarial patch attack, showing a drone failing to classify a patterned target (Era 1: image_10.png)" class="main-visual">
+
+    <p>Watch the image above. A target holds a board covered in chaotic, colorful adversarial noise. The drone's projected camera feed (Era 1 inset) demonstrates the <span class="accent-red">optical failure</span>. Its computer vision (CNN ANALYSIS) tries to parse the patterned target, but bounding boxes flicker randomly, and technical overlays generate conflicting classifications reading <span class="accent-red">TOASTER (ERROR)</span> and <span class="accent-red">BIRD (ERROR)</span>. The drone has sight, but its software cannot perceive the threat.</p>
+
+    <h2>The Exploit: Texture-Based Confusion</h2>
+
+    <p>CNNs function by aggregating pixel data into features, looking for familiar edge patterns, shapes, and lighting gradients. An adversarial patch is a texture scientifically designed using gradient descent to produce maximal activation <span class="accent-red">errors</span> across the layers of a targeted neural network.</p>
+
+    <div class="technical-deep-dive">
+        <H3>Deterministic Optical Warfare</H3>
+        <p>This is not random noise. The patch you see is a mathematically optimized mask. By introducing specific, unexpected high-frequency texture data into the camera feed, it forces the CNN to activate incorrect classification vectors. The network, confident in its false positive, identifies the threat holding the board as inanimate background clutter, completely neutralizing the Autonomous Target Tracking (ATT) matrix. It is a deterministic attack that weaponizes the network's own complexity against it.</p>
+    </div>
+
+    <h2>The Countermeasure Arms Race</h2>
+
+    <div class="fix-block">
+        <H3>Traditional Fix: Sensor Fusion (FLIR/NIR)</H3>
+        <p>Integrators responded by moving beyond pure RGB camera reliance. They implemented Sensor Fusion, pairing optical cameras with FLIR (Forward-Looking Infrared) or Near-Infrared (NIR) sensors. Even if the optical feed generated a "toaster" classification, the thermal feed identified a human silhouette based on body heat, overriding the optical error.</p>
+    </div>
+
+    <div class="skyguard-override">
+        <H3>SkyGuard O.T.I.S. Override: Spectral Delamination Matrix (SDM)</H3>
+        <p>At InSitu Labs, we bypass the need for multispectral cross-referencing entirely. We break the texture war by mathematically removing the textures. Before the CNN attempts to classify the target, O.T.I.S. deploys the <span class="highlight-green">Spectral Delamination Matrix (SDM)</span>.</p>
+        <p>SDM is a color-separation node that aggressively strips away adversarial noise patterns, high-contrast camouflage, and multispectral cloaking across the entire spectrum (RGB, HSV, YUV, NIR). SDM renders the optical illusion mathematically inert, exposing the raw physical contours for <a href="otis-dashboard.html">Volumetric Stereo-Triangulation (VST)</a>, ensuring the kinetic intercept proceeds based on undeniable math, not exploitable appearances.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+        <a href="demo.html" class="global-logo">
+            <img src="skyguard_logo.png" alt="SkyGuard Logo" style="height: 60px; width: 60px;">
+        </a>
+        <p>Ready to break the visual tie? <a href="demo.html">See how O.T.I.S. sees.</a></p>
+    </div>
+
+</main>
+
+    <script>
+        // Global mobile nav script
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
