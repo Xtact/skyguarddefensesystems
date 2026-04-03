@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Era 4: Acoustic Resonance | Spoofing Evolution | SkyGuard</title>
+    <meta name="description" content="A deep technical analysis of Era 4: Acoustic Resonance—how adversaries use sound waves to disrupt a drone's gyroscope and equilibrium.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
+
+    <style>
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; color: #c9d1d9; }
+        .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
+        .era-header H1 { color: #ffffff; font-size: 2.2rem; letter-spacing: 1px; }
+        .era-header .subtitle { color: var(--accent-blue); font-size: 1rem; text-transform: uppercase; }
+        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        H2 { color: #ffffff; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed #30363d; padding-bottom: 10px; }
+        H3 { color: var(--accent-blue); font-size: 1.2rem; margin-top: 30px; }
+        .technical-deep-dive { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 25px; margin: 30px 0; }
+        .technical-deep-dive H3 { margin-top: 0; color: var(--accent-green); }
+        .fix-block { border-left: 3px solid var(--accent-blue); padding-left: 20px; margin: 30px 0; }
+        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914; padding: 20px; border-radius: 6px; }
+        .accent-red { color: var(--accent-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <main class="article-content">
+    <header class="era-header">
+        <div class="subtitle">Chronicles of Sensor Spoofing</div>
+        <H1>Era 4: Acoustic Resonance (Gyro Drop)</H1>
+    </header>
+
+    <p>Adversaries discovered that the most direct way to neutralize an autonomous system isn't through its cognitive logic, but through its physical equilibrium. Drones, no matter how advanced their software, rely on micro-electromechanical systems (MEMS) for stability. By attacking the physics of the hardware itself, adversaries created a devastating physical spoof that forces a <span class="accent-red">flight stability failure</span>.</p>
+
+    <img src="acoustic_resonance_gyro_drop.PNG" alt="Tactical visualization of an acoustic resonance attack, showing a sonic speaker array targeting a vibrating drone, causing fatal resonance in its MEMS gyroscope component (Era 4: image_14.png)" class="main-visual">
+
+    <p>Watch the illustration above. A standard multi-rotor drone is flying ('GYRO DATA: INTERCEPT_READY'). But on the ground, a powerful, directional sonic speaker array (an 'ACOUSTIC WEAPON' emitting specialized, pulsating red sound waves) is shown actively targeting the platform. Arrows connect the sonic weapon to the physical failure ('SONIC ATTACK DETECTED: FATAL GYRO SPIKES'). An internal schematic view projects the microscopic MEMS gyroscope component vibrating wildly, contrasting the Crossed Out blue 'NORMAL GYRO DATA' against the chaotic, red flickering data of <span class="accent-red">FATAL RESONANCE</span>. The drone, confused about its own level state, tumbles violently out of control ('STATUS: FALLING').</p>
+
+    <h2>The Exploit: Matching the MEMS frequency</h2>
+
+    <p>MEMS gyroscopes and accelerometers utilize microscopic vibrating structures to detect motion. Every physical object has a natural resonant frequency. Researchers discovered that if an acoustic sound wave matches the specific resonant frequency of the microscopic physical components inside the drone’s MEMS gyroscope, it induces chaotic vibration. The sensor reports massive, impossible data spikes to the flight controller.</p>
+
+    <div class="technical-deep-dive">
+        <H3>Hardware equilibrium Hijack</H3>
+        <p>This is a purely physical exploit that attacks the drone’s balance. The flight controller receives conflicting data, believes it is simultaneously flipping upside down and spinning out of control. It overcompensates aggressively, forcing the drone into a fatal spin or causing an instant power cutoff (the 'Gyro Drop'). It is a brutal, low-cost physical hijack that cannot be filtered by conventional software, as the data being received is fundamentally impossible from a physics perspective.</p>
+    </div>
+
+    <h2>The Countermeasure Arms Race</h2>
+
+    <div class="fix-block">
+        <H3>Military Fix: Acoustic Dampening and Mathematical Filtering</H3>
+        <p>Hardware manufacturers responded through physical encasement and software filters. Military-grade platforms now encase MEMS components in sound-dampening foam or sophisticated physical isolators. Simultaneously, developers rewrote flight controller logic to detect and ignore these specific impossible data spikes, switching to full inertial data (accelerometers only) during high-noise events.</p>
+    </div>
+
+    <div class="skyguard-override">
+        <H3>SkyGuard Override: Structural Skeletonization and Zero-G Mitigation</H3>
+        <p>All SkyGuard passive kinetic platforms utilize physically isolated and acoustic-dampened inertial measurement units (IMUs). Our software override is **Sensor Cross-Referencing**. While the gyroscope may be compromised, the VST depth engine and the semantic camera feeds are not.</p>
+        <p>When O.T.I.S. detects IMU instability, it maintains its understanding of true 'level' by cross-referencing against the semantic <span class="highlight-green">Structural Skeletonization</span> feed. By isolating the math and the geometry of the target in 3D space, O.T.I.S. can continue calculating the kinetic intercept solution even while the platform itself is physically vibrating or unstable, ensuring the mathematical zero-latency intercept proceeds regardless of physical interference.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+        <p>We bypass visual lies and physical instability. We isolate the undeniable math. <a href="demo.html">See the full O.T.I.S. dashboard.</a></p>
+    </div>
+
+</main>
+
+    </body>
+</html>
