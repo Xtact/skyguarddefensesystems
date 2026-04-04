@@ -216,7 +216,7 @@
         </div>
     </header>
 
-    <article>
+        <article>
         <p>The arms race between autonomous navigation and adversarial interference operates on a brutal feedback loop. Every time an interception platform relies on a specific sensor to map physical space, adversaries find a way to spoof the data feeding into that sensor.</p>
 
         <p>If your Autonomous Target Tracking (ATT) matrix relies purely on RGB feeds, bounding-box algorithms, or even basic LiDAR, you are operating on a vulnerable medium. At SkyGuard, we recognized that trying to out-process optical lies is a losing game. You don't filter the illusion; you bypass the visual feed entirely and isolate the math.</p>
@@ -231,39 +231,50 @@
             <h2>Generation 1: The Adversarial Patch (CNN Exploits)</h2>
             <p>Early autonomous tracking systems relied heavily on Convolutional Neural Networks (CNNs). These networks scan environments looking for specific textures and contrast gradients to classify objects.</p>
             
-            <div class="threat-block">
-                <strong>THE EXPLOIT:</strong> Attackers realized that by printing highly specific, chaotic "noise" patterns onto a poster board or wearable clothing, they could break the CNN's classification logic. A human walking directly in front of a drone holding an adversarial patch might be classified as a "bird," a "toaster," or completely ignored as background static. The system sees the target, but the cognitive software fails to acknowledge it as a threat.
-            </div>
-
             <div class="solution-block">
-                <strong>THE SKYGUARD OVERRIDE (SDM):</strong> To defeat adversarial patches, O.T.I.S. deploys the <span class="highlight-green">Spectral Delamination Matrix (SDM)</span>. SDM does not care about classification textures or optical camouflage. It aggressively strips away high-contrast spoofing patterns across all color spaces. Before the CNN even attempts to classify the target, the optical "noise" is mathematically erased, exposing the physical shape beneath.
+                <strong>THE SKYGUARD OVERRIDE (SDM):</strong> To defeat adversarial patches, O.T.I.S. deploys the Spectral Delamination Matrix (SDM) to aggressively strip away optical noise patterns across all color spaces.
             </div>
+            <a href="era-1-adversarial-patches.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">[ Read the Era 1 Deep Dive: The Texture War → ]</a>
         </section>
 
         <section>
-            <h2>Generation 2: LiDAR Injection (Ghosting)</h2>
-            <p>As optical cameras proved vulnerable, defense platforms pivoted heavily to LiDAR, firing lasers to physically map 3D space. It didn't take long for adversaries to spoof the light itself.</p>
-
-            <div class="threat-block">
-                <strong>THE EXPLOIT:</strong> By firing a laser back into a drone's LiDAR sensor at the exact correct frequency, an attacker can trick the sensor into registering a "ghost obstacle." The drone's collision avoidance system suddenly registers a concrete wall directly in its flight path, forcing it to violently veer off course or abort the intercept.
-            </div>
-
+            <h2>Generation 2: GPS/GNSS Spoofing</h2>
+            <p>As drones moved into BVLOS operations, adversaries attacked their fundamental understanding of location, overpowering faint satellite signals with fake ground-based coordinates.</p>
+            
             <div class="solution-block">
-                <strong>THE SKYGUARD OVERRIDE (VST):</strong> While standard pulse encoding mitigates some LiDAR attacks, O.T.I.S. cross-references positional data using <span class="highlight-green">Volumetric Stereo-Triangulation (VST)</span>. VST generates an un-spoofable spatial mesh by calculating depth continuously through dual-lens disparity. If a LiDAR sensor reports a wall, but the VST spatial mesh registers empty geometry, the system instantly identifies the LiDAR injection and ignores the ghost obstacle.
+                <strong>THE SKYGUARD OVERRIDE (Visual Odometry):</strong> O.T.I.S. cross-references GPS data against our VST spatial mesh. If coordinates conflict with the physical geometry, we reject the signal.
             </div>
+            <a href="era-2-gps-spoofing.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">[ Read the Era 2 Deep Dive: Signal Hijacking → ]</a>
         </section>
 
         <section>
-            <h2>Generation 3: The Distance-Pulling Attack (Flytrap)</h2>
-            <p>The bleeding edge of optical interference is the Distance-Pulling Attack (DPA), most recently demonstrated by the "Flytrap" adversarial umbrella. Instead of masking identity, DPA masks physical proximity.</p>
-
-            <div class="threat-block">
-                <strong>THE EXPLOIT:</strong> Drones often use the perceived pixel-size of a recognized object (like a human silhouette) to estimate distance. The Flytrap umbrella displays a mathematically warped projection that forces the drone’s bounding-box to miscalculate scale. The drone thinks the target is 50 meters away when it is actually 5 meters away, causing kinetic strikes to miss entirely.
-            </div>
+            <h2>Generation 3: LiDAR Injection (Ghosting)</h2>
+            <p>As optical cameras proved vulnerable, defense platforms pivoted to LiDAR. Adversaries responded by injecting hostile lasers to project fake "ghost" walls into the drone's 3D mapping feed.</p>
 
             <div class="solution-block">
-                <strong>THE SKYGUARD OVERRIDE (Structural Skeletonization):</strong> O.T.I.S. completely neutralizes the Flytrap exploit through <span class="highlight-green">Kinetic Contour Mapping (KCM)</span> and Structural Skeletonization. We strip away the 2D projected illusion and reduce the target to its raw geometric wireframe. Because we calculate distance based on true structural depth rather than optical scaling, distance-manipulation tactics become completely useless. We see the true center mass, and we lock the kinetic intercept.
+                <strong>THE SKYGUARD OVERRIDE (VST):</strong> While LiDAR can be ghosted, dual-lens disparity geometry cannot. We validate all LiDAR hits against pure spatial math.
             </div>
+            <a href="era-3-lidar-ghosting.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">[ Read the Era 3 Deep Dive: Injecting Ghost Obstacles → ]</a>
+        </section>
+        
+        <section>
+            <h2>Generation 4: Acoustic Resonance (Gyro Drop)</h2>
+            <p>Adversaries discovered that blasting specific acoustic frequencies forces MEMS gyroscopes into fatal resonance, causing drones to lose equilibrium and plummet from the sky.</p>
+
+            <div class="solution-block">
+                <strong>THE SKYGUARD OVERRIDE (Structural Skeletonization):</strong> O.T.I.S. maintains target lock by calculating geometry in 3D space, ensuring intercepts proceed even if the platform is physically vibrating.
+            </div>
+            <a href="era-4-acoustic-resonance.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">[ Read the Era 4 Deep Dive: The Physical Hijack → ]</a>
+        </section>
+
+        <section>
+            <h2>Generation 5: The Distance-Pulling Attack (Flytrap)</h2>
+            <p>The bleeding edge of optical interference. Instead of masking identity, DPA masks physical proximity, forcing the drone’s bounding-box to wildly miscalculate distance and scale.</p>
+
+            <div class="solution-block">
+                <strong>THE SKYGUARD OVERRIDE (Kinetic Contour Mapping):</strong> We completely bypass 2D scale estimation, calculate distance based on true structural depth, and lock the kinetic intercept.
+            </div>
+            <a href="era-5-flytrap-dpa.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">[ Read the Era 5 Deep Dive: The Cognitive Exploit → ]</a>
         </section>
 
         <aside class="cta-box">
@@ -273,6 +284,7 @@
         </aside>
 
     </article>
+
 </main>
 
     <script>
