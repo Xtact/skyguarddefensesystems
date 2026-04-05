@@ -36,11 +36,19 @@
 
     <style>
 
-        :root { --bg-color: #0d1117; --text-main: #c9d1d9; --text-muted: #8b949e; --accent-red: #ff7b72; --accent-green: #3fb950; --accent-blue: #58a6ff; --border-color: #30363d; }
+        :root { --bg-color: #050505; --text-main: #e6edf3; --text-muted: #8b949e; --accent-red: #ff3333; --accent-green: #00ffcc; --accent-blue: #58a6ff; --border-color: #30363d; }
 
-        html, body { background-color: #0d1117 !important; color: #c9d1d9 !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; margin: 0; padding: 0; }
+        
 
-        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505 !important; font-family: sans-serif; }
+        /* BRUTE FORCE DARK MODE OVERRIDE - HIGH CONTRAST */
+
+        html, body { background-color: var(--bg-color) !important; color: var(--text-main) !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.8; margin: 0; padding: 0; }
+
+        
+
+        /* HEADER */
+
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #000000 !important; font-family: sans-serif; }
 
         .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
@@ -60,45 +68,73 @@
 
         .global-nav-links a:hover { color: #00ffcc !important; }
 
-        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0d1117 !important; }
+        
+
+        /* CONTENT */
+
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: var(--bg-color) !important; }
 
         .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
 
         .era-header H1 { color: #ffffff !important; font-size: 2.2rem; margin-bottom: 5px; }
 
-        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; }
+        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
 
-        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        .main-visual { width: 100%; margin: 30px 0; border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 6px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
 
         H2 { color: #ffffff !important; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
 
         H3 { color: var(--accent-blue) !important; font-size: 1.2rem; margin-top: 30px; }
 
-        p { margin-bottom: 20px; }
+        p { margin-bottom: 20px; font-size: 1.05rem; }
 
-        .technical-deep-dive { background-color: #161b22 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
+        
+
+        /* BLOCKS */
+
+        .technical-deep-dive { background-color: #0d1117 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
 
         .technical-deep-dive H3 { margin-top: 0; color: var(--accent-red) !important; }
 
-        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914 !important; padding: 20px; border-radius: 6px; }
+        .fix-block { border-left: 3px solid var(--accent-blue); padding-left: 20px; margin: 30px 0; }
+
+        .fix-block H3 { margin-top: 0; color: var(--accent-blue) !important; }
+
+        .skyguard-override { border-left: 4px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #061410 !important; padding: 20px; border-radius: 0 6px 6px 0; }
 
         .skyguard-override H3 { margin-top: 0; color: var(--accent-green) !important; }
 
         .accent-red { color: var(--accent-red) !important; font-weight: bold; }
 
-        .sequential-nav { margin-top: 60px; border-top: 1px solid var(--border-color); padding-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        
 
-        .nav-row { display: flex; justify-content: space-between; align-items: center; }
+        /* CTA BOX - HIGH CONTRAST */
 
-        .nav-row a { color: var(--accent-blue) !important; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 1px solid var(--border-color); border-radius: 6px; background: #161b22 !important; transition: 0.2s; }
+        .otis-cta-box { background: linear-gradient(145deg, #0a141a, #050505) !important; border: 1px solid rgba(0, 255, 204, 0.3) !important; border-left: 4px solid #00ffcc !important; padding: 40px 30px; margin: 60px 0 20px 0; border-radius: 6px; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
 
-        .nav-row a:hover { background: var(--border-color) !important; color: #fff !important; }
+        .otis-cta-box h3 { color: #ffffff !important; margin-top: 0; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 15px; }
 
-        .nav-center { justify-content: center; gap: 20px; }
+        .otis-cta-box p { color: #aaaaaa !important; margin-bottom: 25px; }
 
-        .nav-center a { color: var(--text-muted) !important; font-size: 0.9rem; border: none; background: none !important; padding: 0; }
+        .otis-cta-btn { display: inline-block; padding: 14px 28px; background-color: #00ffcc !important; color: #000000 !important; font-weight: bold; font-size: 1.1rem; text-decoration: none; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
 
-        .nav-center a:hover { color: #fff !important; text-decoration: underline; }
+        .otis-cta-btn:hover { background-color: #ffffff !important; box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); transform: translateY(-2px); }
+
+        /* SEQUENTIAL NAV - SLICK BUTTONS */
+
+        .sequential-nav { margin-top: 40px; padding-top: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+        .nav-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+
+        .nav-row a.nav-btn { flex: 1; text-align: center; color: #8b949e !important; text-decoration: none; font-weight: bold; padding: 16px 20px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117 !important; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+        .nav-row a.nav-btn:hover { background: #161b22 !important; border-color: #00ffcc !important; color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.15); }
+
+        .nav-center { justify-content: center; gap: 30px; margin-top: 10px; }
+
+        .nav-center a { color: #58a6ff !important; font-size: 0.95rem; border: none; background: none !important; padding: 0; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-center a:hover { color: #ffffff !important; text-decoration: underline; }
 
     </style>
 
@@ -150,27 +186,55 @@
 
     </header>
 
-    <p>We have reached the modern apex of adversarial interference. The Distance-Pulling Attack (DPA) targets the cognitive math of perception itself. It weaponizes how autonomous software calculates physical proximity, creating an optical lie that renders traditional targeting <span class="accent-red">completely obsolete</span>.</p>
+    <p>We have reached the modern apex of adversarial interference. While previous eras targeted sensory inputs (like LiDAR ghosting) or hardware equilibrium (like acoustic resonance), the Distance-Pulling Attack (DPA) targets the cognitive math of perception itself. It is a sophisticated exploit that weaponizes how autonomous software calculates physical proximity, creating an optical lie that renders traditional targeting <span class="accent-red">completely obsolete</span>.</p>
 
     <img src="era_5_flytrap_dpa.png" alt="Tactical visualization contrasting Flytrap DPA scale manipulation against true structural geometry." class="main-visual">
 
+    <p>In the visualization above, notice the stark contrast between the two paradigms of machine perception. On the left, the legacy camera feed is paralyzed by the 'FLYTRAP OPTICAL LIE'. The adversarial pattern violently shifts the bounding box scale, resulting in a critical <span class="accent-red">DISTANCE: UNKNOWN</span> error. The drone sees the target, but its logic loop has collapsed. On the right, the O.T.I.S. matrix simply deletes the visual noise, isolating the physical wireframe to generate a perfect, undeniable <span class="accent-green">DISTANCE: 2.1 METERS</span> calculation.</p>
+
     <h2>The Mechanics of Scale Manipulation</h2>
 
-    <p>Most autonomous navigation stacks rely on bounding-box algorithms combined with perceived pixel-scale. If the drone recognizes a human, it calculates the distance based on how many pixels that object occupies on the camera sensor. The DPA exploit breaks this assumption.</p>
+    <p>To understand why the Flytrap attack is so effective against legacy C-UAS, you have to understand how standard drones perceive depth without active radar. Most autonomous navigation stacks rely on bounding-box algorithms combined with perceived pixel-scale.</p>
+
+    
+
+    <p>If the drone's neural network recognizes a human, it assumes a standard height of roughly 1.7 meters. It calculates the distance based on how many pixels that 1.7-meter object occupies on the camera sensor. The DPA exploit breaks this fundamental assumption.</p>
 
     <div class="technical-deep-dive">
 
         <H3>Weaponizing the Bounding Box</H3>
 
-        <p>When the camera views the Flytrap adversarial pattern, the neural network becomes confused about the object's boundaries, rapidly expanding or shrinking the tracking bounding box. The drone is mathematically blinded to its proximity. A target sitting 5 meters away can trick the drone into believing it is 50 meters away.</p>
+        <p>A DPA asset—like the Flytrap umbrella—displays a mathematically warped, non-repetitive geometric pattern designed via gradient descent. When the drone's camera views this pattern, the neural network's feature extraction layers become confused about the object's boundaries. It incorrectly expands or shrinks the tracking bounding box. </p>
+
+        <p>Because the bounding box size suddenly changed, the drone's logic loop determines the target's distance must have also changed. The drone is physically locked onto the target, but mathematically blinded to its proximity. A target sitting 5 meters away can trick the drone into believing it is 50 meters away, completely neutralizing intercept timing.</p>
 
     </div>
+
+    <h2>The Paradigm Shift: Undeniable Geometry</h2>
+
+    
+
+    <p>The defense industry's initial response to DPA was to train AI models on thousands of images of adversarial umbrellas to try and "teach" the drone to ignore them. At SkyGuard, we recognized that playing whack-a-mole with infinite optical variations is a losing battle.</p>
 
     <div class="skyguard-override">
 
         <H3>The InSitu Labs Solution: Kinetic Contour Mapping</H3>
 
-        <p>The Optical Threat Isolation System (O.T.I.S.) leverages <strong>Kinetic Contour Mapping (KCM)</strong> to reduce the environment to pure structural depth. We do not care how many pixels a 2D pattern occupies. O.T.I.S. mathematically delaminates the 2D lie, skeletonizes the physical structure behind it, and locks the kinetic intercept onto the true center mass.</p>
+        <p>We bypass the cognitive gap entirely by stripping the visual feed out of the depth calculation equation. The Optical Threat Isolation System (O.T.I.S.) leverages <span class="accent-green">Kinetic Contour Mapping (KCM)</span> to reduce the environment to pure structural depth.</p>
+
+        <p>We do not care how many pixels a 2D pattern occupies on a screen. By cross-referencing edge data through dual-lens disparity, we generate a live, volumetric spatial mesh. The Flytrap's optical pattern has zero thickness and zero physical depth in 3D space. O.T.I.S. mathematically delaminates the 2D lie, skeletonizes the physical structure behind it, and locks the kinetic intercept onto the true center mass.</p>
+
+    </div>
+
+    <!-- O.T.I.S. CTA BOX -->
+
+    <div class="otis-cta-box">
+
+        <h3>You cannot spoof true depth.</h3>
+
+        <p>Dive into the O.T.I.S. dashboard and see how we isolate the math for a zero-latency intercept.</p>
+
+        <a href="otis-dashboard.html" class="otis-cta-btn">See how O.T.I.S. Sees</a>
 
     </div>
 
@@ -178,17 +242,17 @@
 
         <div class="nav-row">
 
-            <a href="era-4-acoustic-resonance.html">← Era 4: Acoustic Resonance</a>
+            <a href="era-4-acoustic-resonance.html" class="nav-btn">❮ &nbsp;Era 4: Acoustic Resonance</a>
 
-            <a href="hn-flytrap-override.html">Read the ROS Architecture Override →</a>
+            <a href="hn-flytrap-override.html" class="nav-btn">The ROS Override Architecture &nbsp;❯</a>
 
         </div>
 
         <div class="nav-row nav-center">
 
-            <a href="optical-spoofing-evolution.html">↑ Return to Spoofing Hub</a>
+            <a href="optical-spoofing-evolution.html">⇡ Return to Spoofing Hub</a>
 
-            <a href="index.html">⌂ SkyGuard HQ Home</a>
+            <a href="index.html">⌂ SkyGuard HQ</a>
 
         </div>
 
@@ -199,3 +263,4 @@
 </body>
 
 </html>
+
