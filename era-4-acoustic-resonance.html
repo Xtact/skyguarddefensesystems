@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -36,11 +36,19 @@
 
     <style>
 
-        :root { --bg-color: #0d1117; --text-main: #c9d1d9; --text-muted: #8b949e; --accent-red: #ff7b72; --accent-green: #3fb950; --accent-blue: #58a6ff; --border-color: #30363d; }
+        :root { --bg-color: #050505; --text-main: #e6edf3; --text-muted: #8b949e; --accent-red: #ff3333; --accent-green: #00ffcc; --accent-blue: #58a6ff; --border-color: #30363d; }
 
-        html, body { background-color: #0d1117 !important; color: #c9d1d9 !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; margin: 0; padding: 0; }
+        
 
-        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505 !important; font-family: sans-serif; }
+        /* BRUTE FORCE DARK MODE OVERRIDE - HIGH CONTRAST */
+
+        html, body { background-color: var(--bg-color) !important; color: var(--text-main) !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.8; margin: 0; padding: 0; }
+
+        
+
+        /* HEADER */
+
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #000000 !important; font-family: sans-serif; }
 
         .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
@@ -60,45 +68,73 @@
 
         .global-nav-links a:hover { color: #00ffcc !important; }
 
-        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0d1117 !important; }
+        
+
+        /* CONTENT */
+
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: var(--bg-color) !important; }
 
         .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
 
         .era-header H1 { color: #ffffff !important; font-size: 2.2rem; margin-bottom: 5px; }
 
-        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; }
+        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
 
-        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        .main-visual { width: 100%; margin: 30px 0; border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 6px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
 
         H2 { color: #ffffff !important; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
 
         H3 { color: var(--accent-blue) !important; font-size: 1.2rem; margin-top: 30px; }
 
-        p { margin-bottom: 20px; }
+        p { margin-bottom: 20px; font-size: 1.05rem; }
 
-        .technical-deep-dive { background-color: #161b22 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
+        
+
+        /* BLOCKS */
+
+        .technical-deep-dive { background-color: #0d1117 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
 
         .technical-deep-dive H3 { margin-top: 0; color: var(--accent-red) !important; }
 
-        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914 !important; padding: 20px; border-radius: 6px; }
+        .fix-block { border-left: 3px solid var(--accent-blue); padding-left: 20px; margin: 30px 0; }
+
+        .fix-block H3 { margin-top: 0; color: var(--accent-blue) !important; }
+
+        .skyguard-override { border-left: 4px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #061410 !important; padding: 20px; border-radius: 0 6px 6px 0; }
 
         .skyguard-override H3 { margin-top: 0; color: var(--accent-green) !important; }
 
         .accent-red { color: var(--accent-red) !important; font-weight: bold; }
 
-        .sequential-nav { margin-top: 60px; border-top: 1px solid var(--border-color); padding-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        
 
-        .nav-row { display: flex; justify-content: space-between; align-items: center; }
+        /* CTA BOX - HIGH CONTRAST */
 
-        .nav-row a { color: var(--accent-blue) !important; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 1px solid var(--border-color); border-radius: 6px; background: #161b22 !important; transition: 0.2s; }
+        .otis-cta-box { background: linear-gradient(145deg, #0a141a, #050505) !important; border: 1px solid rgba(0, 255, 204, 0.3) !important; border-left: 4px solid #00ffcc !important; padding: 40px 30px; margin: 60px 0 20px 0; border-radius: 6px; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
 
-        .nav-row a:hover { background: var(--border-color) !important; color: #fff !important; }
+        .otis-cta-box h3 { color: #ffffff !important; margin-top: 0; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 15px; }
 
-        .nav-center { justify-content: center; gap: 20px; }
+        .otis-cta-box p { color: #aaaaaa !important; margin-bottom: 25px; }
 
-        .nav-center a { color: var(--text-muted) !important; font-size: 0.9rem; border: none; background: none !important; padding: 0; }
+        .otis-cta-btn { display: inline-block; padding: 14px 28px; background-color: #00ffcc !important; color: #000000 !important; font-weight: bold; font-size: 1.1rem; text-decoration: none; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
 
-        .nav-center a:hover { color: #fff !important; text-decoration: underline; }
+        .otis-cta-btn:hover { background-color: #ffffff !important; box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); transform: translateY(-2px); }
+
+        /* SEQUENTIAL NAV - SLICK BUTTONS */
+
+        .sequential-nav { margin-top: 40px; padding-top: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+        .nav-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+
+        .nav-row a.nav-btn { flex: 1; text-align: center; color: #8b949e !important; text-decoration: none; font-weight: bold; padding: 16px 20px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117 !important; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+        .nav-row a.nav-btn:hover { background: #161b22 !important; border-color: #00ffcc !important; color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.15); }
+
+        .nav-center { justify-content: center; gap: 30px; margin-top: 10px; }
+
+        .nav-center a { color: #58a6ff !important; font-size: 0.95rem; border: none; background: none !important; padding: 0; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-center a:hover { color: #ffffff !important; text-decoration: underline; }
 
     </style>
 
@@ -150,19 +186,31 @@
 
     </header>
 
-    <p>Adversaries discovered that the most direct way to neutralize an autonomous system isn't through its cognitive logic, but through its physical equilibrium. By attacking the physics of the hardware itself, adversaries created a devastating physical spoof that forces a <span class="accent-red">flight stability failure</span>.</p>
+    <p>Adversaries discovered that the most direct way to neutralize an autonomous system isn't through its cognitive logic, but through its physical equilibrium. Drones, no matter how advanced their software, rely on micro-electromechanical systems (MEMS) for stability. By attacking the physics of the hardware itself, adversaries created a devastating physical spoof that forces a <span class="accent-red">flight stability failure</span>.</p>
 
     <img src="era_4_acoustic_resonance.png" alt="Tactical visualization of an acoustic resonance attack targeting a drone's gyroscope." class="main-visual">
 
+    <p>Watch the illustration above. A standard multi-rotor drone is flying ('GYRO DATA: INTERCEPT_READY'). But on the ground, a powerful, directional sonic speaker array (an 'ACOUSTIC WEAPON' emitting specialized, pulsating red sound waves) is shown actively targeting the platform. Arrows connect the sonic weapon to the physical failure ('SONIC ATTACK DETECTED: FATAL GYRO SPIKES'). An internal schematic view projects the microscopic MEMS gyroscope component vibrating wildly, contrasting the normal data against the chaotic, red flickering data of <span class="accent-red">FATAL RESONANCE</span>. The drone, confused about its own level state, tumbles violently out of control ('STATUS: FALLING').</p>
+
     <h2>The Exploit: Matching the MEMS Frequency</h2>
 
-    <p>MEMS gyroscopes and accelerometers utilize microscopic vibrating structures to detect motion. Researchers discovered that if an acoustic sound wave matches the specific resonant frequency of these components, it induces chaotic vibration. The sensor reports massive, impossible data spikes to the flight controller.</p>
+    <p>MEMS gyroscopes and accelerometers utilize microscopic vibrating structures to detect motion. Every physical object has a natural resonant frequency. Researchers discovered that if an acoustic sound wave matches the specific resonant frequency of the microscopic physical components inside the drone’s MEMS gyroscope, it induces chaotic vibration. The sensor reports massive, impossible data spikes to the flight controller.</p>
 
     <div class="technical-deep-dive">
 
         <H3>Hardware Equilibrium Hijack</H3>
 
-        <p>The flight controller receives conflicting data, believes it is spinning out of control, and overcompensates aggressively, forcing the drone into a fatal spin or causing an instant power cutoff (the 'Gyro Drop').</p>
+        <p>This is a purely physical exploit that attacks the drone’s balance. The flight controller receives conflicting data, believes it is simultaneously flipping upside down and spinning out of control. It overcompensates aggressively, forcing the drone into a fatal spin or causing an instant power cutoff (the 'Gyro Drop'). It is a brutal, low-cost physical hijack that cannot be filtered by conventional software, as the data being received is fundamentally impossible from a physics perspective.</p>
+
+    </div>
+
+    <h2>The Countermeasure Arms Race</h2>
+
+    <div class="fix-block">
+
+        <H3>Military Fix: Acoustic Dampening and Mathematical Filtering</H3>
+
+        <p>Hardware manufacturers responded through physical encasement and software filters. Military-grade platforms now encase MEMS components in sound-dampening foam or sophisticated physical isolators. Simultaneously, developers rewrote flight controller logic to detect and ignore these specific impossible data spikes, switching to full inertial data (accelerometers only) during high-noise events.</p>
 
     </div>
 
@@ -170,7 +218,21 @@
 
         <H3>SkyGuard Override: Structural Validation</H3>
 
-        <p>When O.T.I.S. detects IMU instability, it maintains its understanding of true 'level' by cross-referencing against the semantic <strong>Structural Skeletonization</strong> feed. By isolating the math and the geometry of the target in 3D space, O.T.I.S. can continue calculating the kinetic intercept solution even while the platform itself is physically vibrating.</p>
+        <p>All SkyGuard passive kinetic platforms utilize physically isolated and acoustic-dampened inertial measurement units (IMUs). Our software override is **Sensor Cross-Referencing**. While the gyroscope may be compromised, the VST depth engine and the semantic camera feeds are not.</p>
+
+        <p>When O.T.I.S. detects IMU instability, it maintains its understanding of true 'level' by cross-referencing against the semantic Structural Skeletonization feed. By isolating the math and the geometry of the target in 3D space, O.T.I.S. can continue calculating the kinetic intercept solution even while the platform itself is physically vibrating.</p>
+
+    </div>
+
+    <!-- O.T.I.S. CTA BOX -->
+
+    <div class="otis-cta-box">
+
+        <h3>Maintain lock through physical chaos.</h3>
+
+        <p>See how Structural Skeletonization tracks targets even when equilibrium fails.</p>
+
+        <a href="otis-dashboard.html" class="otis-cta-btn">See how O.T.I.S. Sees</a>
 
     </div>
 
@@ -178,17 +240,17 @@
 
         <div class="nav-row">
 
-            <a href="era-3-lidar-ghosting.html">← Era 3: LiDAR Ghosting</a>
+            <a href="era-3-lidar-ghosting.html" class="nav-btn">❮ &nbsp;Era 3: LiDAR Ghosting</a>
 
-            <a href="era-5-flytrap-dpa.html">Era 5: Distance-Pulling Attacks →</a>
+            <a href="era-5-flytrap-dpa.html" class="nav-btn">Era 5: Distance-Pulling Attacks &nbsp;❯</a>
 
         </div>
 
         <div class="nav-row nav-center">
 
-            <a href="optical-spoofing-evolution.html">↑ Return to Spoofing Hub</a>
+            <a href="optical-spoofing-evolution.html">⇡ Return to Spoofing Hub</a>
 
-            <a href="index.html">⌂ SkyGuard HQ Home</a>
+            <a href="index.html">⌂ SkyGuard HQ</a>
 
         </div>
 
