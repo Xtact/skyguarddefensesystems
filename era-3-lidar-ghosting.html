@@ -36,11 +36,19 @@
 
     <style>
 
-        :root { --bg-color: #0d1117; --text-main: #c9d1d9; --text-muted: #8b949e; --accent-red: #ff7b72; --accent-green: #3fb950; --accent-blue: #58a6ff; --border-color: #30363d; }
+        :root { --bg-color: #050505; --text-main: #e6edf3; --text-muted: #8b949e; --accent-red: #ff3333; --accent-green: #00ffcc; --accent-blue: #58a6ff; --border-color: #30363d; }
 
-        html, body { background-color: #0d1117 !important; color: #c9d1d9 !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; margin: 0; padding: 0; }
+        
 
-        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505 !important; font-family: sans-serif; }
+        /* BRUTE FORCE DARK MODE OVERRIDE - HIGH CONTRAST */
+
+        html, body { background-color: var(--bg-color) !important; color: var(--text-main) !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.8; margin: 0; padding: 0; }
+
+        
+
+        /* HEADER */
+
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #000000 !important; font-family: sans-serif; }
 
         .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
@@ -60,45 +68,73 @@
 
         .global-nav-links a:hover { color: #00ffcc !important; }
 
-        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0d1117 !important; }
+        
+
+        /* CONTENT */
+
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: var(--bg-color) !important; }
 
         .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
 
         .era-header H1 { color: #ffffff !important; font-size: 2.2rem; margin-bottom: 5px; }
 
-        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; }
+        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
 
-        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        .main-visual { width: 100%; margin: 30px 0; border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 6px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
 
         H2 { color: #ffffff !important; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
 
         H3 { color: var(--accent-blue) !important; font-size: 1.2rem; margin-top: 30px; }
 
-        p { margin-bottom: 20px; }
+        p { margin-bottom: 20px; font-size: 1.05rem; }
 
-        .technical-deep-dive { background-color: #161b22 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
+        
+
+        /* BLOCKS */
+
+        .technical-deep-dive { background-color: #0d1117 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
 
         .technical-deep-dive H3 { margin-top: 0; color: var(--accent-red) !important; }
 
-        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914 !important; padding: 20px; border-radius: 6px; }
+        .fix-block { border-left: 3px solid var(--accent-blue); padding-left: 20px; margin: 30px 0; }
+
+        .fix-block H3 { margin-top: 0; color: var(--accent-blue) !important; }
+
+        .skyguard-override { border-left: 4px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #061410 !important; padding: 20px; border-radius: 0 6px 6px 0; }
 
         .skyguard-override H3 { margin-top: 0; color: var(--accent-green) !important; }
 
         .accent-red { color: var(--accent-red) !important; font-weight: bold; }
 
-        .sequential-nav { margin-top: 60px; border-top: 1px solid var(--border-color); padding-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        
 
-        .nav-row { display: flex; justify-content: space-between; align-items: center; }
+        /* CTA BOX - HIGH CONTRAST */
 
-        .nav-row a { color: var(--accent-blue) !important; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 1px solid var(--border-color); border-radius: 6px; background: #161b22 !important; transition: 0.2s; }
+        .otis-cta-box { background: linear-gradient(145deg, #0a141a, #050505) !important; border: 1px solid rgba(0, 255, 204, 0.3) !important; border-left: 4px solid #00ffcc !important; padding: 40px 30px; margin: 60px 0 20px 0; border-radius: 6px; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
 
-        .nav-row a:hover { background: var(--border-color) !important; color: #fff !important; }
+        .otis-cta-box h3 { color: #ffffff !important; margin-top: 0; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 15px; }
 
-        .nav-center { justify-content: center; gap: 20px; }
+        .otis-cta-box p { color: #aaaaaa !important; margin-bottom: 25px; }
 
-        .nav-center a { color: var(--text-muted) !important; font-size: 0.9rem; border: none; background: none !important; padding: 0; }
+        .otis-cta-btn { display: inline-block; padding: 14px 28px; background-color: #00ffcc !important; color: #000000 !important; font-weight: bold; font-size: 1.1rem; text-decoration: none; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
 
-        .nav-center a:hover { color: #fff !important; text-decoration: underline; }
+        .otis-cta-btn:hover { background-color: #ffffff !important; box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); transform: translateY(-2px); }
+
+        /* SEQUENTIAL NAV - SLICK BUTTONS */
+
+        .sequential-nav { margin-top: 40px; padding-top: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+        .nav-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+
+        .nav-row a.nav-btn { flex: 1; text-align: center; color: #8b949e !important; text-decoration: none; font-weight: bold; padding: 16px 20px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117 !important; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+        .nav-row a.nav-btn:hover { background: #161b22 !important; border-color: #00ffcc !important; color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.15); }
+
+        .nav-center { justify-content: center; gap: 30px; margin-top: 10px; }
+
+        .nav-center a { color: #58a6ff !important; font-size: 0.95rem; border: none; background: none !important; padding: 0; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-center a:hover { color: #ffffff !important; text-decoration: underline; }
 
     </style>
 
@@ -150,19 +186,33 @@
 
     </header>
 
-    <p>As optical cameras proved vulnerable and GPS proved hackable, high-end defense platforms pivoted heavily to LiDAR. By firing millions of laser pulses, drones generated high-resolution 3D maps. Adversaries responded by spoofing the light itself, creating <span class="accent-red">ghost obstacles</span>.</p>
+    <p>The arms race between perception and interference has a simple rule: **The adversary always moves up the spectral ladder.** As optical cameras proved vulnerable (Era 1) and GPS proved hackable (Era 2), high-end defense platforms pivoted heavily to LiDAR (Light Detection and Ranging). By firing millions of laser pulses and measuring the return time, drones could generate high-resolution, active 3D maps, seemingly immune to optical tricks. Adversaries simply responded by spoofing the light itself.</p>
 
     <img src="era_3_lidar_ghosting.png" alt="Tactical visualization of LiDAR ghosting attack." class="main-visual">
 
+    <p>Watch the illustration above. In a controlled, dark tactical lab, a ground-based spoofing device (a specialized laser array) is actively injecting hostile light directly into the drone's LiDAR sensor ('HOSTILE LIGHT INJECTION DETECTED'). The technical overlays demonstrate the <span class="accent-red">perception failure</span>. Arrows point from the laser source to the detection errors ('LIDAR MAP ERROR: GHOST OBSTACLE'). The drone’s 3D point cloud display projects a large, red, pulsating geometric wall—a concrete obstacle that isn't physically there.</p>
+
     <h2>The Exploit: Timing the Returned Pulse</h2>
 
-    <p>LiDAR works by timing the time-of-flight of randomized laser pulses. An adversary monitors the targeted drone’s LiDAR frequency and fires a hostile laser pulse back into the drone's aperture. If the hostile pulse arrives before the true reflection, the sensor registers the closer distance, generating a fake object in its 3D environment.</p>
+    <p>LiDAR works by timing the time-of-flight of randomized, invisible laser pulses (usually NIR at 905nm or 1550nm). An adversary monitors the targeted drone’s LiDAR frequency and fires a *hostile* laser pulse back into the drone's aperture at the exact right moment. If the hostile pulse arrives *before* the true reflection, the LiDAR sensor registers the closer distance, generating a 'ghost obstacle' in its 3D environment map.</p>
 
     <div class="technical-deep-dive">
 
         <H3>Weaponizing Collision Avoidance</H3>
 
-        <p>By projecting ghost walls in front of the drone, the adversary forces the drone's obstacle avoidance systems to violently slam on the brakes to avoid a non-existent collision, completely incapacitating the intercept capability.</p>
+        <p>This is a devastating hardware injection attack that targets the drone’s fundamental flight safety matrix. By projecting ghost walls or fake mountains in front of the drone, the adversary forces the drone's Autonomous Target Tracking (ATT) and obstacle avoidance systems to violently slam on the brakes or veer off station to avoid a non-existent collision. The drone is incapacitated by a perceived architectural illusion, neutralizing the intercept capability.</p>
+
+    </div>
+
+    
+
+    <h2>The Countermeasure Arms Race</h2>
+
+    <div class="fix-block">
+
+        <H3>Military Fix: Pulse Encoding and Randomized Timing</H3>
+
+        <p>Hardware manufacturers responded through sophisticated encryption and timing randomized timing. Instead of firing a predictable stream of light, modern defense LiDAR encrypts its light pulses with randomized cryptographictiming. If the returning light pulse does not match the strict cryptographic 'handshake' timing of the outgoing pulse, the system rejects it as hostile noise.</p>
 
     </div>
 
@@ -170,7 +220,21 @@
 
         <H3>SkyGuard Override: VST Spatial Validation</H3>
 
-        <p>While LiDAR can be ghosted, dual-lens disparity geometry cannot. When the LiDAR sensor reports an obstacle, O.T.I.S. instantly validates the threat using the <strong>Volumetric Stereo-Triangulation (VST)</strong> depth engine. If the LiDAR claims a wall exists, but the VST depth mesh registers empty geometry, O.T.I.S. ignores the ghost obstacle and continues the intercept.</p>
+        <p>SkyGuard integrates pulse-encoded LiDAR on all active kinetic platforms. However, our primary defense override is **Sensor Disparity Cross-Referencing**. While LiDAR can be ghosted, dual-lens disparity geometry cannot.</p>
+
+        <p>When the LiDAR sensor reports an obstacle, O.T.I.S. instantly validates the threat using the Volumetric Stereo-Triangulation (VST) depth engine. VST generates an un-spoofable spatial mesh through pure math, not received light. If the LiDAR feed claims a wall exists, but the VST depth mesh registers empty physical geometry, O.T.I.S. flags the LiDAR data as hostile and ignores the ghost obstacle, continuing the kinetic intercept based on undeniable geometry.</p>
+
+    </div>
+
+    <!-- O.T.I.S. CTA BOX -->
+
+    <div class="otis-cta-box">
+
+        <h3>Lasers can be faked. Math cannot.</h3>
+
+        <p>See how O.T.I.S. uses dual-lens disparity to cross-reference and validate all incoming physical data.</p>
+
+        <a href="otis-dashboard.html" class="otis-cta-btn">See how O.T.I.S. Sees</a>
 
     </div>
 
@@ -178,17 +242,17 @@
 
         <div class="nav-row">
 
-            <a href="era-2-gps-spoofing.html">← Era 2: GPS/GNSS Spoofing</a>
+            <a href="era-2-gps-spoofing.html" class="nav-btn">❮ &nbsp;Era 2: GPS/GNSS Spoofing</a>
 
-            <a href="era-4-acoustic-resonance.html">Era 4: Acoustic Resonance →</a>
+            <a href="era-4-acoustic-resonance.html" class="nav-btn">Era 4: Acoustic Resonance &nbsp;❯</a>
 
         </div>
 
         <div class="nav-row nav-center">
 
-            <a href="optical-spoofing-evolution.html">↑ Return to Spoofing Hub</a>
+            <a href="optical-spoofing-evolution.html">⇡ Return to Spoofing Hub</a>
 
-            <a href="index.html">⌂ SkyGuard HQ Home</a>
+            <a href="index.html">⌂ SkyGuard HQ</a>
 
         </div>
 
