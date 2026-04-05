@@ -4,151 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Era 1: Adversarial Patches | Spoofing Evolution | SkyGuard</title>
-    <meta name="description" content="A deep technical analysis of the initial 'Texture War'—how adversarial patches confuse drone computer vision, and how O.T.I.S. bypasses these optical lies.">
-    
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="nav.css">
-
     <style>
-        /* --- ARTICLE SPECIFIC STYLES --- */
-        .article-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            font-family: 'SFMono-Regular', Consolas, monospace;
-            line-height: 1.7;
-            color: #c9d1d9;
-        }
-
-        .era-header {
-            text-align: center;
-            border-bottom: 2px solid #1a332d;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        .era-header H1 {
-            color: #ffffff;
-            font-size: 2.2rem;
-            letter-spacing: 1px;
-        }
-
-        .era-header .subtitle {
-            color: var(--accent-blue);
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
-
-        .main-visual {
-            width: 100%;
-            margin: 30px 0;
-            border: 2px solid rgba(0, 255, 204, 0.3);
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
-        }
-
-        H2 {
-            color: #ffffff;
-            font-size: 1.6rem;
-            margin-top: 50px;
-            border-bottom: 1px dashed #30363d;
-            padding-bottom: 10px;
-        }
-
-        H3 {
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-            margin-top: 30px;
-        }
-
-        .technical-deep-dive {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-
-        .technical-deep-dive H3 {
-            margin-top: 0;
-            color: var(--accent-green);
-        }
-
-        .technical-deep-dive strong {
-            color: #ffffff;
-        }
-
-        .fix-block {
-            border-left: 3px solid var(--accent-blue);
-            padding-left: 20px;
-            margin: 30px 0;
-        }
-
-        .skyguard-override {
-            border-left: 3px solid var(--accent-green);
-            padding-left: 20px;
-            margin: 30px 0;
-            background-color: #0a1914;
-            padding: 20px;
-            border-radius: 6px;
-        }
-
-        .accent-red {
-            color: var(--accent-red);
-            font-weight: bold;
-        }
+        :root { --bg-color: #0d1117; --text-main: #c9d1d9; --text-muted: #8b949e; --accent-red: #ff7b72; --accent-green: #3fb950; --accent-blue: #58a6ff; --border-color: #30363d; }
+        
+        /* BRUTE FORCE DARK MODE OVERRIDE */
+        html, body { background-color: #0d1117 !important; color: #c9d1d9 !important; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.7; margin: 0; padding: 0; }
+        
+        .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505 !important; font-family: sans-serif; }
+        .global-header .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .global-nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .global-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+        .global-logo h1 { color: #ffffff !important; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
+        .global-logo span { color: #ff3333 !important; }
+        .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
+        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; color: #aaaaaa !important; text-decoration: none; transition: color 0.3s; }
+        .global-nav-links a:hover { color: #00ffcc !important; }
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0d1117 !important; }
+        .era-header { text-align: center; border-bottom: 2px solid #1a332d; padding-bottom: 20px; margin-bottom: 40px; }
+        .era-header H1 { color: #ffffff !important; font-size: 2.2rem; margin-bottom: 5px; }
+        .era-header .subtitle { color: var(--accent-blue) !important; font-size: 1rem; text-transform: uppercase; font-weight: bold; }
+        .main-visual { width: 100%; margin: 30px 0; border: 2px solid rgba(0, 255, 204, 0.3); border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+        H2 { color: #ffffff !important; font-size: 1.6rem; margin-top: 50px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
+        H3 { color: var(--accent-blue) !important; font-size: 1.2rem; margin-top: 30px; }
+        p { margin-bottom: 20px; }
+        .technical-deep-dive { background-color: #161b22 !important; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin: 30px 0; }
+        .technical-deep-dive H3 { margin-top: 0; color: var(--accent-red) !important; }
+        .skyguard-override { border-left: 3px solid var(--accent-green); padding-left: 20px; margin: 30px 0; background-color: #0a1914 !important; padding: 20px; border-radius: 6px; }
+        .skyguard-override H3 { margin-top: 0; color: var(--accent-green) !important; }
+        .accent-red { color: var(--accent-red) !important; font-weight: bold; }
+        .sequential-nav { margin-top: 60px; border-top: 1px solid var(--border-color); padding-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        .nav-row { display: flex; justify-content: space-between; align-items: center; }
+        .nav-row a { color: var(--accent-blue) !important; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 1px solid var(--border-color); border-radius: 6px; background: #161b22 !important; transition: 0.2s; }
+        .nav-row a:hover { background: var(--border-color) !important; color: #fff !important; }
+        .nav-center { justify-content: center; gap: 20px; }
+        .nav-center a { color: var(--text-muted) !important; font-size: 0.9rem; border: none; background: none !important; padding: 0; }
+        .nav-center a:hover { color: #fff !important; text-decoration: underline; }
     </style>
 </head>
 <body>
+    <header class="global-header">
+        <div class="nav-container">
+            <nav class="global-nav">
+                <a href="index.html" class="global-logo">
+                    <img src="skyguard_logo.png" alt="SkyGuard Logo">
+                    <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
+                </a>
+                <ul class="global-nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#products">SYSTEMS</a></li>
+                    <li><a href="optical-spoofing-evolution.html">SPOOFING</a></li>
+                    <li><a href="otis-vision.html">O.T.I.S.</a></li>
+                    <li><a href="otis-dashboard.html">DEMO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <main class="article-content">
+<main class="article-content">
     <header class="era-header">
         <div class="subtitle">Chronicles of Sensor Spoofing</div>
         <H1>Era 1: Adversarial Patches</H1>
     </header>
 
-    <p>Before autonomous systems were navigating dense cities, they were learning to read textures. Drones relied heavily on Convolutional Neural Networks (CNNs) trained to categorize objects based on texture gradients and contrast. Adversaries quickly realized that these mathematical models, while powerful, could be elegantly <span class="accent-red">exploited by visual noise</span>.</p>
+    <p>Before autonomous systems were navigating dense cities, they were learning to read textures. Drones relied heavily on Convolutional Neural Networks (CNNs) trained to categorize objects based on texture gradients and contrast. Adversaries quickly realized that these mathematical models could be elegantly <span class="accent-red">exploited by visual noise</span>.</p>
 
-    <img src="adversarial_patches_tactical.PNG" alt="Tactical visualization of an adversarial patch attack, showing a drone failing to classify a patterned target (Era 1: image_10.png)" class="main-visual">
-
-    <p>Watch the image above. A target holds a board covered in chaotic, colorful adversarial noise. The drone's projected camera feed (Era 1 inset) demonstrates the <span class="accent-red">optical failure</span>. Its computer vision (CNN ANALYSIS) tries to parse the patterned target, but bounding boxes flicker randomly, and technical overlays generate conflicting classifications reading <span class="accent-red">TOASTER (ERROR)</span> and <span class="accent-red">BIRD (ERROR)</span>. The drone has sight, but its software cannot perceive the threat.</p>
+    <img src="adversarial_patches_tactical.PNG" alt="Tactical visualization of an adversarial patch attack" class="main-visual">
 
     <h2>The Exploit: Texture-Based Confusion</h2>
 
-    <p>CNNs function by aggregating pixel data into features, looking for familiar edge patterns, shapes, and lighting gradients. An adversarial patch is a texture scientifically designed using gradient descent to produce maximal activation <span class="accent-red">errors</span> across the layers of a targeted neural network.</p>
+    <p>CNNs function by aggregating pixel data into features. An adversarial patch is a texture scientifically designed using gradient descent to produce maximal activation errors. By introducing specific, unexpected high-frequency texture data into the camera feed, it forces the CNN to activate incorrect classification vectors.</p>
 
     <div class="technical-deep-dive">
         <H3>Deterministic Optical Warfare</H3>
-        <p>This is not random noise. The patch you see is a mathematically optimized mask. By introducing specific, unexpected high-frequency texture data into the camera feed, it forces the CNN to activate incorrect classification vectors. The network, confident in its false positive, identifies the threat holding the board as inanimate background clutter, completely neutralizing the Autonomous Target Tracking (ATT) matrix. It is a deterministic attack that weaponizes the network's own complexity against it.</p>
-    </div>
-
-    <h2>The Countermeasure Arms Race</h2>
-
-    <div class="fix-block">
-        <H3>Traditional Fix: Sensor Fusion (FLIR/NIR)</H3>
-        <p>Integrators responded by moving beyond pure RGB camera reliance. They implemented Sensor Fusion, pairing optical cameras with FLIR (Forward-Looking Infrared) or Near-Infrared (NIR) sensors. Even if the optical feed generated a "toaster" classification, the thermal feed identified a human silhouette based on body heat, overriding the optical error.</p>
+        <p>The network, confident in its false positive, identifies the threat holding the board as inanimate background clutter, completely neutralizing the Autonomous Target Tracking (ATT) matrix.</p>
     </div>
 
     <div class="skyguard-override">
-        <H3>SkyGuard O.T.I.S. Override: Spectral Delamination Matrix (SDM)</H3>
-        <p>At InSitu Labs, we bypass the need for multispectral cross-referencing entirely. We break the texture war by mathematically removing the textures. Before the CNN attempts to classify the target, O.T.I.S. deploys the <span class="highlight-green">Spectral Delamination Matrix (SDM)</span>.</p>
-        <p>SDM is a color-separation node that aggressively strips away adversarial noise patterns, high-contrast camouflage, and multispectral cloaking across the entire spectrum (RGB, HSV, YUV, NIR). SDM renders the optical illusion mathematically inert, exposing the raw physical contours for <a href="otis-dashboard.html">Volumetric Stereo-Triangulation (VST)</a>, ensuring the kinetic intercept proceeds based on undeniable math, not exploitable appearances.</p>
+        <H3>SkyGuard Override: Spectral Delamination Matrix (SDM)</H3>
+        <p>At InSitu Labs, we break the texture war by mathematically removing the textures. Before the CNN attempts to classify the target, O.T.I.S. deploys the Spectral Delamination Matrix (SDM). SDM aggressively strips away adversarial noise patterns across the entire spectrum, exposing the raw physical contours for Volumetric Stereo-Triangulation (VST).</p>
     </div>
 
-    <div style="text-align: center; margin-top: 60px;">
-        <a href="demo.html" class="global-logo">
-            <img src="skyguard_logo.png" alt="SkyGuard Logo" style="height: 60px; width: 60px;">
-        </a>
-        <p>Ready to break the visual tie? <a href="demo.html">See how O.T.I.S. sees.</a></p>
+    <div class="sequential-nav">
+        <div class="nav-row">
+            <a style="visibility: hidden;">Spacer</a>
+            <a href="era-2-gps-spoofing.html">Era 2: GPS/GNSS Spoofing →</a>
+        </div>
+        <div class="nav-row nav-center">
+            <a href="optical-spoofing-evolution.html">↑ Return to Spoofing Hub</a>
+            <a href="index.html">⌂ SkyGuard HQ Home</a>
+        </div>
     </div>
-
 </main>
-
-    <script>
-        // Global mobile nav script
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-nav-links').classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
