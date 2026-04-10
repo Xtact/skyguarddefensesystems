@@ -3,222 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyGuard Threat Advisory | Mythos AI Vulnerabilities</title>
+    <title>SkyGuard Threat Advisory | Weaponized Geometry</title>
     
-    <meta name="description" content="Threat Advisory: Anthropic's Mythos AI model reveals critical zero-day vulnerabilities in FFmpeg and open-source ROS 2 architecture. SkyGuard introduces O.T.I.S. mathematical isolation.">
+    <meta name="description" content="Threat Advisory: Anthropic's Mythos AI model reveals critical zero-day vulnerabilities in FFmpeg and open-source ROS 2 architecture. Defeat the kill chain with weaponized geometry.">
     
     <style>
         :root {
-            --bg-color: #0d1117;
-            --text-color: #e6edf3; 
+            --bg-dark: #090a0f;
+            --bg-panel: #11141d;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
             --accent-cyan: #00f0ff;
             --accent-red: #ff4444;
-            --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-code: 'Courier New', Courier, monospace;
+            --accent-green: #7ee787;
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
         body { 
-            background-color: var(--bg-color); 
-            color: var(--text-color); 
-            font-family: var(--font-main); 
-            line-height: 1.7; 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: var(--font-mono); 
+            line-height: 1.6; 
             margin: 0; 
             padding: 0; 
-            font-size: 1.15em; 
-            font-weight: 400; 
+            font-size: 16px; 
+            -webkit-font-smoothing: antialiased;
         }
         
         .container { 
-            max-width: 800px; 
+            max-width: 850px; 
             margin: 0 auto; 
-            padding: 40px 20px; 
+            padding: 0 20px 60px 20px; 
         }
         
-        header { 
-            border-bottom: 1px solid #30363d; 
-            padding-bottom: 20px; 
-            margin-bottom: 30px; 
-            display: flex; 
+        /* --- Standardized SkyGuard Header --- */
+        .skyguard-header {
+            display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 40px;
         }
 
-        .logo-link {
-            text-decoration: none;
-            color: #ffffff;
-            font-family: var(--font-code);
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
             font-weight: bold;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .nav-right {
+            text-align: right;
+        }
+
+        .brand-name {
+            font-family: var(--font-sans);
+            font-weight: 800;
             font-size: 1.2em;
             letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 5px;
         }
-        
-        .header-links a {
-            color: #8b949e;
-            font-family: var(--font-code);
-            font-size: 0.9em;
+
+        .brand-name span {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            margin-left: 15px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
         }
 
-        .header-links a:hover {
-            color: var(--text-color);
+        .nav-links a:hover {
+            color: var(--text-main);
         }
-        
+
+        .hamburger {
+            color: var(--accent-green);
+            font-size: 1.5em;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* --- Typography & Layout --- */
         h1 { 
+            font-family: var(--font-sans);
             color: #ffffff; 
-            font-size: 2.4em; 
-            border-bottom: 2px solid var(--accent-red); 
-            display: inline-block; 
-            padding-bottom: 10px; 
-            margin-bottom: 20px; 
+            font-size: 2.2em; 
+            font-weight: 800;
             line-height: 1.2;
-            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .date-subject {
-            background: #161b22;
-            padding: 15px 20px;
-            border-left: 4px solid var(--accent-red);
+        .meta-line {
+            color: var(--text-muted);
+            font-size: 0.85em;
             margin-bottom: 40px;
-            font-family: var(--font-code);
-            font-size: 0.9em;
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 20px;
         }
+
+        .meta-line span { color: var(--accent-cyan); }
         
         h2 { 
+            font-family: var(--font-sans);
             color: #ffffff; 
-            margin-top: 50px; 
-            font-size: 1.6em;
-            font-weight: 600;
+            margin-top: 45px; 
+            font-size: 1.4em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         h3 {
             color: var(--accent-cyan);
-            font-size: 1.2em;
-            margin-top: 30px;
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
         
-        p { margin-bottom: 20px; }
+        p { margin-bottom: 20px; color: #c9d1d9; }
         
+        /* --- Quote Blocks --- */
         .warning-quote {
+            background: rgba(255, 68, 68, 0.08);
             border-left: 4px solid var(--accent-red);
-            background: rgba(255, 68, 68, 0.05);
             padding: 20px;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-style: italic;
-            margin: 40px 0;
+            margin: 35px 0;
             color: #ffffff;
+            border-radius: 0 4px 4px 0;
         }
         
         .warning-author {
             display: block;
-            margin-top: 15px;
-            font-size: 0.8em;
-            font-family: var(--font-code);
-            color: #8b949e;
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: var(--text-muted);
             font-style: normal;
-            letter-spacing: 1px;
-            text-transform: uppercase;
         }
 
         .quote-block { 
-            border-left: 4px solid var(--accent-cyan); 
-            padding-left: 20px; 
-            font-size: 1.3em; 
-            font-style: italic; 
-            margin: 50px 0; 
-            color: #ffffff; 
+            border: 1px solid var(--accent-cyan);
+            border-radius: 6px;
+            padding: 20px; 
+            font-size: 1.1em; 
+            margin: 35px 0; 
+            color: var(--accent-cyan); 
+            text-align: center;
+            background: rgba(0, 240, 255, 0.05);
+            font-weight: bold;
         }
         
+        /* --- Tech / Expandable Blocks --- */
         .tech-block { 
-            background-color: #161b22; 
+            background-color: var(--bg-panel); 
             border: 1px solid #30363d;
-            padding: 25px; 
+            padding: 20px; 
             border-radius: 6px; 
-            font-family: var(--font-code); 
-            font-size: 0.95em; 
+            font-size: 0.9em; 
             margin: 30px 0;
-            color: #a5d6ff;
+            color: var(--text-main);
         }
 
         details summary {
             cursor: pointer;
             font-weight: bold;
-            color: #7ee787;
+            color: var(--text-muted);
             outline: none;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
         }
 
-        details summary:hover {
-            color: #56d364;
-        }
+        details summary:hover { color: #ffffff; }
         
-        .tech-block strong { color: #ffffff; }
+        .math-equation {
+            color: var(--accent-green);
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+            font-style: italic;
+        }
 
+        /* --- Open Source Box --- */
         .github-box {
-            border: 1px solid #7ee787;
             background: rgba(126, 231, 135, 0.05);
-            padding: 25px;
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
             margin-top: 40px;
-            border-radius: 6px;
+            border-radius: 0 4px 4px 0;
         }
 
         .github-box h3 {
-            color: #7ee787;
+            color: var(--accent-green);
             margin-top: 0;
         }
-        
-        .cta-footer { 
-            margin-top: 60px; 
-            text-align: center; 
-        }
-        
-        .btn { 
-            background: transparent; 
-            border: 1px solid var(--accent-cyan); 
-            color: var(--accent-cyan); 
-            padding: 14px 28px; 
-            margin: 10px; 
-            text-decoration: none; 
-            font-family: var(--font-code); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            font-weight: bold;
-            transition: all 0.3s ease; 
-            display: inline-block; 
-        }
-        
-        .btn-primary {
-            border-color: #7ee787; 
-            color: #7ee787; 
+
+        .github-box strong { color: #ffffff; }
+
+        /* --- High-Impact Bottom CTA --- */
+        .action-box {
+            background: var(--bg-panel);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .btn:hover { 
-            background: var(--accent-cyan); 
-            color: #0d1117; 
+        .action-box h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #ffffff;
+            margin-bottom: 15px;
         }
-        .btn-primary:hover {
-            background: #7ee787;
-            color: #0d1117;
+
+        .action-box p {
+            color: var(--text-muted);
+            font-size: 1.05em;
+            margin-bottom: 30px;
         }
+
+        .btn-massive {
+            display: block;
+            background: var(--accent-cyan);
+            color: #000000;
+            text-decoration: none;
+            padding: 18px 20px;
+            font-family: var(--font-sans);
+            font-weight: 800;
+            font-size: 1.2em;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-massive:hover {
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .secondary-links {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85em;
+        }
+
+        .secondary-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 15px;
+        }
+
+        .secondary-links a:hover { color: var(--text-main); }
+
     </style>
 </head>
 <body>
     <div class="container">
         
-        <header>
-            <a href="https://xtact.github.io/skyguarddefensesystems" class="logo-link">SKYGUARD DEFENSE</a>
-            <div class="header-links">
-                <a href="#">[O.T.I.S. Architecture]</a>
-                <a href="#">[Threat Advisories]</a>
+        <header class="skyguard-header">
+            <a href="https://xtact.github.io/skyguarddefensesystems" class="logo-placeholder">S</a>
+            <div class="nav-right">
+                <div class="brand-name">SKYGUARD <span>DEFENSE SYSTEMS</span></div>
+                <div class="nav-links">
+                    <a href="#">[O.T.I.S. Architecture]</a>
+                    <a href="#">[Threat Advisories]</a>
+                    <span class="hamburger">&#9776;</span>
+                </div>
             </div>
         </header>
 
-        <h1>SkyGuard Threat Advisory</h1>
-
-        <div class="date-subject">
-            <strong>DATE:</strong> April 10, 2026<br>
-            <strong>SUBJECT:</strong> Anthropic "Claude Mythos" Vulnerability Assessment and Impact on Autonomous Defense Infrastructure (ROS/Linux/FFmpeg)
+        <h1>The ROS Breach: Defeating the AI Kill Chain with Weaponized Geometry.</h1>
+        
+        <div class="meta-line">
+            By <span>Colby Fitch</span> | Lead Systems Architect | SkyGuard Defense Systems | April 10, 2026
         </div>
 
         <h2>1. The Immediate Crisis: The Adversary is Now Autonomous</h2>
@@ -228,15 +312,15 @@
 
         <h2>2. The Kill Chain: Hijacking Guidance Systems</h2>
         
-        <h3>The Linux Kernel Vulnerability (Core OS Takeover)</h3>
+        <h3>[+] The Linux Kernel Vulnerability (Core OS Takeover)</h3>
         <p>Most advanced autonomous vehicles and guidance systems run on Ubuntu or custom Linux kernels. Adversaries will no longer need to "spoof" your platform visually. AI-generated zero-days can silently inject malicious code directly into the kernel, granting absolute control over the navigation stack and flight controller.</p>
 
-        <h3>The FFmpeg Vulnerability (The Optical Matrix Killer)</h3>
+        <h3>[+] The FFmpeg Vulnerability (The Optical Matrix Killer)</h3>
         <p>Nearly every optical targeting matrix relies on the FFmpeg library to encode and decode live video streams. Anthropic’s AI found a critical 16-year-old flaw in FFmpeg that 5 million automated tests missed. An adversary only needs a <strong>maliciously encoded video frame</strong>. The second your camera processes that frame, it triggers a Remote Code Execution (RCE) inside the video buffer, bypassing OS security and crashing the vehicle's logic.</p>
 
         <div class="warning-quote">
             "Applied kinematics and vulnerability data confirm this exploit isn't theoretical—it’s a timeline."
-            <span class="warning-author">Colby Fitch | Lead Systems Architect</span>
+            <span class="warning-author">— Colby Fitch | Lead Systems Architect</span>
         </div>
 
         <h2>3. The ROS Dependency and Bloated SLAM</h2>
@@ -253,30 +337,38 @@
 
         <div class="tech-block">
             <details>
-                <summary>Conceptual Architecture (KCM): [Expand to read more]</summary>
-                <br>
-                > minimize J(r_{CG}) = ∫ [ α || Σ(ρ_i v_i δV) - P_{predict} ||² + β(∇V) + γ(Feature_Override) ] dt<br><br>
-                To put it simply: the equation above tells our system to ignore what the target <em>looks</em> like.<br><br>
-                1. <strong>|| Σ(ρ_i v_i δV) - P_{predict} ||²</strong> : Tracks actual physical mass and momentum.<br>
-                2. <strong>β(∇V)</strong> : Penalizes rapid, unnatural volume changes.<br>
-                3. <strong>γ(Feature_Override)</strong> : Discards the exploitable feature-matching matrix entirely.
+                <summary>CONCEPTUAL ARCHITECTURE (KCM): [Expand for details]</summary>
+                <div class="math-equation">
+                    minimize J(r_{CG}) = ∫ [ α || Σ(ρ_i v_i δV) - P_{predict} ||² + β(∇V) + γ(Feature_Override) ] dt
+                </div>
+                <p>To put it simply: the equation above tells our system to ignore what the target <em>looks</em> like.</p>
+                <p>
+                    1. <strong>|| Σ(ρ_i v_i δV) - P_{predict} ||²</strong> : Tracks actual physical mass and momentum.<br>
+                    2. <strong>β(∇V)</strong> : Penalizes rapid, unnatural volume changes.<br>
+                    3. <strong>γ(Feature_Override)</strong> : Discards the exploitable feature-matching matrix entirely.
+                </p>
             </details>
         </div>
 
         <p>While the rest of the industry is scrambling to patch Linux kernels, O.T.I.S. calculates pure geometric triangulation and inertial center-of-gravity mass. Because it handles physical geometry rather than exploitable visual codecs, it is inherently hardened against AI-generated zero-day attacks.</p>
 
         <div class="github-box">
-            <h3>Open-Sourcing the Solution: otis-core</h3>
+            <h3>WHAT, WHY, and WHERE of `otis-core`</h3>
             <p><strong>WHAT:</strong> We have released `otis-core`, the foundational bare-metal C++ targeting engine that utilizes Kinetic Contour Mapping (KCM).</p>
             <p><strong>WHY:</strong> The defense industry needs an immediate, mathematically air-gapped alternative to vulnerable ROS/FFmpeg stacks. We are providing the architectural blueprint to bypass these exploits entirely.</p>
             <p><strong>WHERE:</strong> Available now on GitHub under a dual-license (GPLv3 / Enterprise) model.</p>
         </div>
 
-        <div class="cta-footer">
-            <a href="https://github.com/skyguarddefense/otis-core" class="btn btn-primary">[VIEW O.T.I.S. CORE ON GITHUB]</a>
-            <a href="briefing-request.html" class="btn">[Request O.T.I.S. Architecture Briefing]</a>
-            <br><br><br>
-            <small style="color: #484f58; font-family: var(--font-code);">SkyGuard Defense Systems. Deny the Illusion. Defend the Airspace.</small>
+        <div class="action-box">
+            <h2>Sand castles don't defend airspace.</h2>
+            <p>Open-source isn't just bloat. It's an exposed AI kill chain. Defend your platform's brain with the geometric lock of `otis-core`.</p>
+            <a href="https://github.com/skyguarddefense/otis-core" class="btn-massive">DEFEAT THE ZERO-DAY WITH `otis-core`</a>
+        </div>
+
+        <div class="secondary-links">
+            <a href="briefing-request.html">&lt;Request O.T.I.S. Enterprise Briefing&gt;</a>
+            <a href="#">&lt;Explore the O.T.I.S. Architecture&gt;</a>
+            <a href="https://github.com/skyguarddefense/otis-core">&lt;VIEW O.T.I.S. CORE ON GITHUB&gt;</a>
         </div>
 
     </div>
