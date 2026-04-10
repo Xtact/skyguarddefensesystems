@@ -232,61 +232,24 @@
             margin-bottom: 30px;
         }
 
-        .btn-massive {
-            display: block;
-            background: var(--accent-cyan);
-            color: #0b0f19;
-            text-decoration: none;
-            padding: 15px 20px;
-            font-family: var(--font-sans);
-            font-weight: 800;
-            font-size: 1.2em;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-massive:hover {
-            background: #ffffff;
-            box-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
-        }
-
-        /* --- Secondary Links & Form Styling --- */
-        .secondary-links {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.9em;
-        }
-
-        .secondary-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            display: block;
-            margin: 10px 0;
-            transition: color 0.2s ease;
-            font-weight: bold;
-        }
-
-        .secondary-links a:hover { color: var(--accent-cyan); }
-
+        /* --- Inline Lead Capture Form (Now Always Visible) --- */
         .lead-form {
             background: rgba(0, 230, 230, 0.05);
             border: 1px solid var(--accent-cyan);
             border-radius: 4px;
             padding: 25px;
-            margin: 20px auto 30px auto;
-            max-width: 400px;
+            margin: 0 auto;
+            max-width: 500px;
             text-align: left;
-            display: none; /* Hidden by default */
         }
 
         .lead-form label {
             color: var(--accent-cyan);
             font-size: 0.85em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: block;
             font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .lead-form input {
@@ -310,20 +273,41 @@
             background: var(--accent-cyan);
             color: #0b0f19;
             border: none;
-            padding: 12px 20px;
+            padding: 16px 20px;
             font-family: var(--font-sans);
             font-weight: 800;
+            font-size: 1.1em;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 1px;
+            border-radius: 4px;
             transition: all 0.2s ease;
+            margin-top: 10px;
         }
 
         .lead-form button:hover {
             background: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 230, 230, 0.4);
+            box-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
         }
+
+        /* --- Secondary Links Styling --- */
+        .secondary-links {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+
+        .secondary-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            transition: color 0.2s ease;
+            font-weight: bold;
+        }
+
+        .secondary-links a:hover { color: var(--accent-cyan); }
 
     </style>
 </head>
@@ -394,26 +378,20 @@
         <div class="action-box">
             <h2>Sand castles don't defend airspace.</h2>
             <p>Open-source isn't just bloat. It's an exposed AI kill chain. Defend your platform's brain with the geometric lock of `otis-core`.</p>
-            <a href="https://github.com/skyguarddefense/otis-core" class="btn-massive">DEFEAT THE ZERO-DAY WITH `otis-core`</a>
-        </div>
-
-        <div class="secondary-links">
             
-            <a href="#" onclick="document.getElementById('inline-briefing-form').style.display='block'; this.style.display='none'; return false;">
-                [Request O.T.I.S. Enterprise Briefing]
-            </a>
-            
-            <div id="inline-briefing-form" class="lead-form">
+            <div class="lead-form">
                 <form name="enterprise_briefing" method="POST" data-netlify="true">
                     <input type="hidden" name="form-name" value="enterprise_briefing" />
-                    <label>// SECURE COMMS: ENTERPRISE BRIEFING</label>
+                    <label>// SECURE COMMS: O.T.I.S. ARCHITECTURE INQUIRY</label>
                     <input type="text" name="name" placeholder="Name / Callsign" required>
                     <input type="email" name="email" placeholder="Work Email" required>
                     <input type="text" name="organization" placeholder="Organization / Affiliation" required>
-                    <button type="submit">TRANSMIT REQUEST</button>
+                    <button type="submit">REQUEST O.T.I.S. ENTERPRISE BRIEFING</button>
                 </form>
             </div>
+        </div>
 
+        <div class="secondary-links">
             <a href="https://skyguarddefense.com/">[Explore the O.T.I.S. Architecture]</a>
             <a href="https://github.com/skyguarddefense/otis-core">[VIEW O.T.I.S. CORE ON GITHUB]</a>
         </div>
