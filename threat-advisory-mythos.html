@@ -265,19 +265,10 @@
             display: block;
             margin: 10px 0;
             transition: color 0.2s ease;
+            font-weight: bold;
         }
 
         .secondary-links a:hover { color: var(--accent-cyan); }
-
-        .briefing-toggle {
-            cursor: pointer;
-            color: var(--text-main);
-            display: block;
-            margin: 10px 0;
-            transition: color 0.2s ease;
-        }
-
-        .briefing-toggle:hover { color: var(--accent-cyan); }
 
         .lead-form {
             background: rgba(0, 230, 230, 0.05);
@@ -408,9 +399,9 @@
 
         <div class="secondary-links">
             
-            <span id="briefing-toggle-btn" class="briefing-toggle">
-                &lt;a href="briefing-request.html"&gt;[Request O.T.I.S. Enterprise Briefing]&lt;/a&gt;
-            </span>
+            <a href="#" onclick="document.getElementById('inline-briefing-form').style.display='block'; this.style.display='none'; return false;">
+                [Request O.T.I.S. Enterprise Briefing]
+            </a>
             
             <div id="inline-briefing-form" class="lead-form">
                 <form name="enterprise_briefing" method="POST" data-netlify="true">
@@ -423,17 +414,10 @@
                 </form>
             </div>
 
-            <a href="https://skyguarddefense.com/">&lt;a href="https://skyguarddefense.com/"&gt;[Explore the O.T.I.S. Architecture]&lt;/a&gt;</a>
-            <a href="https://github.com/skyguarddefense/otis-core">&lt;a href="https://github.com/skyguarddefense/otis-core"&gt;[VIEW O.T.I.S. CORE ON GITHUB]&lt;/a&gt;</a>
+            <a href="https://skyguarddefense.com/">[Explore the O.T.I.S. Architecture]</a>
+            <a href="https://github.com/skyguarddefense/otis-core">[VIEW O.T.I.S. CORE ON GITHUB]</a>
         </div>
 
     </div>
-
-    <script>
-        document.getElementById('briefing-toggle-btn').addEventListener('click', function() {
-            document.getElementById('inline-briefing-form').style.display = 'block';
-            this.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
