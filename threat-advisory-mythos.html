@@ -16,7 +16,7 @@
             --accent-green: #00ff66;
             --accent-red: #ff3333;
             --bg-panel: #111827;
-            /* Replaced thin Courier New with heavier system monospace stack */
+            /* Heavy system monospace stack for readability */
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
@@ -29,7 +29,7 @@
             margin: 0; 
             padding: 0; 
             font-size: 16px;
-            font-weight: 500; /* Increased weight for readability */
+            font-weight: 500;
             -webkit-font-smoothing: antialiased;
         }
         
@@ -252,6 +252,7 @@
             box-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
         }
 
+        /* --- Inline Lead Capture Form --- */
         .secondary-links {
             text-align: center;
             margin-top: 30px;
@@ -266,6 +267,69 @@
         }
 
         .secondary-links a:hover { color: var(--accent-cyan); }
+
+        .briefing-toggle {
+            cursor: pointer;
+            color: var(--text-main);
+            display: block;
+            margin: 10px 0;
+        }
+        .briefing-toggle:hover a { color: var(--accent-cyan); }
+
+        .lead-form {
+            background: rgba(0, 230, 230, 0.05);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 4px;
+            padding: 25px;
+            margin: 20px auto 30px auto;
+            max-width: 400px;
+            text-align: left;
+            display: none; /* Hidden until clicked */
+        }
+
+        .lead-form label {
+            color: var(--accent-cyan);
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .lead-form input {
+            width: 100%;
+            background: var(--bg-color);
+            border: 1px solid #30363d;
+            color: var(--text-main);
+            padding: 12px;
+            margin-bottom: 15px;
+            font-family: var(--font-mono);
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+
+        .lead-form input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        .lead-form button {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            border: none;
+            padding: 12px 20px;
+            font-family: var(--font-sans);
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .lead-form button:hover {
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 230, 230, 0.4);
+        }
 
     </style>
 </head>
@@ -340,8 +404,23 @@
         </div>
 
         <div class="secondary-links">
-            <a href="briefing-request.html">&lt;a href="briefing-request.html"&gt;[Request O.T.I.S. Enterprise Briefing]&lt;/a&gt;</a>
-            <a href="#">&lt;a href="https://skyguarddefense.com/"&gt;[Explore the O.T.I.S. Architecture]&lt;/a&gt;</a>
+            
+            <span class="briefing-toggle" onclick="document.getElementById('inline-briefing-form').style.display='block'; this.style.display='none';">
+                <a href="#" onclick="return false;">&lt;a href="#"&gt;[Request O.T.I.S. Enterprise Briefing]&lt;/a&gt;</a>
+            </span>
+            
+            <div id="inline-briefing-form" class="lead-form">
+                <form name="enterprise_briefing" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="enterprise_briefing" />
+                    <label>// SECURE COMMS: ENTERPRISE BRIEFING</label>
+                    <input type="text" name="name" placeholder="Name / Callsign" required>
+                    <input type="email" name="email" placeholder="Work Email" required>
+                    <input type="text" name="organization" placeholder="Organization / Affiliation" required>
+                    <button type="submit">TRANSMIT REQUEST</button>
+                </form>
+            </div>
+
+            <a href="https://skyguarddefense.com/">&lt;a href="https://skyguarddefense.com/"&gt;[Explore the O.T.I.S. Architecture]&lt;/a&gt;</a>
             <a href="https://github.com/skyguarddefense/otis-core">&lt;a href="https://github.com/skyguarddefense/otis-core"&gt;[VIEW O.T.I.S. CORE ON GITHUB]&lt;/a&gt;</a>
         </div>
 
