@@ -16,7 +16,8 @@
             --accent-green: #00ff66;
             --accent-red: #ff3333;
             --bg-panel: #111827;
-            --font-mono: 'Courier New', Courier, monospace;
+            /* Replaced thin Courier New with heavier system monospace stack */
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
@@ -27,7 +28,8 @@
             line-height: 1.6; 
             margin: 0; 
             padding: 0; 
-            font-size: 16px; 
+            font-size: 16px;
+            font-weight: 500; /* Increased weight for readability */
             -webkit-font-smoothing: antialiased;
         }
         
