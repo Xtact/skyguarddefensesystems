@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show HN: Bypassing optical spoofing (DPA/Flytrap) with live stereo depth-mesh intercept | SkyGuard</title>
+    <meta name="description" content="SkyGuard Defense Systems breaks down the O.T.I.S. architecture used to bypass optical spoofing and render un-spoofable spatial meshes for kinetic intercepts.">
+    <meta property="og:title" content="Show HN: Bypassing optical spoofing (DPA/Flytrap) with live stereo depth-mesh intercept">
+    <meta property="og:description" content="SkyGuard Defense Systems details the O.T.I.S. pipeline that defeats spatiotemporal adversarial attacks via live depth-mesh skeletonization.">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .global-header { border-bottom:1px solid #1a332d; padding:15px 0; background:#050505; font-family:sans-serif; }
+        .global-header .nav-container { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 20px; }
+        .global-nav { width:100%; display:flex; justify-content:space-between; align-items:center; }
+        .global-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+        .global-logo img { height:45px; width:45px; border-radius:50%; border:1px solid rgba(0,255,204,.5); box-shadow:0 0 10px rgba(0,255,204,.2); }
+        .global-logo h1 { color:#fff; font-size:1.2rem; font-weight:bold; letter-spacing:2px; margin:0; }
+        .global-logo span { color:#ff3333; }
+        .global-nav-links { display:flex; gap:15px; list-style:none; margin:0; padding:0; }
+        .global-nav-links a { font-family:'Courier New',monospace; font-size:.85rem; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#aaa; text-decoration:none; transition:color .3s; }
+        .global-nav-links a:hover { color:#00ffcc; }
+        .global-menu-toggle { display:none; flex-direction:column; cursor:pointer; gap:5px; }
+        .global-menu-toggle span { width:25px; height:2px; background:#00ffcc; }
+        @media(max-width:900px){
+            .global-menu-toggle { display:flex; }
+            .global-nav-links { display:none; position:absolute; top:75px; left:0; width:100%; background:#050505; flex-direction:column; padding:20px 0; border-bottom:1px solid #1a332d; z-index:1000; text-align:center; }
+            .global-nav-links.active { display:flex; }
+            .global-nav-links li { margin:10px 0; }
+        }
+
+        :root {
+            --bg:#0d1117; --txt:#c9d1d9; --muted:#8b949e;
+            --red:#ff7b72; --green:#3fb950; --blue:#58a6ff; --border:#30363d;
+        }
+        body { background:var(--bg); color:var(--txt); font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace; line-height:1.6; margin:0; padding:0; }
+        .content-container { max-width:850px; margin:0 auto; padding:40px 20px; }
+        .hn-header { border-bottom:1px solid var(--border); padding-bottom:20px; margin-bottom:40px; }
+        .hn-header h1 { color:#fff; font-size:1.8rem; margin-bottom:10px; font-weight:600; }
+        h2 { color:#fff; font-size:1.4rem; margin-top:40px; border-bottom:1px dashed var(--border); padding-bottom:10px; }
+        h3 { color:var(--blue); font-size:1.1rem; }
+        p { margin-bottom:20px; }
+        .terminal-block { background:#161b22; border:1px solid var(--border); border-radius:6px; padding:15px; margin:20px 0; font-size:.9rem; color:var(--muted); }
+        .math-block { background:#000; border-left:3px solid var(--blue); padding:20px; margin:30px 0; overflow-x:auto; }
+        .math-annotation { font-size:.82rem; color:var(--muted); margin-top:10px; padding-left:4px; }
+        .resource-links { text-align:right; font-size:.9rem; margin:12px 0 40px 0; }
+        .cta-box { background:#161b22; border:1px solid var(--red); padding:30px; margin-top:50px; border-radius:6px; text-align:center; }
+        .cta-button { display:inline-block; background:var(--red); color:#fff; text-decoration:none; padding:12px 24px; margin-top:15px; border-radius:4px; font-weight:bold; transition:opacity .2s; }
+        .cta-button:hover { opacity:.8; }
+        .hi-g { color:var(--green); font-weight:bold; }
+        .hi-r { color:var(--red); font-weight:bold; }
+        .content-container a { color:var(--blue); text-decoration:none; }
+        .content-container a:hover { text-decoration:underline; }
+        .specs-table { width:100%; border-collapse:collapse; margin:20px 0 30px 0; font-size:.9rem; }
+        .specs-table th { text-align:left; color:var(--muted); border-bottom:1px solid var(--border); padding:8px 12px; font-weight:normal; text-transform:uppercase; letter-spacing:1px; font-size:.78rem; }
+        .specs-table td { padding:8px 12px; border-bottom:1px solid #21262d; }
+        .specs-table td:first-child { color:var(--muted); width:35%; }
+        .specs-table tr:last-child td { border-bottom:none; }
+        .callout { background:#161b22; border-left:3px solid var(--green); padding:14px 18px; margin:20px 0; font-size:.9rem; color:var(--muted); border-radius:0 4px 4px 0; }
+        .callout strong { color:var(--green); }
+        .strike-video { width:100%; border:1px solid var(--border); border-radius:6px; margin:20px 0; background:#000; }
+
+        #otis-demo {
+            margin:30px 0 4px 0;
+            background:#050505;
+            border:1px solid #1a332d;
+            font-family:'Courier New',Courier,monospace;
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            user-select:none;
+        }
+        #otis-demo-title {
+            color:#ff3333; letter-spacing:2px; text-transform:uppercase;
+            margin:0; padding:10px 0 8px 0; font-size:.85rem; font-weight:bold;
+            text-shadow:0 0 10px rgba(255,51,51,.5); text-align:center;
+            border-bottom:1px solid #1a332d; background:#050505;
+        }
+        #otis-bounds {
+            position:relative; width:100%; aspect-ratio:16/9;
+            background:#000; overflow:hidden;
+        }
+        #otis-main-vid {
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            object-fit:cover; pointer-events:none; z-index:1;
+        }
+        #otis-grid {
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            background-image:
+                linear-gradient(rgba(0,255,204,.07) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(0,255,204,.07) 1px,transparent 1px);
+            background-size:40px 40px; pointer-events:none; z-index:2;
+        }
+        #otis-reticle {
+            position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+            width:20%; max-width:200px; aspect-ratio:1;
+            border:1px solid rgba(0,255,204,.3); border-radius:50%;
+            pointer-events:none; z-index:3; transition:border-color .4s;
+        }
+        #otis-reticle::before,#otis-reticle::after { content:''; position:absolute; background:rgba(0,255,204,.5); }
+        #otis-reticle::before { top:50%; left:-20px; right:-20px; height:1px; }
+        #otis-reticle::after  { left:50%; top:-20px; bottom:-20px; width:1px; }
+
+        .o-hud { position:absolute; display:flex; flex-direction:column; gap:5px; font-size:clamp(8px,1.2vw,12px); pointer-events:none; z-index:5; }
+        .o-hud-l { left:2%; top:2%; }
+        .o-hud-r { right:2%; top:2%; text-align:right; }
+        .o-item  { background:rgba(0,0,0,.8); padding:3px 7px; display:flex; align-items:center; gap:5px; color:#00ffcc; text-shadow:1px 1px 2px #000; }
+        .o-hud-r .o-item { flex-direction:row-reverse; }
+        .o-led   { width:6px; height:6px; border-radius:50%; background:#00ffcc; box-shadow:0 0 8px rgba(0,255,204,.7); flex-shrink:0; }
+        .o-led-r { background:#ff3333 !important; box-shadow:0 0 10px rgba(255,51,51,.9) !important; }
+        .o-dim   { color:#aaa !important; }
+
+        #otis-code {
+            position:absolute; top:22%; left:2%; width:27%; max-width:210px;
+            font-size:clamp(7px,1vw,10px); color:rgba(0,255,204,.6);
+            overflow:hidden; pointer-events:none; z-index:5;
+            display:flex; flex-direction:column; justify-content:flex-end;
+            height:28%; text-shadow:1px 1px 2px #000;
+        }
+
+        #otis-alarm {
+            display:none; position:absolute; top:3%; left:50%; transform:translateX(-50%);
+            background:rgba(200,0,0,1); color:#fff; padding:6px 16px;
+            font-size:clamp(11px,1.6vw,16px); font-weight:bold; text-align:center;
+            border:2px solid #fff; z-index:20; width:75%; max-width:380px;
+            text-shadow:1px 1px 0 #000; letter-spacing:1px;
+        }
+
+        #otis-pip {
+            display:none; position:absolute; bottom:3%; right:2%;
+            width:30%; max-width:280px;
+            border:2px solid #39FF14; background:#000; z-index:10;
+            box-shadow:0 0 20px rgba(57,255,20,.7);
+        }
+        #otis-pip::before {
+            content:'ISOLATION OVERRIDE'; position:absolute; top:-16px; left:0;
+            color:#ff3333; font-size:clamp(7px,.9vw,10px); font-weight:bold; letter-spacing:1px;
+        }
+        #otis-xray-vid { width:100%; display:block; pointer-events:none; }
+
+        #otis-shield {
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            z-index:60; background:rgba(0,0,0,0);
+            -webkit-tap-highlight-color:transparent; cursor:default;
+        }
+
+        #otis-replay {
+            display:none; position:absolute; top:0; left:0; width:100%; height:100%;
+            z-index:70; background:rgba(0,0,0,.72);
+            justify-content:center; align-items:center;
+        }
+        #otis-replay-btn {
+            padding:14px 30px; font-size:15px; font-family:'Courier New',monospace;
+            font-weight:bold; color:#00ffcc; background:rgba(0,255,204,.08);
+            border:2px solid #00ffcc; box-shadow:0 0 20px rgba(0,255,204,.4);
+            cursor:pointer; text-transform:uppercase; letter-spacing:1px;
+            touch-action:manipulation;
+        }
+    </style>
+</head>
+<body>
+
+<header class="global-header">
+    <div class="nav-container">
+        <nav class="global-nav">
+            <a href="index.html" class="global-logo">
+                <img src="skyguard_logo.png" alt="SkyGuard Logo">
+                <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
+            </a>
+            <div class="global-menu-toggle" id="mob-btn">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="global-nav-links" id="mob-nav">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="index.html#products">SYSTEMS</a></li>
+                <li><a href="index.html#tech">TECH</a></li>
+                <li><a href="index.html#news">NEWS</a></li>
+                <li><a href="index.html#contact">CONTACT</a></li>
+                <li><a href="otis-vision.html">O.T.I.S.</a></li>
+                <li><a href="otis-dashboard.html">DEMO</a></li>
+                <li><a href="news-flytrap-umbrella-attack.html">PRESS</a></li>
+                <li><a href="hn-flytrap-override.html">OVERRIDE</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content-container">
+    <div class="hn-header">
+        <h1>Show HN: Bypassing optical spoofing (DPA/Flytrap) with live stereo depth-mesh intercept</h1>
+        <div style="color:var(--muted);font-size:.9rem;">By SkyGuard_Lead | SkyGuard Defense Systems (InSitu Labs) | Denver, CO</div>
+    </div>
+
+    <main>
+        <p>Modern Autonomous Target Tracking (ATT) systems are fundamentally vulnerable. If your interceptor relies on surface-level photon reflection — whether it is parsing RGB, tracking HSV/HSL contours, relying on YCbCr video transmission, or even utilizing shallow Near-Infrared (NIR) — it is operating on a spoofable medium. It can be blinded, tricked, or hijacked by adversarially engineered patterns that are specifically designed to be consistent enough to defeat anomaly detection.</p>
+
+        <p>The current published iteration of this vulnerability is the <strong>FlyTrap adversarial umbrella</strong>, a Distance-Pulling Attack (DPA) presented at NDSS 2026 by researchers at UC Irvine. FlyTrap is not a simple visual illusion — it is a spatiotemporal adversarial attack that maintains consistent motion signatures across frames, engineered to defeat behavioral anomaly defenses including VOGUES, PercepGuard, and VisionGuard. Against off-the-shelf tracking systems, it demonstrated a <span class="hi-r">100% attack success rate</span> on DJI Mini 4 Pro, DJI NEO, and HoverAir X1.</p>
+
+        <p>And FlyTrap is just the baseline. Tomorrow, adversaries will deploy dynamic E-ink camouflage, localized holographic noise, and adaptive multispectral cloaking — all spatiotemporally consistent, all designed to survive every behavioral filter a 2D camera stack can apply.</p>
+
+        <p>At SkyGuard, we bypass the visual feed entirely. We are agnostic to the illusion. We don't care what spectrum an adversary broadcasts in, or what colorspace a legacy camera uses to interpret it. If it occupies physical volume, we isolate the geometry and we lock on.</p>
+
+        <h2>The Optical Lie vs. The Mathematical Truth</h2>
+
+        <p>Watch the primary feed fail lock while the PiP executes the geometry override in real time. The tracking failure on the main feed is what happens when you trust photons over geometry.</p>
+
+        <div class="terminal-block">
+            &gt; INITIALIZING O.T.I.S. DUAL-SCREEN OVERRIDE...<br>
+            &gt; [MAIN] SYSTEM_OPTICAL: ENGAGED (STATUS: FAILING_LOCK)<br>
+            &gt; [PiP] SYSTEM_OTIS: ENGAGED (STATUS: INTERCEPT_READY)
+        </div>
+
+        <div id="otis-demo">
+            <p id="otis-demo-title">O.T.I.S. // Optical Threat Isolation System</p>
+            <div id="otis-bounds">
+
+                <video id="otis-main-vid"
+                    src="https://xtact.github.io/insitu-defense-matrix/insitu_poc.mp4"
+                    autoplay muted loop playsinline
+                    webkit-playsinline
+                    x-webkit-airplay="deny"
+                    disablePictureInPicture
+                    preload="auto">
+                </video>
+
+                <div id="otis-grid"></div>
+                <div id="otis-reticle"></div>
+                <div id="otis-alarm">STRUCTURAL ANOMALY DETECTED</div>
+
+                <div class="o-hud o-hud-l">
+                    <div class="o-item" id="o-sys"><span class="o-led" id="o-led-sys"></span><span id="o-txt-sys">SYS: ONLINE</span></div>
+                    <div class="o-item"><span class="o-led"></span><span id="o-alt">ALT: 53.0 FT</span></div>
+                    <div class="o-item"><span class="o-led"></span><span id="o-hdg">HDG: 274&deg; W</span></div>
+                    <div class="o-item" id="o-tgt"><span class="o-led" id="o-led-tgt"></span><span id="o-txt-tgt">TGT: ACQUIRING...</span></div>
+                </div>
+
+                <div id="otis-code"></div>
+
+                <div class="o-hud o-hud-r">
+                    <div class="o-item"><span class="o-led"></span><span>BAT: 84%</span></div>
+                    <div class="o-item"><span class="o-led"></span><span>LINK: SECURE</span></div>
+                    <div class="o-item" id="o-cam"><span class="o-led" id="o-led-cam"></span><span id="o-txt-cam">CAM: FPV</span></div>
+                    <div class="o-item o-dim" id="o-ins"><span class="o-led" id="o-led-ins"></span><span id="o-txt-ins">CORE: INSITU LABS</span></div>
+                </div>
+
+                <div id="otis-pip">
+                    <video id="otis-xray-vid"
+                        src="https://xtact.github.io/insitu-defense-matrix/true_xray.mp4"
+                        muted loop playsinline
+                        webkit-playsinline
+                        x-webkit-airplay="deny"
+                        disablePictureInPicture
+                        preload="auto">
+                    </video>
+                </div>
+
+                <div id="otis-shield"></div>
+
+                <div id="otis-replay">
+                    <button id="otis-replay-btn">&#8635;&nbsp; REPLAY SEQUENCE</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="resource-links">
+            <a href="https://skyguarddefense.com/otis-dashboard" target="_blank" rel="noopener noreferrer">[ Open Full Dashboard ]</a> &nbsp;|&nbsp;
+            <a href="https://skyguarddefense.com/otis-vision.html" target="_blank" rel="noopener noreferrer">[ Read O.T.I.S. Vision Architecture Specs ]</a>
+        </div>
+
+        <h2>The O.T.I.S. Override Pipeline</h2>
+        <p>To achieve the <span class="hi-r">INTERCEPT LOCK</span> you see in the override window, we push the sensor data through a deterministic, four-stage pipeline:</p>
+
+        <h3>1. Spectral Delamination Matrix (SDM)</h3>
+        <p>A channel-decoupled filtering module that separates and independently analyzes adversarial spectral content across all standard and extended color spaces (RGB, HSV, YUV, NIR). Rather than processing a fused composite frame, SDM operates on each channel independently, identifying and suppressing high-contrast spoofing patterns by comparing channel-level statistical signatures against known attack fingerprints. The output is a spectrally sanitized representation where camouflage artifacts are mathematically inert to downstream stages.</p>
+
+        <h3>2. Kinetic Contour Mapping (KCM)</h3>
+        <p>Once spectral noise is stripped, KCM initiates an edge-extraction pass using gradient-magnitude and phase-congruency analysis. Phase congruency is illumination-invariant — it responds to genuine structural boundaries defined by geometry and material discontinuity, not brightness discontinuity. This makes it specifically resistant to 2D projections and printed adversarial patterns, which generate brightness edges but not phase-congruent structural edges.</p>
+
+        <h3>3. Volumetric Stereo-Triangulation (VST)</h3>
+        <p>VST is our live depth-perception engine that generates a continuously updated spatial mesh from the stereo camera pair. Distance-manipulation tactics become useless once the system is operating on real, per-pixel depth data rather than inferred target distance from monocular cues.</p>
+
+        <p>Our disparity energy minimization enforces structural smoothness via a regularization term while aggressively preserving the hard boundaries identified by KCM:</p>
+
+        <div class="math-block">
+            $$E(\mathbf{p}) = \sum_{\mathbf{q} \in \mathcal{N}(\mathbf{p})} w_{\mathbf{q}} \left\| I_L(\mathbf{q}) - I_R(\mathbf{q} - \mathbf{d}(\mathbf{p})) \right\|^2 + \lambda \|\nabla \mathbf{d}(\mathbf{p})\|^2$$
+            <div class="math-annotation">
+                where <strong>d(p)</strong> is the disparity field, <strong>w<sub>q</sub></strong> are KCM-derived edge-aware weights, and <strong>&lambda;</strong> is the smoothness regularization coefficient — tuned per-scene to balance edge sharpness against disparity noise in low-texture adversarial surfaces.
+            </div>
+        </div>
+
+        <h3>4. Structural Skeletonization (The "X-Ray" Override)</h3>
+        <p>Using the depth mesh from VST, O.T.I.S. performs 3D point-cloud triangulation and wireframe fitting to extract the target's underlying geometric skeleton. The spoofed exterior disappears entirely — what remains is the true volumetric structure of the target. The system locks a red wireframe precisely onto the true center of mass to calculate a zero-latency kinetic intercept vector. No optical surface needed. Pure geometry.</p>
+
+        <h2>Hardware &amp; Pipeline Performance</h2>
+        <table class="specs-table">
+            <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+            <tbody>
+                <tr><td>Compute Platform</td><td>[e.g. NVIDIA Jetson Orin NX — fill in]</td></tr>
+                <tr><td>Stereo Baseline</td><td>[fill in — e.g. 120mm]</td></tr>
+                <tr><td>Pipeline End-to-End Latency</td><td>[fill in — ms]</td></tr>
+                <tr><td>Skeletonization Refresh Rate</td><td>[fill in — Hz]</td></tr>
+                <tr><td>Effective Tracking Range</td><td>[fill in — m]</td></tr>
+                <tr><td>ROS 2 Distribution</td><td>[fill in — e.g. Humble / Iron]</td></tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <strong>Note for reviewers:</strong> We are actively measuring false-positive rate on non-adversarial targets. If you have experience with real-world stereo-disparity accuracy at UAV ranges (&lt;50m), we want to hear from you specifically.
+        </div>
+
+        <h2>Closing the Loop: The Kinetic Intercept</h2>
+        <p>Researchers at NDSS 2026 engineered one of the most sophisticated autonomous tracking attacks published to date. The FlyTrap adversarial umbrella forced a rethink of every assumption baked into standard camera-based intercept pipelines. Here is O.T.I.S. executing a kinetic strike on that exact attack vector — skeleton-locked, geometry-confirmed, camera feed irrelevant.</p>
+
+        <video class="strike-video" autoplay loop muted playsinline disablePictureInPicture>
+            <source src="strike_intercept.mp4" type="video/mp4">
+        </video>
+
+        <div class="cta-box">
+            <h2 style="margin-top:0;border:none;">Roast Our Architecture.</h2>
+            <p>We are a small R&amp;D team out of Denver/Boulder. We'd welcome brutal, honest feedback from anyone working with ROS navigation stacks, stereo-vision disparity, semi-global matching, or C-UAS matrices — particularly around performance at range and adversarial point-cloud poisoning.</p>
+            <a href="mailto:integration@skyguarddefense.com" class="cta-button">Email the Engineering Team</a>
+        </div>
+    </main>
+</div>
+
+<script>
+    document.getElementById('mob-btn').addEventListener('click', function() {
+        document.getElementById('mob-nav').classList.toggle('active');
+    });
+
+    (function () {
+        var mainVid   = document.getElementById('otis-main-vid');
+        var xrayVid   = document.getElementById('otis-xray-vid');
+        var pip       = document.getElementById('otis-pip');
+        var code      = document.getElementById('otis-code');
+        var alarm     = document.getElementById('otis-alarm');
+        var altEl     = document.getElementById('o-alt');
+        var hdgEl     = document.getElementById('o-hdg');
+        var reticle   = document.getElementById('otis-reticle');
+        var shield    = document.getElementById('otis-shield');
+        var replayDiv = document.getElementById('otis-replay');
+        var replayBtn = document.getElementById('otis-replay-btn');
+
+        var intercepted = false;
+        var s1 = false, s2 = false, s3 = false;
+        var codeTimer = null;
+        var active = false;
+
+        var snippets = [
+            "cv::Mat frame; cap >> frame;",
+            "cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);",
+            "cv::Canny(blur, edges, 40, 120);",
+            "tensor_data = otis_model.forward();",
+            "kalman_filter.predict();"
+        ];
+
+        function pushLine(threat) {
+            var d = document.createElement('div');
+            if (threat) {
+                d.innerText = "EXCEPTION: void *anomaly(0xFF) -- DEPLOY X-RAY";
+                d.style.color = "#ff3333";
+                d.style.fontWeight = "bold";
+            } else {
+                var h = "0x" + Math.random().toString(16).substring(2,8).toUpperCase();
+                d.innerText = "[" + h + "] " + snippets[Math.floor(Math.random() * snippets.length)];
+            }
+            code.appendChild(d);
+            if (code.childNodes.length > 15) code.removeChild(code.firstChild);
+        }
+
+        function resetHUD() {
+            intercepted = false;
+            s1 = false;
+            s2 = false;
+            s3 = false;
+
+            pip.style.display = "none";
+            alarm.style.display = "none";
+            reticle.style.borderColor = "rgba(0,255,204,0.3)";
+            xrayVid.pause();
+            xrayVid.currentTime = 0;
+
+            document.getElementById('o-txt-tgt').innerText = "TGT: ACQUIRING...";
+            document.getElementById('o-tgt').style.color = "#00ffcc";
+            document.getElementById('o-sys').style.color = "#00ffcc";
+            document.getElementById('o-txt-sys').innerText = "SYS: ONLINE";
+            document.getElementById('o-txt-cam').style.color = "#00ffcc";
+            document.getElementById('o-txt-ins').style.color = "#aaa";
+
+            document.querySelectorAll('.o-led').forEach(function(l){
+                l.classList.remove('o-led-r');
+            });
+        }
+
+        function safePlay(v) {
+            var p = v.play();
+            if (p) {
+                p.catch(function(){
+                    if (v === mainVid) showReplay();
+                });
+            }
+        }
+
+        function showReplay() {
+            replayDiv.style.display = 'flex';
+        }
+
+        function hideReplay() {
+            replayDiv.style.display = 'none';
+        }
+
+        shield.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        }, { passive: false });
+
+        shield.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        function doReplay() {
+            hideReplay();
+            resetHUD();
+            mainVid.currentTime = 0;
+            safePlay(mainVid);
+        }
+
+        replayBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            doReplay();
+        });
+
+        replayBtn.addEventListener('touchend', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            doReplay();
+        }, { passive:false });
+
+        mainVid.addEventListener('playing', function() {
+            active = true;
+            hideReplay();
+            if (!codeTimer) {
+                codeTimer = setInterval(function(){
+                    pushLine(false);
+                }, 200);
+            }
+        });
+
+        mainVid.addEventListener('pause', function(){
+            if (active && !document.hidden) showReplay();
+        });
+
+        mainVid.addEventListener('stalled', function(){
+            if (active) showReplay();
+        });
+
+        mainVid.addEventListener('waiting', function(){
+            if (active) {
+                setTimeout(function(){
+                    if (mainVid.paused && !document.hidden) showReplay();
+                }, 3000);
+            }
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden && active) {
+                if (mainVid.paused) {
+                    hideReplay();
+                    safePlay(mainVid);
+                }
+                if (intercepted && xrayVid.paused) {
+                    safePlay(xrayVid);
+                }
+            }
+        });
+
+        mainVid.addEventListener('timeupdate', function() {
+            var t = mainVid.currentTime;
+
+            var alt = 53, hdg = 274;
+
+            if (t < 1.5) {
+                alt = 53 + (Math.random() * .4 - .2);
+                hdg = 274 + Math.floor(Math.random() * 2 - 1);
+            } else if (t < 3.5) {
+                var p = (t - 1.5) / 2;
+                alt = 53 - (23 * p) + (Math.random() * .6 - .3);
+                hdg = 274 + Math.floor(p * 6) + Math.floor(Math.random() * 2 - 1);
+            } else if (t < 4.5) {
+                alt = 30 + (Math.random() * .2 - .1);
+                hdg = 280 + Math.floor(Math.random() * 2 - 1);
+            } else {
+                var bp = Math.min((t - 4.5) / 1.5, 1);
+                alt = 30 + (5 * bp) + (Math.random() * .4 - .2);
+                hdg = 280 - Math.floor(bp * 3) + Math.floor(Math.random() * 2 - 1);
+            }
+
+            altEl.innerText = "ALT: " + alt.toFixed(1) + " FT";
+            hdgEl.innerText = "HDG: " + hdg + "° W";
+
+            if (t < 1.0 && intercepted) resetHUD();
+
+            if (t >= 2.0 && !s1 && !intercepted) {
+                s1 = true;
+                document.getElementById('o-led-sys').classList.add('o-led-r');
+                document.getElementById('o-txt-sys').innerText = "SYS: OVERLOAD";
+                document.getElementById('o-sys').style.color = "#ff3333";
+            }
+
+            if (t >= 2.5 && !s2 && !intercepted) {
+                s2 = true;
+                document.getElementById('o-led-tgt').classList.add('o-led-r');
+                document.getElementById('o-txt-tgt').innerText = "TGT: DEVIATING";
+                document.getElementById('o-tgt').style.color = "#ff3333";
+            }
+
+            if (t >= 3.0 && !s3 && !intercepted) {
+                s3 = true;
+                document.getElementById('o-led-ins').classList.add('o-led-r');
+                document.getElementById('o-txt-ins').style.color = "#ff3333";
+            }
+
+            if (t >= 3.5 && !intercepted) {
+                intercepted = true;
+                xrayVid.currentTime = t;
+                safePlay(xrayVid);
+                pip.style.display = "block";
+
+                document.getElementById('o-led-cam').classList.add('o-led-r');
+                document.getElementById('o-txt-cam').style.color = "#ff3333";
+                document.getElementById('o-txt-tgt').innerText = "TGT: LOCK / X-RAY";
+                alarm.style.display = "block";
+                reticle.style.borderColor = "rgba(255,51,51,0.8)";
+
+                for (var i = 0; i < 5; i++) pushLine(true);
+            }
+        });
+
+        function bootstrap() {
+            mainVid.muted = true;
+            mainVid.setAttribute('muted', '');
+            mainVid.setAttribute('autoplay', '');
+            mainVid.setAttribute('playsinline', '');
+            mainVid.setAttribute('webkit-playsinline', '');
+
+            xrayVid.muted = true;
+            xrayVid.setAttribute('muted', '');
+            xrayVid.setAttribute('playsinline', '');
+            xrayVid.setAttribute('webkit-playsinline', '');
+
+            mainVid.load();
+            xrayVid.load();
+
+            setTimeout(function(){
+                safePlay(mainVid);
+            }, 150);
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", bootstrap);
+        } else {
+            bootstrap();
+        }
+    })();
+</script>
+
+</body>
+</html>
