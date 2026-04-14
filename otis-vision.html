@@ -3,68 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Defeating the Flytrap Umbrella Attack | O.T.I.S. Cognitive Defense</title>
-    <meta name="description" content="SkyGuard Defense Systems and InSitu Labs present O.T.I.S., a ROS-native computer vision suite designed to neutralize 'Flytrap' adversarial umbrellas and Distance-Pulling Attacks (DPA) against autonomous drones.">
-    <meta name="keywords" content="Flytrap umbrella attack, distance-pulling attack, DPA, Counter-UAS optical spoofing, C-UAS computer vision, adversarial umbrella, autonomous target tracking ATT defense, drone camouflage mitigation">
-    <meta property="og:title" content="Defeating the Flytrap Umbrella Attack | O.T.I.S.">
-    <meta property="og:description" content="Learn how SkyGuard's proprietary photogrammetry defeats adversarial optical camouflage and Distance-Pulling Attacks."> 
+    <title>O.T.I.S. Vision Architecture | Defeating Optical Spoofing | SkyGuard Defense Systems</title>
+    <meta name="description" content="Technical overview of the Optical Threat Isolation System (O.T.I.S.) — a ROS-native C-UAS pipeline that defeats spatiotemporal adversarial attacks including the FlyTrap DPA via live stereo depth-mesh skeletonization.">
+    <meta name="keywords" content="Flytrap umbrella attack, distance-pulling attack, DPA, NDSS 2026, counter-UAS optical spoofing, C-UAS computer vision, adversarial tracking defense, stereo depth mesh, phase congruency, ROS2 drone defense">
+    <meta property="og:title" content="O.T.I.S. Vision Architecture | Defeating Optical Spoofing | SkyGuard">
+    <meta property="og:description" content="How SkyGuard's O.T.I.S. pipeline defeats spatiotemporal adversarial attacks via stereo-triangulation and structural skeletonization — geometry over photons.">
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
-        body { background-color: #000000; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .tech-font { font-family: 'Courier New', Courier, monospace; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-        
+
         a { color: #00ffcc; text-decoration: none; transition: color 0.3s ease; }
         a:hover { color: #ffffff; }
 
-        header { border-bottom: 1px solid #1a332d; padding: 20px 0; background-color: #050505; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
-        .logo span { color: #ff3333; }
-        .nav-links a { margin-left: 25px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
-        .nav-links a:hover { color: #00ffcc; }
-
-        .hero { padding: 80px 20px 40px 20px; text-align: center; border-bottom: 1px solid #1a332d; background-image: linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
-        .hero h1 { color: #ff3333; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
-        .hero .subtitle { color: #00ffcc; font-size: 1rem; letter-spacing: 4px; margin-bottom: 30px; text-transform: uppercase; }
-        
-        .content-section { padding: 60px 0; border-bottom: 1px solid #111; }
-        h2 { color: #ffffff; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 20px; border-left: 4px solid #ff3333; padding-left: 15px; text-transform: uppercase; }
-        h3 { color: #00ffcc; font-size: 1.2rem; margin-bottom: 5px; text-transform: uppercase; }
-        p { color: #aaaaaa; font-size: 1.1rem; margin-bottom: 20px; }
-
-        .btn { display: inline-block; padding: 15px 30px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; margin: 10px; }
-        .btn-primary { background-color: #00ffcc; color: #000000; border: 2px solid #00ffcc; }
-        .btn-primary:hover { background-color: transparent; color: #00ffcc; }
-        .btn-outline { background-color: transparent; color: #555; border: 2px solid #555; }
-        .btn-outline:hover { background-color: #555; color: #ffffff; }
-
-        footer { padding: 40px 0; text-align: center; color: #555; font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid #1a332d; margin-top: 40px; }
-    </style>
-</head>
-<body>
-    <style>
+        /* ── GLOBAL HEADER ── */
         .global-header { border-bottom: 1px solid #1a332d; padding: 15px 0; background-color: #050505; }
-        .global-header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .global-header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; }
         .global-nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
         .global-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
-        .global-logo h1 { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
+        .global-logo h1 { color: #fff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
         .global-logo span { color: #ff3333; }
-        
         .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
-        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; text-decoration: none; transition: color 0.3s; }
+        .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaa; text-decoration: none; transition: color 0.3s; }
         .global-nav-links a:hover { color: #00ffcc; }
-
         .global-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
         .global-menu-toggle span { width: 25px; height: 2px; background-color: #00ffcc; transition: 0.3s; }
-
         @media (max-width: 900px) {
             .global-menu-toggle { display: flex; }
             .global-nav-links { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #050505; flex-direction: column; padding: 20px 0; border-bottom: 1px solid #1a332d; z-index: 1000; text-align: center; }
             .global-nav-links.active { display: flex; }
             .global-nav-links li { margin: 10px 0; }
         }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 80px 20px 50px 20px; text-align: center; border-bottom: 1px solid #1a332d;
+            background-image: linear-gradient(rgba(0,255,204,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,204,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .hero h1 { color: #ff3333; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
+        .hero .subtitle { color: #00ffcc; font-size: 1rem; letter-spacing: 4px; margin-bottom: 30px; text-transform: uppercase; }
+        .hero p { max-width: 800px; margin: 0 auto; color: #aaa; font-size: 1.05rem; }
+
+        /* ── CONTENT ── */
+        .content-section { padding: 60px 0; border-bottom: 1px solid #111; }
+        h2 { color: #fff; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 20px; border-left: 4px solid #ff3333; padding-left: 15px; text-transform: uppercase; }
+        h3 { color: #00ffcc; font-size: 1.1rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        p { color: #aaa; font-size: 1.05rem; margin-bottom: 20px; }
+
+        .stage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
+        .stage-card { background: #0a0a0a; border: 1px solid #1a332d; padding: 25px; }
+        .stage-card h3 { margin-bottom: 5px; }
+        .stage-num { color: #ff3333; font-family: 'Courier New', monospace; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .stage-card p { font-family: 'Courier New', Courier, monospace; font-size: 0.88rem; color: #888; margin-bottom: 0; }
+
+        /* ── THREAT BLOCK ── */
+        .threat-block { background: #080808; border: 1px solid #330a0a; padding: 30px; margin: 30px 0; }
+        .threat-block h3 { color: #ff3333; }
+        .threat-block p { font-size: 1rem; }
+        .stat-pill { display: inline-block; background: rgba(255,51,51,0.15); border: 1px solid #ff3333; color: #ff3333; font-family: 'Courier New', monospace; font-size: 0.85rem; padding: 4px 12px; margin: 4px 4px 4px 0; }
+
+        /* ── MATH ── */
+        .math-block { background: #000; border-left: 3px solid #00ffcc; padding: 20px 25px; margin: 30px 0; overflow-x: auto; }
+        .math-annotation { font-size: 0.82rem; color: #666; margin-top: 10px; font-family: 'Courier New', monospace; }
+
+        /* ── CALLOUT ── */
+        .callout { background: #050505; border-left: 3px solid #00ffcc; padding: 14px 20px; margin: 25px 0; }
+        .callout p { color: #888; font-size: 0.95rem; margin: 0; }
+        .callout strong { color: #00ffcc; }
+
+        /* ── CTA ── */
+        .btn { display: inline-block; padding: 15px 30px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; margin: 10px; }
+        .btn-primary { background-color: #00ffcc; color: #000; border: 2px solid #00ffcc; }
+        .btn-primary:hover { background-color: transparent; color: #00ffcc; }
+        .btn-outline { background-color: transparent; color: #555; border: 2px solid #555; }
+        .btn-outline:hover { background-color: #555; color: #fff; }
+
+        footer { padding: 40px 0; text-align: center; color: #555; font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid #1a332d; margin-top: 40px; }
     </style>
+</head>
+<body>
 
     <header class="global-header">
         <div class="container">
@@ -73,11 +95,9 @@
                     <img src="skyguard_logo.png" alt="SkyGuard Logo">
                     <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
                 </a>
-                
                 <div class="global-menu-toggle" id="mobile-menu-btn">
                     <span></span><span></span><span></span>
                 </div>
-
                 <ul class="global-nav-links" id="mobile-nav-links">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="index.html#products">SYSTEMS</a></li>
@@ -93,67 +113,125 @@
         </div>
     </header>
 
-    <script>
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-nav-links').classList.toggle('active');
-        });
-    </script>
-
+    <!-- ── HERO ── -->
     <div class="hero">
         <div class="container">
-            <div class="tech-font" style="color:#555; margin-bottom:15px; letter-spacing: 2px;">// BOULDER, CO. USA</div>
-            <h1>Cognitive Defense Division</h1>
-            <div class="subtitle tech-font">Weaponized Photogrammetry for Autonomous Architectures</div>
-            <p style="max-width: 800px; margin: 0 auto; color: #aaaaaa;">
-                A longstanding R&D initiative engineered in "the lab" by SkyGuard Defense Systems and InSitu Labs. We develop proprietary algorithms that force drones and guidance systems to see the world mathematically, eliminating optical vulnerabilities.
+            <div class="tech-font" style="color:#555; margin-bottom:15px; letter-spacing:2px;">// SKYGUARD DEFENSE SYSTEMS — BOULDER, CO. USA</div>
+            <h1>O.T.I.S. Vision Architecture</h1>
+            <div class="subtitle tech-font">Geometry Over Photons. Structure Over Surface.</div>
+            <p>
+                A proprietary four-stage computer vision pipeline developed by SkyGuard Defense Systems and InSitu Labs.
+                O.T.I.S. is agnostic to colorspace, illumination, and adversarial surface camouflage.
+                If a target occupies physical volume, we isolate the geometry and we lock on.
             </p>
         </div>
     </div>
 
+    <!-- ── THE THREAT ── -->
     <div class="content-section">
         <div class="container">
-            <h2>Defeating the "Flytrap" Vulnerability</h2>
-            <p>In standard C-UAS environments, rogue operators utilize adversarial optical camouflage to bypass standard Autonomous Target Tracking (ATT) matrices. The most notorious of these is the "Flytrap" tactic—deploying high-contrast adversarial umbrellas designed to trigger a Distance-Pulling Attack (DPA). This confuses a drone's depth perception, tricking the hardware into dangerously closing the distance where it can be physically captured or destroyed.</p>
+            <h2>The Threat: FlyTrap &amp; Distance-Pulling Attacks</h2>
 
-            <p>SkyGuard recognized that relying purely on standard RGB camera feeds was a fatal flaw. In partnership with the computer vision architects at InSitu Labs, we developed a system that ignores surface-level imagery and instead builds a real-time, structural X-Ray of the environment.</p>
+            <p>Modern Autonomous Target Tracking (ATT) systems are fundamentally vulnerable to adversarially engineered optical patterns. If your interceptor relies on surface-level photon reflection — whether it is parsing RGB, tracking HSV/HSL contours, relying on YCbCr video transmission, or utilizing shallow Near-Infrared (NIR) — it is operating on a spoofable medium.</p>
+
+            <div class="threat-block">
+                <h3>FlyTrap — NDSS 2026 / UC Irvine</h3>
+                <p>The FlyTrap adversarial umbrella is not a simple visual illusion. It is a spatiotemporal Distance-Pulling Attack (DPA) that maintains consistent motion signatures across frames, specifically engineered to defeat behavioral anomaly defenses. Published at NDSS 2026 by researchers at UC Irvine, it demonstrated:</p>
+                <span class="stat-pill">100% ATTACK SUCCESS RATE</span>
+                <span class="stat-pill">DJI MINI 4 PRO</span>
+                <span class="stat-pill">DJI NEO</span>
+                <span class="stat-pill">HOVERAIR X1</span>
+                <p style="margin-top:15px; margin-bottom:0;">Defeated defenses include VOGUES, PercepGuard, and VisionGuard. FlyTrap is the current published baseline. Tomorrow, adversaries will deploy dynamic E-ink camouflage, localized holographic noise, and adaptive multispectral cloaking — all spatiotemporally consistent, all designed to survive every behavioral filter a standard 2D camera stack can apply.</p>
+            </div>
+
+            <p>SkyGuard recognized that relying purely on camera-derived colorspace data was a structural flaw in the intercept pipeline — not a configuration problem. The fix required operating on a different substrate entirely: real spatial geometry derived from stereo depth measurement, not inferred distance from monocular optical cues.</p>
         </div>
     </div>
 
-    <div class="content-section" style="background-color: #050505;">
+    <!-- ── PIPELINE ── -->
+    <div class="content-section" style="background-color:#050505;">
         <div class="container">
             <h2>O.T.I.S. // Optical Threat Isolation System</h2>
-            <p>O.T.I.S. is our flagship proprietary software suite. It is an enterprise, military-grade computer vision overlay that strips away visual noise, concrete texture, and optical camouflage to reveal the raw structural math of a target. When a spatial anomaly is detected, O.T.I.S. instantly overrides standard camera feeds, deploying high-contrast edge-detection to isolate the hostile's structural geometry.</p>
-            <p>Once O.T.I.S. achieves a structural lock on a "Flytrap" anomaly, it interfaces directly with the drone's firing and payload mechanisms, neutralizing the target via a targeted kinetic strike before the hostile operator can bring the hardware into capture range.</p>
-            
-            <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div style="background: #0a0a0a; border: 1px solid #1a332d; padding: 25px;">
-                    <h3>ROS Native Integration</h3>
-                    <p class="tech-font" style="font-size: 0.9rem; margin-bottom: 0;">Engineered to be hardware-agnostic. O.T.I.S. interfaces seamlessly with standard Robot Operating System (ROS) architectures.</p>
+
+            <p>O.T.I.S. is a ROS-native C-UAS computer vision suite that strips adversarial optical noise and builds a continuously updated structural mesh of the environment. When a spatial anomaly is isolated, O.T.I.S. overrides standard camera feeds, locks a geometric skeleton onto the true center of mass, and interfaces directly with the drone's payload mechanisms to deliver a targeted kinetic intercept — before the hostile operator can bring hardware into capture range.</p>
+
+            <p>The pipeline is deterministic and four-stage. Each stage feeds the next; no single stage is sufficient alone, and no adversarial surface treatment defeats all four.</p>
+
+            <div class="stage-grid">
+                <div class="stage-card">
+                    <span class="stage-num">STAGE 01</span>
+                    <h3>Spectral Delamination Matrix (SDM)</h3>
+                    <p>Channel-decoupled filtering across RGB, HSV, YUV, and NIR independently. SDM compares channel-level statistical signatures against known attack fingerprints and outputs a spectrally sanitized frame where adversarial camouflage patterns are mathematically inert to downstream stages.</p>
                 </div>
-                <div style="background: #0a0a0a; border: 1px solid #1a332d; padding: 25px;">
-                    <h3>Live DP Mesh Generation</h3>
-                    <p class="tech-font" style="font-size: 0.9rem; margin-bottom: 0;">Utilizes proprietary Live Depth Perception (DP) to generate on-the-fly topographical maps of the battlefield.</p>
+                <div class="stage-card">
+                    <span class="stage-num">STAGE 02</span>
+                    <h3>Kinetic Contour Mapping (KCM)</h3>
+                    <p>Edge extraction via gradient-magnitude and phase-congruency analysis. Phase congruency is illumination-invariant — it responds to structural boundaries defined by geometry and material discontinuity, not brightness. Printed adversarial patterns generate brightness edges; they do not generate phase-congruent structural edges.</p>
                 </div>
-                <div style="background: #0a0a0a; border: 1px solid #1a332d; padding: 25px;">
-                    <h3>Automated Neutralization</h3>
-                    <p class="tech-font" style="font-size: 0.9rem; margin-bottom: 0;">Zero human-latency. O.T.I.S. handles the spatial math from acquisition to intercept, enabling immediate automated strikes.</p>
+                <div class="stage-card">
+                    <span class="stage-num">STAGE 03</span>
+                    <h3>Volumetric Stereo-Triangulation (VST)</h3>
+                    <p>Live depth-perception engine generating a continuously updated spatial mesh from the stereo camera pair. Per-pixel real depth data replaces monocular distance inference entirely. Distance-manipulation tactics are inert once the system operates on true geometry rather than inferred cues.</p>
                 </div>
+                <div class="stage-card">
+                    <span class="stage-num">STAGE 04</span>
+                    <h3>Structural Skeletonization</h3>
+                    <p>3D point-cloud triangulation and wireframe fitting extracts the target's underlying geometric skeleton from the VST depth mesh. The spoofed exterior disappears from the tracking matrix. What remains is the true volumetric structure — locked, center-of-mass confirmed, intercept vector calculated.</p>
+                </div>
+            </div>
+
+            <div class="math-block" style="margin-top:40px;">
+                <p style="color:#555; font-family:'Courier New',monospace; font-size:0.85rem; margin-bottom:12px;">// VST DISPARITY ENERGY MINIMIZATION — KCM-REGULARIZED</p>
+                $$E(\mathbf{p}) = \sum_{\mathbf{q} \in \mathcal{N}(\mathbf{p})} w_{\mathbf{q}} \left\| I_L(\mathbf{q}) - I_R(\mathbf{q} - \mathbf{d}(\mathbf{p})) \right\|^2 + \lambda \|\nabla \mathbf{d}(\mathbf{p})\|^2$$
+                <div class="math-annotation">
+                    d(p) — disparity field at pixel p &nbsp;|&nbsp;
+                    w_q — KCM-derived edge-aware weights, upweighted across structural boundaries &nbsp;|&nbsp;
+                    &lambda; — smoothness regularization coefficient, tuned per-scene against disparity noise in low-texture adversarial surfaces
+                </div>
+            </div>
+
+            <div class="callout">
+                <p><strong>ROS 2 Native.</strong> O.T.I.S. is hardware-agnostic and integrates directly with standard ROS 2 navigation and payload interfaces. The pipeline runs fully onboard — no cloud dependency, no human-in-the-loop latency between acquisition and intercept.</p>
             </div>
         </div>
     </div>
 
-    <div class="content-section" style="text-align: center; padding-bottom: 40px;">
+    <!-- ── WHY IT WORKS ── -->
+    <div class="content-section">
         <div class="container">
+            <h2>Why Geometry Defeats Every Optical Attack</h2>
+
+            <p>Every optical spoofing attack in the published literature — FlyTrap, retroreflective cloaking, adversarial texture projection, multispectral deception — operates on the same assumption: that the tracking system's ground truth is a camera frame. That assumption is correct for every RGB, NIR, thermal, and behavioral-anomaly system currently fielded.</p>
+
+            <p>O.T.I.S. breaks that assumption at the architectural level. By the time the skeletonization stage executes, the system has never made a decision based on what the target looks like. It has only made decisions based on where the target is, how large its structural volume is, and where its center of mass sits in three-dimensional space. A printed umbrella, an E-ink panel, a holographic projector — none of these tools add or remove physical volume. They cannot defeat a system that does not look at surfaces.</p>
+
+            <div class="callout">
+                <p><strong>Note for integrators and reviewers:</strong> We are actively characterizing false-positive rate on non-adversarial targets and welcome engagement from engineers with experience in real-world stereo-disparity accuracy at UAV ranges below 50m. Contact: <a href="mailto:integration@skyguarddefense.com">integration@skyguarddefense.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CTA ── -->
+    <div class="content-section" style="text-align:center; padding-bottom:40px; border-bottom:none;">
+        <div class="container">
+            <p style="color:#555; font-family:'Courier New',monospace; letter-spacing:2px; font-size:0.85rem; margin-bottom:25px;">// WATCH THE PIPELINE EXECUTE IN REAL TIME</p>
             <a href="otis-dashboard.html" class="btn btn-primary tech-font">LAUNCH O.T.I.S. LIVE DEMO</a>
+            <a href="hn-flytrap-override.html" class="btn btn-outline tech-font">READ FULL TECHNICAL POST</a>
             <a href="index.html" class="btn btn-outline tech-font">&lt; RETURN TO HQ</a>
         </div>
     </div>
 
     <footer class="tech-font">
         <div class="container">
-            <p>© 2026 SkyGuard Defense Systems. ITAR CONTROLLED TECHNOLOGY.</p>
+            <p>&copy; 2026 SkyGuard Defense Systems. ITAR CONTROLLED TECHNOLOGY.</p>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-nav-links').classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>
