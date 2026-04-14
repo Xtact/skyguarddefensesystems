@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show HN: Bypassing DPA/Flytrap with Live Spatial Skeletonization | SkyGuard</title>
     <meta name="description" content="SkyGuard Defense Systems breaks down the O.T.I.S. architecture used to bypass optical spoofing and render un-spoofable spatial meshes for kinetic intercepts.">
-    
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <meta property="og:title" content="Show HN: Bypassing DPA/Flytrap with Live Spatial Skeletonization">
+    <meta property="og:description" content="SkyGuard Defense Systems details the O.T.I.S. pipeline that defeats spatiotemporal adversarial attacks via live depth-mesh skeletonization.">
+
+    <!-- MathJax 3 — polyfill.io dependency removed -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
@@ -18,14 +20,11 @@
         .global-logo img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid rgba(0,255,204,0.5); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
         .global-logo h1 { color: #ffffff; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; margin: 0; }
         .global-logo span { color: #ff3333; }
-        
         .global-nav-links { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
         .global-nav-links a { font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; text-decoration: none; transition: color 0.3s; }
         .global-nav-links a:hover { color: #00ffcc; }
-
         .global-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
         .global-menu-toggle span { width: 25px; height: 2px; background-color: #00ffcc; transition: 0.3s; }
-
         @media (max-width: 900px) {
             .global-menu-toggle { display: flex; }
             .global-nav-links { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #050505; flex-direction: column; padding: 20px 0; border-bottom: 1px solid #1a332d; z-index: 1000; text-align: center; }
@@ -85,9 +84,7 @@
             font-size: 1.1rem;
         }
 
-        p {
-            margin-bottom: 20px;
-        }
+        p { margin-bottom: 20px; }
 
         .terminal-block {
             background-color: #161b22;
@@ -105,6 +102,13 @@
             padding: 20px;
             margin: 30px 0;
             overflow-x: auto;
+        }
+
+        .math-annotation {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            padding-left: 4px;
         }
 
         /* --- NATIVE PIP VIDEO STYLES --- */
@@ -192,28 +196,50 @@
             transition: opacity 0.2s;
         }
 
-        .cta-button:hover {
-            opacity: 0.8;
-        }
+        .cta-button:hover { opacity: 0.8; }
 
-        .highlight-green {
-            color: var(--accent-green);
-            font-weight: bold;
-        }
+        .highlight-green { color: var(--accent-green); font-weight: bold; }
+        .highlight-red   { color: var(--accent-red);   font-weight: bold; }
 
-        .highlight-red {
-            color: var(--accent-red);
-            font-weight: bold;
-        }
+        .content-container a { color: var(--accent-blue); text-decoration: none; }
+        .content-container a:hover { text-decoration: underline; }
 
-        .content-container a {
-            color: var(--accent-blue);
-            text-decoration: none;
+        /* --- SPECS TABLE --- */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px 0;
+            font-size: 0.9rem;
         }
+        .specs-table th {
+            text-align: left;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 12px;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.78rem;
+        }
+        .specs-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #21262d;
+            color: var(--text-main);
+        }
+        .specs-table td:first-child { color: var(--text-muted); width: 35%; }
+        .specs-table tr:last-child td { border-bottom: none; }
 
-        .content-container a:hover {
-            text-decoration: underline;
+        /* --- CALLOUT BLOCK --- */
+        .callout {
+            background-color: #161b22;
+            border-left: 3px solid var(--accent-green);
+            padding: 14px 18px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-radius: 0 4px 4px 0;
         }
+        .callout strong { color: var(--accent-green); }
     </style>
 </head>
 <body>
@@ -225,11 +251,9 @@
                     <img src="skyguard_logo.png" alt="SkyGuard Logo">
                     <div><h1>SKYGUARD <span>DEFENSE SYSTEMS</span></h1></div>
                 </a>
-                
                 <div class="global-menu-toggle" id="mobile-menu-btn">
                     <span></span><span></span><span></span>
                 </div>
-
                 <ul class="global-nav-links" id="mobile-nav-links">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="index.html#products">SYSTEMS</a></li>
@@ -254,13 +278,13 @@
     </div>
 
     <main>
-        <p>Modern Autonomous Target Tracking (ATT) matrices are fundamentally flawed. If your interceptor relies on surface-level photon reflection—whether it is parsing RGB, tracking HSV/HSL contours, relying on YCbCr video transmission, or even utilizing shallow Near-Infrared (NIR)—it is operating on a vulnerable medium. It can be blinded, tricked, or hijacked by 2D projections and geometric noise.</p>
-        
-        <p>The current iteration of this vulnerability is the printed "Flytrap" adversarial umbrella, a Distance-Pulling Attack (DPA) designed to spoof standard optical sensors. The standard drone hovers, confused. Tracking boxes flicker randomly. The gimbal twitches. The intercept fails.</p>
+        <p>Modern Autonomous Target Tracking (ATT) systems are fundamentally vulnerable. If your interceptor relies on surface-level photon reflection — whether it is parsing RGB, tracking HSV/HSL contours, relying on YCbCr video transmission, or even utilizing shallow Near-Infrared (NIR) — it is operating on a spoofable medium. It can be blinded, tricked, or hijacked by adversarially engineered patterns that are specifically designed to be consistent enough to defeat anomaly detection.</p>
 
-        <p>But the Flytrap is just the baseline. Tomorrow, adversaries will deploy dynamic E-ink camouflage, localized holographic noise, and adaptive multispectral cloaking. </p>
-        
-        <p>At SkyGuard, we bypass the visual feed entirely. We are completely agnostic to the illusion. We don't care what spectrum an adversary broadcasts in, or what colorspace a legacy camera uses to interpret it. If it occupies physical volume, we isolate the math and we lock on.</p>
+        <p>The current published iteration of this vulnerability is the <strong>FlyTrap adversarial umbrella</strong>, a Distance-Pulling Attack (DPA) presented at NDSS 2026 by researchers at UC Irvine. FlyTrap is not a simple visual illusion — it is a spatiotemporal adversarial attack that maintains consistent motion signatures across frames, engineered to defeat behavioral anomaly defenses including VOGUES, PercepGuard, and VisionGuard. Against off-the-shelf tracking systems, it demonstrated a <span class="highlight-red">100% attack success rate</span> on DJI Mini 4 Pro, DJI NEO, and HoverAir X1.</p>
+
+        <p>And FlyTrap is just the baseline. Tomorrow, adversaries will deploy dynamic E-ink camouflage, localized holographic noise, and adaptive multispectral cloaking — all spatiotemporally consistent, all designed to survive every behavioral filter a 2D camera stack can apply.</p>
+
+        <p>At SkyGuard, we bypass the visual feed entirely. We are agnostic to the illusion. We don't care what spectrum an adversary broadcasts in, or what colorspace a legacy camera uses to interpret it. If it occupies physical volume, we isolate the geometry and we lock on.</p>
 
         <h2>The Optical Lie vs. The Mathematical Truth</h2>
 
@@ -276,7 +300,6 @@
             <video class="main-video" autoplay loop muted playsinline>
                 <source src="https://xtact.github.io/insitu-defense-matrix/insitu_poc.mp4" type="video/mp4">
             </video>
-            
             <div class="pip-container">
                 <div class="pip-label">ISOLATION OVERRIDE</div>
                 <video class="pip-video" autoplay loop muted playsinline>
@@ -284,7 +307,7 @@
                 </video>
             </div>
         </div>
-        
+
         <div class="resource-links">
             <a href="https://skyguarddefense.com/otis-dashboard.html" target="_blank">[ View Full Dashboard Environment ]</a> &nbsp;|&nbsp;
             <a href="https://skyguarddefense.com/otis-vision.html" target="_blank">[ Read O.T.I.S. Vision Architecture Specs ]</a>
@@ -297,33 +320,64 @@
         <p>To achieve the <span class="highlight-red">INTERCEPT LOCK</span> you see in the override window, we push the sensor data through a deterministic, four-stage pipeline:</p>
 
         <h3>1. Spectral Delamination Matrix (SDM)</h3>
-        <p>A color-separation and multispectral decoupling node we built to aggressively strip away optical camouflage, high-contrast spoofing patterns, and adversarial noise across all standard and non-standard color spaces (RGB, HSV, YUV, NIR). It renders the illusion mathematically inert.</p>
+        <p>A channel-decoupled filtering module that separates and independently analyzes adversarial spectral content across all standard and extended color spaces (RGB, HSV, YUV, NIR). Rather than processing a fused composite frame, SDM operates on each channel independently, identifying and suppressing high-contrast spoofing patterns and adversarial noise by comparing channel-level statistical signatures against known attack fingerprints. The output is a spectrally sanitized representation where camouflage artifacts are mathematically inert to downstream stages.</p>
 
         <h3>2. Kinetic Contour Mapping (KCM)</h3>
-        <p>Once the spectral noise is stripped, KCM initiates a dynamic edge-detection protocol. It utilizes topological light rendering to instantly separate true physical edges from projected shadows or 2D illusions.</p>
+        <p>Once spectral noise is stripped, KCM initiates an edge-extraction pass using gradient-magnitude and phase-congruency analysis. Phase congruency is illumination-invariant — it responds to genuine structural boundaries defined by geometry and material discontinuity, not brightness discontinuity. This makes it specifically resistant to 2D projections and printed adversarial patterns, which generate brightness edges but not phase-congruent structural edges. True physical boundaries are isolated and passed to the depth stage.</p>
 
         <h3>3. Volumetric Stereo-Triangulation (VST)</h3>
-        <p>This is where we break the DPA and future-proof the intercept. VST is our live depth-perception engine that generates an un-spoofable spatial mesh. By calculating depth continuously, distance-manipulation tactics become useless.</p>
+        <p>This is where we break the DPA and future-proof the intercept. VST is our live depth-perception engine that generates a continuously updated spatial mesh from the stereo camera pair. Distance-manipulation tactics become useless once the system is operating on real, per-pixel depth data rather than inferred target distance from monocular cues.</p>
 
-        <p>Our disparity calculation minimizes spatial error by enforcing structural smoothness while aggressively preserving the hard boundaries identified by KCM:</p>
+        <p>Our disparity energy minimization enforces structural smoothness via a regularization term while aggressively preserving the hard boundaries identified by KCM. The functional is a weighted variant of the standard semi-global energy formulation:</p>
 
         <div class="math-block">
             $$E(\mathbf{p}) = \sum_{\mathbf{q} \in \mathcal{N}(\mathbf{p})} w_{\mathbf{q}} \left\| I_L(\mathbf{q}) - I_R(\mathbf{q} - \mathbf{d}(\mathbf{p})) \right\|^2 + \lambda \|\nabla \mathbf{d}(\mathbf{p})\|^2$$
+            <div class="math-annotation">
+                where <strong>d(p)</strong> is the disparity field, <strong>w<sub>q</sub></strong> are KCM-derived edge-aware weights that upweight neighbors across structural boundaries, and <strong>λ</strong> is the smoothness regularization coefficient — tuned per-scene to balance edge sharpness against disparity noise in low-texture adversarial surfaces.
+            </div>
         </div>
 
         <h3>4. Structural Skeletonization (The "X-Ray" Override)</h3>
-        <p>The final stage. O.T.I.S. renders the target down to its raw geometric wireframe. The spoofed exterior disappears entirely from the tracking matrix. The system locks a red wireframe precisely onto the true center mass to calculate a zero-latency kinetic intercept.</p>
+        <p>The final stage. Using the depth mesh from VST, O.T.I.S. performs 3D point-cloud triangulation and wireframe fitting to extract the target's underlying geometric skeleton. The spoofed exterior disappears entirely from the tracking matrix — what remains is the true volumetric structure of the target. The system locks a red wireframe precisely onto the true center of mass to calculate a zero-latency kinetic intercept vector. No optical surface needed. No colorspace matters. Pure geometry.</p>
+
+        <h2>Hardware &amp; Pipeline Performance</h2>
+
+        <p>The pipeline runs in a ROS 2 environment. Key operational parameters for the HN crowd — this is where we'd genuinely welcome pushback:</p>
+
+        <!-- *** FILL IN YOUR ACTUAL SPECS BEFORE POSTING *** -->
+        <table class="specs-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Compute Platform</td><td>[e.g. NVIDIA Jetson Orin NX / x86 + RTX — fill in]</td></tr>
+                <tr><td>Stereo Baseline</td><td>[fill in — e.g. 120mm]</td></tr>
+                <tr><td>Pipeline End-to-End Latency</td><td>[fill in — ms]</td></tr>
+                <tr><td>Skeletonization Refresh Rate</td><td>[fill in — Hz]</td></tr>
+                <tr><td>Effective Tracking Range</td><td>[fill in — m]</td></tr>
+                <tr><td>ROS 2 Distribution</td><td>[fill in — e.g. Humble / Iron]</td></tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <strong>Note for reviewers:</strong> We are actively measuring false-positive rate on non-adversarial targets. If you have experience with real-world stereo-disparity accuracy at UAV ranges (&lt; 50m), we want to hear from you specifically.
+        </div>
 
         <h2>Closing the Loop: The Kinetic Intercept</h2>
-        <p>Academics and researchers recently tried to spoof drone systems with a printed adversarial umbrella. We built software that saw right through it. Here is a visualization of O.T.I.S. executing a kinetic strike on that exact spoofing attempt. OUCH! THAT'S GONNA LEAVE A MARK!</p>
+        <p>Researchers at NDSS 2026 engineered one of the most sophisticated autonomous tracking attacks published to date. The FlyTrap umbrella forced a rethink of every assumption baked into standard camera-based intercept pipelines. Here is O.T.I.S. executing a kinetic strike on that exact attack vector — skeleton-locked, geometry-confirmed, camera feed irrelevant.</p>
 
+        <!-- NOTE: Ensure strike_intercept.mp4 is deployed to the same directory as this file,
+             or update this path to match your deployment structure before going live. -->
         <video class="strike-video" autoplay loop muted playsinline>
             <source src="strike_intercept.mp4" type="video/mp4">
         </video>
 
         <div class="cta-box">
             <h2 style="margin-top: 0; border: none;">Roast Our Architecture.</h2>
-            <p>We are a small R&D team operating out of Denver/Boulder. We built the cognitive architecture that directs these kinetic intercepts, but we know there are edge cases we haven't seen. We’d love brutal, honest feedback from anyone here who works with ROS navigation stacks, stereo-vision disparity, or C-UAS matrices.</p>
+            <p>We are a small R&amp;D team operating out of Denver/Boulder. We built the cognitive architecture that directs these kinetic intercepts, but we know there are edge cases we haven't encountered. We'd welcome brutal, honest feedback from anyone who works with ROS navigation stacks, stereo-vision disparity, semi-global matching, or C-UAS matrices — particularly around performance at range and adversarial point-cloud poisoning.</p>
             <a href="mailto:integration@skyguarddefense.com" class="cta-button">Email the Engineering Team</a>
         </div>
 
