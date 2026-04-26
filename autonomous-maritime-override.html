@@ -1,0 +1,41 @@
+<header>
+        <h1>Bypassing Maritime Optical Scattering: USV Bridge Detection via Spatial Skeletonization</h1>
+        <div style="color: var(--text-muted); font-size: 0.9rem;">
+            By SkyGuard_Lead | SkyGuard Defense Systems (InSitu Labs) | Denver, CO
+        </div>
+    </header>
+    <main>
+        <p>Unmanned Surface Vessels (USVs) and autonomous maritime navigation systems operate in the most hostile optical environments on earth. Heavy mist, dusk fog, and water-surface light reflection create massive optical scattering. Standard RGB feeds become useless, and traditional LiDAR suffers from severe particulate return-bounce, registering mist as a solid wall.</p>
+        
+        <p>When a USV approaches a low-clearance river bridge at dusk, the optical matrix cannot differentiate the concrete structure from the surrounding fog. The vessel maintains speed on a collision course.</p>
+
+        <p>O.T.I.S. penetrates the mist. We decouple the particulate scattering from the actual physical mass, rendering a live spatial mesh of the bridge structure before the cameras can even see it.</p>
+
+        <h2>The Optical Lie vs. The Mathematical Truth</h2>
+        <div class="terminal-block">
+            > INITIALIZING O.T.I.S. DUAL-SCREEN OVERRIDE...<br>
+            > [MAIN] SYSTEM_MARINE: ENGAGED (STATUS: VISIBILITY_ZERO)<br>
+            > [PiP] SYSTEM_OTIS: STANDBY... AWAITING GEOMETRY LOCK
+        </div>
+
+        <div class="video-wrapper">
+            <video class="main-video" autoplay loop muted playsinline>
+                <source src="maritime_true.mp4" type="video/mp4">
+            </video>
+            <div class="pip-container" id="otisPip" style="opacity: 0;">
+                <div class="pip-label">OBSTACLE DETECTED</div>
+                <video class="pip-video" autoplay loop muted playsinline>
+                    <source src="maritime_xray.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <script>
+            // Synchronizes the PiP Override pop-up to match the bridge detection
+            document.addEventListener("DOMContentLoaded", function() {
+                setTimeout(function() {
+                    document.getElementById('otisPip').style.opacity = '1';
+                    // Optional: You could also play a targeting SFX here
+                }, 6500); // 6500ms = 6.5 seconds into the video. Adjust this to match your X-ray timing perfectly.
+            });
+        </script>
