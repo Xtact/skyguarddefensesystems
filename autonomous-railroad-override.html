@@ -1,0 +1,31 @@
+<header>
+        <h1>Bypassing ADAS Optical Blindness: Live Spatial Skeletonization of Railroad Crossings</h1>
+        <div style="color: var(--text-muted); font-size: 0.9rem;">
+            By SkyGuard_Lead | SkyGuard Defense Systems (InSitu Labs) | Denver, CO
+        </div>
+    </header>
+    <main>
+        <p>Tier-1 semi-autonomous consumer driving platforms (ADAS) suffer from a critical optical vulnerability: high-contrast solar glare combined with thin horizontal profiles. When an autonomous vehicle approaches a railroad crossing at sunrise or sunset, direct photon flooding blows out the RGB camera sensor.</p>
+        
+        <p>The system is blinded. The thin profile of the railroad crossing gate disappears entirely into the lens flare and optical noise. The vehicle fails to detect the barrier, resulting in catastrophic, high-profile collisions that plague current industry leaders.</p>
+
+        <p>At SkyGuard, we do not care if the sun is melting the camera feed. We strip away the photons and isolate the geometry. If a structural barrier occupies physical space in front of the vehicle, O.T.I.S. calculates it.</p>
+
+        <h2>The Optical Lie vs. The Mathematical Truth</h2>
+        <div class="terminal-block">
+            > INITIALIZING O.T.I.S. DUAL-SCREEN OVERRIDE...<br>
+            > [MAIN] SYSTEM_ADAS: ENGAGED (STATUS: CRITICAL_BLINDNESS/GLARE)<br>
+            > [PiP] SYSTEM_OTIS: ENGAGED (STATUS: BARRIER_DETECTED)
+        </div>
+
+        <div class="video-wrapper">
+            <video class="main-video" autoplay loop muted playsinline>
+                <source src="rail_true.mp4" type="video/mp4">
+            </video>
+            <div class="pip-container">
+                <div class="pip-label">OVERRIDE</div>
+                <video class="pip-video" autoplay loop muted playsinline>
+                    <source src="rail_xray.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
