@@ -241,7 +241,7 @@
                 <div id="otis-shield"></div>
 
                 <div id="otis-replay">
-                    <button id="otis-replay-btn">&#8635;&nbsp; REPLAY SEQUENCE</button>
+                    <button id="otis-replay-btn">&#8635;&nbsp; INITIALIZE MATRIX</button>
                 </div>
 
             </div>
@@ -354,8 +354,9 @@
 
         function safePlay(v) {
             var p = v.play();
-            if (p) {
-                p.catch(function(){
+            if (p !== undefined) {
+                p.catch(function(error){
+                    // If iOS blocks autoplay, show the overlay so user can manually start
                     if (v === mainVid) showReplay();
                 });
             }
@@ -385,13 +386,7 @@
             }
         });
 
-        mainVid.addEventListener('pause', function(){ if (active && !document.hidden) showReplay(); });
-        mainVid.addEventListener('stalled', function(){ if (active) showReplay(); });
-        mainVid.addEventListener('waiting', function(){
-            if (active) {
-                setTimeout(function(){ if (mainVid.paused && !document.hidden) showReplay(); }, 3000);
-            }
-        });
+        // Removed the aggressive pause/waiting/stalled listeners that broke the loop
 
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden && active) {
@@ -418,6 +413,7 @@
             altEl.innerText = "SPD: " + spd.toFixed(1) + " KTS";
             hdgEl.innerText = "HDG: " + hdg + "° N";
 
+            // Loop Detection: Reset HUD seamlessly when video restarts
             if (t < 1.0 && intercepted) resetHUD();
 
             if (t >= TRIGGER_TIME - 1.5 && !s1 && !intercepted) {
