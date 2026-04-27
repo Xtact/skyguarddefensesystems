@@ -117,10 +117,9 @@
             text-shadow:1px 1px 0 #000; letter-spacing:1px;
         }
 
-        /* 2X LARGER PiP WINDOW */
         #otis-pip {
             display:none; position:absolute; bottom:3%; right:2%;
-            width:60%; max-width:560px;
+            width:40%; max-width:280px;
             border:2px solid #39FF14; background:#000; z-index:10;
             box-shadow:0 0 20px rgba(57,255,20,.7);
         }
@@ -235,7 +234,7 @@
 
                 <div id="otis-pip">
                     <video id="otis-xray-vid"
-                        src="web_rail_xray_apex.mp4"
+                        src="rail_xray.mp4"
                         muted loop playsinline
                         webkit-playsinline
                         x-webkit-airplay="deny"
@@ -422,102 +421,4 @@
         mainVid.addEventListener('waiting', function(){
             if (active) {
                 setTimeout(function(){
-                    if (mainVid.paused && !document.hidden) showReplay();
-                }, 3000);
-            }
-        });
-
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden && active) {
-                if (mainVid.paused) {
-                    hideReplay();
-                    safePlay(mainVid);
-                }
-                if (intercepted && xrayVid.paused) {
-                    safePlay(xrayVid);
-                }
-            }
-        });
-
-        mainVid.addEventListener('timeupdate', function() {
-            var t = mainVid.currentTime;
-            
-            var spd = 42, hdg = 92;
-            var TRIGGER_TIME = 4.5;
-
-            if (t < TRIGGER_TIME - 2) {
-                spd = 42 + (Math.random() * 0.4 - 0.2);
-                hdg = 92 + Math.floor(Math.random() * 2 - 1);
-            } else if (t >= TRIGGER_TIME - 2 && t < TRIGGER_TIME) {
-                spd = 41.5 + (Math.random() * 0.4 - 0.2);
-            } else if (t >= TRIGGER_TIME) {
-                var bp = Math.min((t - TRIGGER_TIME) / 2.0, 1);
-                spd = 41.5 - (25 * bp) + (Math.random() * 0.4 - 0.2);
-                hdg = 92 - Math.floor(bp * 2) + Math.floor(Math.random() * 2 - 1);
-            }
-
-            altEl.innerText = "SPD: " + spd.toFixed(1) + " MPH";
-            hdgEl.innerText = "HDG: " + hdg + "° E";
-
-            if (t < 1.0 && intercepted) resetHUD();
-
-            if (t >= TRIGGER_TIME - 1.5 && !s1 && !intercepted) {
-                s1 = true;
-                document.getElementById('o-led-sys').classList.add('o-led-r');
-                document.getElementById('o-txt-sys').innerText = "SYS: OPTICAL_GLARE";
-                document.getElementById('o-sys').style.color = "#ff3333";
-            }
-
-            if (t >= TRIGGER_TIME - 0.5 && !s2 && !intercepted) {
-                s2 = true;
-                document.getElementById('o-led-tgt').classList.add('o-led-r');
-                document.getElementById('o-txt-tgt').innerText = "NAV: BLINDNESS_DETECTED";
-                document.getElementById('o-tgt').style.color = "#ff3333";
-            }
-
-            if (t >= TRIGGER_TIME && !intercepted) {
-                intercepted = true;
-                xrayVid.currentTime = t;
-                safePlay(xrayVid);
-                pip.style.display = "block";
-
-                document.getElementById('o-led-cam').classList.add('o-led-r');
-                document.getElementById('o-txt-cam').style.color = "#ff3333";
-                document.getElementById('o-txt-tgt').innerText = "NAV: LOCK / X-RAY";
-                alarm.style.display = "block";
-                reticle.style.borderColor = "rgba(255,51,51,0.8)";
-
-                for (var i = 0; i < 5; i++) pushLine(true);
-            }
-        });
-
-        function bootstrap() {
-            mainVid.muted = true;
-            mainVid.setAttribute('muted', '');
-            mainVid.setAttribute('autoplay', '');
-            mainVid.setAttribute('playsinline', '');
-            mainVid.setAttribute('webkit-playsinline', '');
-
-            xrayVid.muted = true;
-            xrayVid.setAttribute('muted', '');
-            xrayVid.setAttribute('playsinline', '');
-            xrayVid.setAttribute('webkit-playsinline', '');
-
-            mainVid.load();
-            xrayVid.load();
-
-            setTimeout(function(){
-                safePlay(mainVid);
-            }, 150);
-        }
-
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", bootstrap);
-        } else {
-            bootstrap();
-        }
-    })();
-</script>
-
-</body>
-</html>
+                    if (mainVid
