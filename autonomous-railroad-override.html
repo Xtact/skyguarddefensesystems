@@ -119,14 +119,14 @@
 
         /* 2X LARGER PiP WINDOW */
         #otis-pip {
-            display:none; position:absolute; bottom:5%; right:2%;
-            width:60%; max-width:560px; /* Doubled size */
-            border:3px solid #39FF14; background:#000; z-index:10;
+            display:none; position:absolute; bottom:3%; right:2%;
+            width:60%; max-width:560px;
+            border:2px solid #39FF14; background:#000; z-index:10;
             box-shadow:0 0 20px rgba(57,255,20,.7);
         }
         #otis-pip::before {
-            content:'ISOLATION OVERRIDE'; position:absolute; top:-20px; left:0;
-            color:#ff3333; font-size:clamp(9px,1vw,12px); font-weight:bold; letter-spacing:1px;
+            content:'ISOLATION OVERRIDE'; position:absolute; top:-16px; left:0;
+            color:#ff3333; font-size:clamp(7px,.9vw,10px); font-weight:bold; letter-spacing:1px;
         }
         #otis-xray-vid { width:100%; display:block; pointer-events:none; }
 
@@ -207,7 +207,10 @@
                 <video id="otis-main-vid"
                     src="rail_true.mp4"
                     autoplay muted loop playsinline
-                    webkit-playsinline x-webkit-airplay="deny" disablePictureInPicture preload="auto">
+                    webkit-playsinline
+                    x-webkit-airplay="deny"
+                    disablePictureInPicture
+                    preload="auto">
                 </video>
 
                 <div id="otis-grid"></div>
@@ -234,14 +237,17 @@
                     <video id="otis-xray-vid"
                         src="web_rail_xray_apex.mp4"
                         muted loop playsinline
-                        webkit-playsinline x-webkit-airplay="deny" disablePictureInPicture preload="auto">
+                        webkit-playsinline
+                        x-webkit-airplay="deny"
+                        disablePictureInPicture
+                        preload="auto">
                     </video>
                 </div>
 
                 <div id="otis-shield"></div>
 
                 <div id="otis-replay">
-                    <button id="otis-replay-btn">&#8635;&nbsp; INITIALIZE MATRIX</button>
+                    <button id="otis-replay-btn">&#8635;&nbsp; REPLAY SEQUENCE</button>
                 </div>
 
             </div>
@@ -292,7 +298,7 @@
         var pip       = document.getElementById('otis-pip');
         var code      = document.getElementById('otis-code');
         var alarm     = document.getElementById('otis-alarm');
-        var altEl     = document.getElementById('o-alt'); // Mapped to SPD
+        var altEl     = document.getElementById('o-alt');
         var hdgEl     = document.getElementById('o-hdg');
         var reticle   = document.getElementById('otis-reticle');
         var shield    = document.getElementById('otis-shield');
@@ -303,8 +309,6 @@
         var s1 = false, s2 = false, s3 = false;
         var codeTimer = null;
         var active = false;
-
-        var TRIGGER_TIME = 4.5; 
 
         var snippets = [
             "cv::Mat frame; cap >> frame;",
@@ -354,19 +358,30 @@
 
         function safePlay(v) {
             var p = v.play();
-            if (p !== undefined) {
-                p.catch(function(error){
-                    // If iOS blocks autoplay, show the overlay so user can manually start
+            if (p) {
+                p.catch(function(){
                     if (v === mainVid) showReplay();
                 });
             }
         }
 
-        function showReplay() { replayDiv.style.display = 'flex'; }
-        function hideReplay() { replayDiv.style.display = 'none'; }
+        function showReplay() {
+            replayDiv.style.display = 'flex';
+        }
 
-        shield.addEventListener('touchstart', function(e){ e.preventDefault(); e.stopPropagation(); }, { passive: false });
-        shield.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); });
+        function hideReplay() {
+            replayDiv.style.display = 'none';
+        }
+
+        shield.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        }, { passive: false });
+
+        shield.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
 
         function doReplay() {
             hideReplay();
@@ -375,29 +390,60 @@
             safePlay(mainVid);
         }
 
-        replayBtn.addEventListener('click', function(e){ e.stopPropagation(); doReplay(); });
-        replayBtn.addEventListener('touchend', function(e){ e.preventDefault(); e.stopPropagation(); doReplay(); }, { passive:false });
+        replayBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            doReplay();
+        });
+
+        replayBtn.addEventListener('touchend', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            doReplay();
+        }, { passive:false });
 
         mainVid.addEventListener('playing', function() {
             active = true;
             hideReplay();
             if (!codeTimer) {
-                codeTimer = setInterval(function(){ pushLine(false); }, 200);
+                codeTimer = setInterval(function(){
+                    pushLine(false);
+                }, 200);
             }
         });
 
-        // Removed the aggressive pause/waiting/stalled listeners that broke the loop
+        mainVid.addEventListener('pause', function(){
+            if (active && !document.hidden) showReplay();
+        });
+
+        mainVid.addEventListener('stalled', function(){
+            if (active) showReplay();
+        });
+
+        mainVid.addEventListener('waiting', function(){
+            if (active) {
+                setTimeout(function(){
+                    if (mainVid.paused && !document.hidden) showReplay();
+                }, 3000);
+            }
+        });
 
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden && active) {
-                if (mainVid.paused) { hideReplay(); safePlay(mainVid); }
-                if (intercepted && xrayVid.paused) { safePlay(xrayVid); }
+                if (mainVid.paused) {
+                    hideReplay();
+                    safePlay(mainVid);
+                }
+                if (intercepted && xrayVid.paused) {
+                    safePlay(xrayVid);
+                }
             }
         });
 
         mainVid.addEventListener('timeupdate', function() {
             var t = mainVid.currentTime;
+            
             var spd = 42, hdg = 92;
+            var TRIGGER_TIME = 4.5;
 
             if (t < TRIGGER_TIME - 2) {
                 spd = 42 + (Math.random() * 0.4 - 0.2);
@@ -413,7 +459,6 @@
             altEl.innerText = "SPD: " + spd.toFixed(1) + " MPH";
             hdgEl.innerText = "HDG: " + hdg + "° E";
 
-            // Loop Detection: Reset HUD seamlessly when video restarts
             if (t < 1.0 && intercepted) resetHUD();
 
             if (t >= TRIGGER_TIME - 1.5 && !s1 && !intercepted) {
@@ -436,11 +481,8 @@
                 safePlay(xrayVid);
                 pip.style.display = "block";
 
-                document.getElementById('o-led-ins').classList.add('o-led-r');
-                document.getElementById('o-txt-ins').style.color = "#ff3333";
                 document.getElementById('o-led-cam').classList.add('o-led-r');
                 document.getElementById('o-txt-cam').style.color = "#ff3333";
-                
                 document.getElementById('o-txt-tgt').innerText = "NAV: LOCK / X-RAY";
                 alarm.style.display = "block";
                 reticle.style.borderColor = "rgba(255,51,51,0.8)";
@@ -464,7 +506,9 @@
             mainVid.load();
             xrayVid.load();
 
-            setTimeout(function(){ safePlay(mainVid); }, 150);
+            setTimeout(function(){
+                safePlay(mainVid);
+            }, 150);
         }
 
         if (document.readyState === "loading") {
