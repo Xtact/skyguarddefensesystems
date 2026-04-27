@@ -117,7 +117,7 @@
             text-shadow:1px 1px 0 #000; letter-spacing:1px;
         }
 
-        /* 2X  LARGER PiP WINDOW */
+        /* 2X LARGER PiP WINDOW */
         #otis-pip {
             display:none; position:absolute; bottom:5%; right:2%;
             width:60%; max-width:560px; /* Doubled size */
@@ -136,7 +136,7 @@
             -webkit-tap-highlight-color:transparent; cursor:default;
         }
 
-        /* OVERLAY DISABLED COMPLETELY */
+        /* PERMANENTLY DISABLED FALLBACK OVERLAY TO PREVENT MOBILE GLITCHES */
         #otis-replay { display:none !important; }
     </style>
 </head>
@@ -195,7 +195,7 @@
             <div id="otis-bounds">
 
                 <video id="otis-main-vid"
-                    src="maritime_true.mp4"
+                    src="maritime-true.mp4"
                     autoplay muted loop playsinline
                     webkit-playsinline x-webkit-airplay="deny" disablePictureInPicture preload="auto">
                 </video>
@@ -277,7 +277,7 @@
         var pip       = document.getElementById('otis-pip');
         var code      = document.getElementById('otis-code');
         var alarm     = document.getElementById('otis-alarm');
-        var altEl     = document.getElementById('o-alt');
+        var altEl     = document.getElementById('o-alt'); 
         var hdgEl     = document.getElementById('o-hdg');
         var reticle   = document.getElementById('otis-reticle');
 
@@ -329,15 +329,21 @@
             });
         }
 
-        // Initialize both videos simultaneously to prevent PiP blank screens
+        // Hardened Bootstrap: Force initialization without UI blocking
         function bootstrap() {
-            mainVid.play().catch(e => console.log(e));
-            xrayVid.play().catch(e => console.log(e));
+            mainVid.play().catch(function(e) { console.log("Main Video Autoplay Muted:", e); });
+            xrayVid.play().catch(function(e) { console.log("XRay Video Autoplay Muted:", e); });
             
             if (!codeTimer) {
                 codeTimer = setInterval(function(){ pushLine(false); }, 200);
             }
         }
+
+        // Tap-to-play fallback for strictest iOS power modes
+        document.body.addEventListener('touchstart', function() {
+            if (mainVid.paused) mainVid.play();
+            if (xrayVid.paused) xrayVid.play();
+        }, { once: true });
 
         mainVid.addEventListener('timeupdate', function() {
             var t = mainVid.currentTime;
@@ -357,7 +363,6 @@
             altEl.innerText = "SPD: " + spd.toFixed(1) + " KTS";
             hdgEl.innerText = "HDG: " + hdg + "° N";
 
-            // Loop Reset
             if (t < 1.0 && intercepted) resetHUD();
 
             if (t >= TRIGGER_TIME - 1.5 && !s1 && !intercepted) {
@@ -377,7 +382,7 @@
             if (t >= TRIGGER_TIME && !intercepted) {
                 intercepted = true;
                 
-                // Sync safety check + reveal
+                // Keep X-Ray perfectly locked to Main Video Time
                 if (Math.abs(mainVid.currentTime - xrayVid.currentTime) > 0.2) {
                     xrayVid.currentTime = mainVid.currentTime;
                 }
