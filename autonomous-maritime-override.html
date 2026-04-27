@@ -120,7 +120,7 @@
         /* 2X LARGER PiP WINDOW */
         #otis-pip {
             display:none; position:absolute; bottom:5%; right:2%;
-            width:60%; max-width:560px; /* Doubled size */
+            width:60%; max-width:560px;
             border:3px solid #39FF14; background:#000; z-index:10;
             box-shadow:0 0 20px rgba(57,255,20,.7);
         }
@@ -136,7 +136,7 @@
             -webkit-tap-highlight-color:transparent; cursor:default;
         }
 
-        /* PERMANENTLY DISABLED FALLBACK OVERLAY TO PREVENT MOBILE GLITCHES */
+        /* PERMANENTLY DISABLED FALLBACK OVERLAY */
         #otis-replay { display:none !important; }
     </style>
 </head>
@@ -195,7 +195,7 @@
             <div id="otis-bounds">
 
                 <video id="otis-main-vid"
-                    src="maritime-true.mp4"
+                    src="maritime_true.mp4"
                     autoplay muted loop playsinline
                     webkit-playsinline x-webkit-airplay="deny" disablePictureInPicture preload="auto">
                 </video>
