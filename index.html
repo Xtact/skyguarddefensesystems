@@ -82,8 +82,9 @@
                     <div class="hud-card fade-in delay-200">
                         <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
                         <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
-                        <form name="contact" method="POST" data-netlify="true" netlify>
+                        <form name="contact" method="POST" action="/" data-netlify="true" data-netlify-honeypot="bot-field">
                             <input type="hidden" name="form-name" value="contact" />
+                            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
                             <div class="form-group">
                                 <label class="form-label">IDENTITY / CALLSIGN</label>
                                 <input type="text" name="identity" class="form-input" placeholder="e.g. MAJ. J. MILLER" required>
