@@ -8,16 +8,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkyGuard Labs, LLC</title>
     <meta name="description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical sensing trustworthy — from airspace surveillance to autonomous systems.">
-<meta property="og:title" content="SkyGuard Labs, LLC">
-<meta property="og:description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical sensing trustworthy — from airspace surveillance to autonomous systems.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://skyguarddefense.com">
-<meta property="og:image" content="https://skyguarddefense.com/skyguard_logo.png">
+    <meta property="og:title" content="SkyGuard Labs, LLC">
+    <meta property="og:description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical sensing trustworthy — from airspace surveillance to autonomous systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skyguarddefense.com">
+    <meta property="og:image" content="https://skyguarddefense.com/skyguard_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="video" href="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ── OTIS Section ── */
+        #otis {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,10,20,0.6) 100%);
+        }
+
+        .otis-intro {
+            max-width: 820px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+        }
+
+        .otis-intro p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+
+        .otis-intro .tagline {
+            font-size: 1rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.14em;
+            font-family: var(--font-head);
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        .otis-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .otis-pillar {
+            position: relative;
+            padding: 2rem;
+            background: rgba(0, 20, 40, 0.55);
+            border: 1px solid rgba(0,255,204,0.12);
+            border-top: 2px solid var(--accent-teal, #00ffcc);
+        }
+
+        .otis-pillar h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-teal, #00ffcc);
+            margin: 0 0 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .otis-pillar p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .otis-how-title {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.18em;
+            color: var(--accent-gold, #ffd700);
+            text-align: center;
+            margin: 3rem 0 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .otis-channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .otis-channel {
+            padding: 1.5rem;
+            background: rgba(0,10,30,0.6);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 3px solid var(--accent-gold, #ffd700);
+        }
+
+        .otis-channel .ch-label {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            color: var(--accent-gold, #ffd700);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .otis-channel h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            color: #fff;
+            margin: 0 0 0.5rem;
+        }
+
+        .otis-channel p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .otis-discriminators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .otis-disc {
+            padding: 1.5rem 1.75rem;
+            background: rgba(255,0,50,0.04);
+            border: 1px solid rgba(255,51,51,0.18);
+            border-top: 2px solid #ff3333;
+        }
+
+        .otis-disc h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
+            color: #ff6666;
+            margin: 0 0 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .otis-disc p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .otis-ops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            border: 1px solid rgba(0,255,204,0.12);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .otis-ops-item {
+            padding: 1.25rem 1.5rem;
+            background: rgba(0,15,30,0.7);
+            border-bottom: 1px solid rgba(0,255,204,0.08);
+        }
+
+        .otis-ops-item .ops-key {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            color: var(--accent-teal, #00ffcc);
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .otis-ops-item .ops-val {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .otis-apps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .otis-app-tag {
+            padding: 0.45rem 1rem;
+            border: 1px solid rgba(0,255,204,0.25);
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-teal, #00ffcc);
+            text-transform: uppercase;
+            background: rgba(0,255,204,0.04);
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold, #ffd700);
+            margin: 0 auto 3rem;
+            box-shadow: 0 0 10px var(--accent-gold, #ffd700);
+        }
+    </style>
 </head>
 <body id="home">
     <div class="grid-overlay"></div>
@@ -42,9 +236,12 @@
                 <h2>OPTICAL AIRSPACE SENSING INTELLIGENCE</h2>
             </div>
         </section>
+
         <div style="width: 100%; padding: 0; line-height: 0; font-size: 0;">
             <div style="width: 80px; height: 3px; background: var(--accent-gold); margin: 0 auto; box-shadow: 0 0 10px var(--accent-gold);"></div>
         </div>
+
+        <!-- ── EXISTING SUMMARY SECTION ── -->
         <section class="section-padding section-anchor">
             <div class="container">
                 <div class="fade-in" style="max-width: 820px; margin: 0 auto; text-align: center;">
@@ -60,6 +257,152 @@
                 </div>
             </div>
         </section>
+
+        <!-- ── OTIS SECTION (NEW) ── -->
+        <div style="width: 100%; padding: 0; line-height: 0; font-size: 0;">
+            <div class="section-divider"></div>
+        </div>
+
+        <section id="otis" class="section-padding bg-darker section-anchor">
+            <div class="container">
+
+                <!-- Section Header -->
+                <div class="section-header fade-in">
+                    <h2 class="section-title">O.T.I.S.</h2>
+                    <div class="section-line"></div>
+                    <p class="section-subtitle">Optical Threat Isolation System</p>
+                </div>
+
+                <!-- What OTIS Is -->
+                <div class="otis-intro fade-in">
+                    <p>
+                        Most detection systems try to learn what a threat <em>looks</em> like. OTIS works differently — it knows what a threat <em>must behave like</em>, based on the laws of physics. That distinction changes everything.
+                    </p>
+                    <p>
+                        At the heart of OTIS is a threat model catalog: a structured set of physical parameter envelopes developed from the ground up by SkyGuard Labs using established laws of physics, engineering data, and real-world field observation. These envelopes define the precise boundaries of how any threat-class object must look, move, and radiate heat given its size, speed, and mechanical design. No guesswork. No statistical pattern matching on images. The rules come from physics — and physics doesn't change.
+                    </p>
+                    <p>
+                        This catalog comes baked into OTIS from day one. But OTIS doesn't stop there. Every time OTIS observes and confirms an object — across every deployment, every integration, every unit in the field — it refines its statistical confidence within those physics-grounded boundaries. It isn't learning new rules. It is getting more precise about the rules it already knows, informed by real-world observations drawn from every OTIS system operating anywhere. The result is a platform that grows more accurate and more confident with every interaction — not because it is being retrained, but because it is being refined.
+                    </p>
+                    <p class="tagline">EO/IR &nbsp;·&nbsp; SENSOR-AGNOSTIC &nbsp;·&nbsp; DDIL-READY &nbsp;·&nbsp; GEOMETRY-FIRST</p>
+                </div>
+
+                <!-- Three Core Pillars -->
+                <div class="otis-pillars fade-in delay-100">
+                    <div class="otis-pillar">
+                        <h4>Physics-Grounded</h4>
+                        <p>Classification logic is derived from immutable physical laws — not trained on image datasets. OTIS measures geometric observables and tests them against physics-constrained threat models. Novel airframes, adversarial camouflage, and RF-silent drones cannot defeat rules written by physics.</p>
+                    </div>
+                    <div class="otis-pillar">
+                        <h4>Self-Refining</h4>
+                        <p>Every confirmed observation across every deployed OTIS unit refines the statistical confidence of its threat models. OTIS doesn't learn new features — it grows more precise about the ones it already knows. Accuracy compounds with scale, with no retraining required.</p>
+                    </div>
+                    <div class="otis-pillar">
+                        <h4>Fully Explainable</h4>
+                        <p>Every confidence score maps directly to a geometric measurement and a physical bound — not a neural network activation. OTIS satisfies DoD explainable AI requirements for autonomous engagement decisions. When it calls something a threat, it can show exactly why.</p>
+                    </div>
+                </div>
+
+                <!-- Detection Architecture -->
+                <h3 class="otis-how-title fade-in">Detection Architecture</h3>
+
+                <div class="otis-channels fade-in delay-100">
+                    <div class="otis-channel">
+                        <div class="ch-label">Input Channel 01</div>
+                        <h4>EO / IR Optical Feed</h4>
+                        <p>Continuous calibrated visible-spectrum or thermal infrared image stream. Used as a precision measurement instrument — not a classifier input. Works day, night, and in adverse conditions.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Input Channel 02</div>
+                        <h4>Kinematic Track Cue</h4>
+                        <p>Initial angular bearing from upstream radar, RF sensor, or operator designation. OTIS maps this into a calibrated 3D ray using its own sensor geometry — the cue locates; OTIS identifies.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Input Channel 03</div>
+                        <h4>Geometric Observables</h4>
+                        <p>Angular subtense, optical flow consistency, thermal profile geometry, specular flash rate, and range-estimated physical dimensions — extracted from the optical stream against the cued track.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Input Channel 04</div>
+                        <h4>Consistency Scoring</h4>
+                        <p>All observables are scored against physics-constrained threat models. The weighted composite output routes to: threat confirmed, suppress/monitor, or flag for human review.</p>
+                    </div>
+                </div>
+
+                <!-- Bird vs Drone Discriminators -->
+                <h3 class="otis-how-title fade-in">Categorical Discriminators</h3>
+                <p class="fade-in" style="text-align:center; max-width:680px; margin: -1rem auto 2rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
+                    Three observables are geometrically categorical — derived from physical laws, not statistical learning. They generalize to any airframe, including novel designs never seen before.
+                </p>
+
+                <div class="otis-discriminators fade-in delay-100">
+                    <div class="otis-disc">
+                        <h4>Kinematic Stabilization</h4>
+                        <p>Any drone with a flight controller exhibits mechanically stabilized center-of-mass translation. Biological flight is kinematically noisy at frame-by-frame resolution. A 1–3 second optical flow measurement separates these populations categorically.</p>
+                    </div>
+                    <div class="otis-disc">
+                        <h4>Rotational Mechanical Signature</h4>
+                        <p>Multi-rotor UAS generate a periodic optical flicker from propeller blades at their rotation frequency — directly measurable in calibrated EO imagery. No avian species produces an equivalent signal. Categorical. Not probabilistic.</p>
+                    </div>
+                    <div class="otis-disc">
+                        <h4>Thermal Asymmetry Geometry</h4>
+                        <p>Drone motors produce concentrated high-delta-T hotspots. Avian thermal signatures are anatomically symmetric and biologically smooth. A spatial entropy metric over the thermal blob cleanly separates these classes at operationally relevant ranges.</p>
+                    </div>
+                </div>
+
+                <!-- Operational Characteristics -->
+                <h3 class="otis-how-title fade-in">Operational Characteristics</h3>
+
+                <div class="otis-ops-grid fade-in delay-100">
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Network Dependency</div>
+                        <div class="ops-val">None — fully self-contained</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">RF Dependency</div>
+                        <div class="ops-val">None — operates against RF-silent &amp; GPS-spoofed UAS</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Explainability</div>
+                        <div class="ops-val">Full — every score maps to a geometric measurement</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Novel Airframes</div>
+                        <div class="ops-val">Physics-based — not fooled by new designs</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">DDIL Suitability</div>
+                        <div class="ops-val">Yes — no external data required at runtime</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Fleet-Wide Learning</div>
+                        <div class="ops-val">Confidence refinement aggregated across all units</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Human-in-the-Loop</div>
+                        <div class="ops-val">Configurable threshold — flags below confidence for review</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Sensor Input</div>
+                        <div class="ops-val">Any optical input — monocular, stereo, ToF, LiDAR, or equivalent</div>
+                    </div>
+                </div>
+
+                <!-- Application Areas -->
+                <h3 class="otis-how-title fade-in">Application Areas</h3>
+                <div class="otis-apps fade-in delay-100">
+                    <span class="otis-app-tag">Layered C-UAS Architectures</span>
+                    <span class="otis-app-tag">Air &amp; Missile Defense</span>
+                    <span class="otis-app-tag">Autonomous Convoy Protection</span>
+                    <span class="otis-app-tag">Fixed-Site Defense</span>
+                    <span class="otis-app-tag">Unmanned Platform Perception</span>
+                    <span class="otis-app-tag">Critical Infrastructure</span>
+                    <span class="otis-app-tag">Event Security</span>
+                </div>
+
+            </div>
+        </section>
+        <!-- ── END OTIS SECTION ── -->
 
         <section id="contact" class="section-padding bg-darker section-anchor">
             <div class="container">
@@ -95,7 +438,7 @@
                                 <input type="email" name="email" class="form-input" placeholder="RECIPIENT@AGENCY.GOV" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">MISSION PARAMETERS & FACILITY SPECS</label>
+                                <label class="form-label">MISSION PARAMETERS &amp; FACILITY SPECS</label>
                                 <textarea name="message" class="form-input" style="min-height: 120px; resize: none;" placeholder="DESCRIBE THREAT PROFILE..." required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">TRANSMIT ENCRYPTED DATA</button>
@@ -107,7 +450,7 @@
     </main>
 
     <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Return to top">
-        <span class="btn-icon">▲</span>
+        <span class="btn-icon">&#9650;</span>
         <span class="btn-text">TOP</span>
     </button>
 
