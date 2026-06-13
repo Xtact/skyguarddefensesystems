@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkyGuard Labs, LLC</title>
-    <meta name="description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical sensing trustworthy — from airspace surveillance to autonomous systems.">
+    <meta name="description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical airspace sensing trustworthy — from first detection through intercept cueing.">
     <meta property="og:title" content="SkyGuard Labs, LLC">
-    <meta property="og:description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical sensing trustworthy — from airspace surveillance to autonomous systems.">
+    <meta property="og:description" content="SkyGuard Labs builds the geometry intelligence layer that makes optical airspace sensing trustworthy — from first detection through intercept cueing.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://skyguarddefense.com">
     <meta property="og:image" content="https://skyguarddefense.com/skyguard_logo.png">
@@ -211,6 +211,115 @@
             margin: 0 auto 3rem;
             box-shadow: 0 0 10px var(--accent-gold, #ffd700);
         }
+
+        /* ── Threat Grid ── */
+        .threat-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid rgba(255, 51, 51, 0.25);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .threat-item {
+            padding: 2rem 2.25rem;
+            background: rgba(255, 0, 30, 0.03);
+            border-bottom: 1px solid rgba(255, 51, 51, 0.15);
+            display: grid;
+            grid-template-columns: 2.5rem 1fr auto;
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        .threat-item:last-child {
+            border-bottom: none;
+        }
+
+        .threat-num {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            color: rgba(255, 51, 51, 0.5);
+            padding-top: 0.2rem;
+        }
+
+        .threat-body h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.14em;
+            color: #ff6666;
+            margin: 0 0 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .threat-body p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .threat-verdict {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-teal, #00ffcc);
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding-top: 0.2rem;
+            text-align: right;
+        }
+
+        .threat-verdict .check {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--accent-teal, #00ffcc);
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+
+        .payoff-block {
+            max-width: 680px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 2.5rem 1rem;
+        }
+
+        .payoff-block p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        .payoff-block p + p {
+            margin-top: 1.2rem;
+        }
+
+        .payoff-block .payoff-anchor {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.16em;
+            color: var(--accent-gold, #ffd700);
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .threat-item {
+                grid-template-columns: 2rem 1fr;
+                grid-template-rows: auto auto;
+            }
+            .threat-verdict {
+                grid-column: 2;
+                text-align: left;
+                margin-top: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body id="home">
@@ -225,7 +334,9 @@
             </nav>
         </div>
     </header>
+
     <main>
+        <!-- HERO -->
         <section class="hero-container">
             <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.jpg">
                 <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
@@ -233,7 +344,7 @@
             <div class="hero-overlay"></div>
             <div class="hero-text fade-in">
                 <h1>SkyGuard Labs, LLC</h1>
-                <h2>OPTICAL AIRSPACE SENSING INTELLIGENCE</h2>
+                <h2>GEOMETRY INTELLIGENCE FOR THE FULL THREAT SPECTRUM</h2>
             </div>
         </section>
 
@@ -241,18 +352,21 @@
             <div style="width: 80px; height: 3px; background: var(--accent-gold); margin: 0 auto; box-shadow: 0 0 10px var(--accent-gold);"></div>
         </div>
 
-        <!-- EXISTING SUMMARY SECTION -->
+        <!-- HERO SUMMARY -->
         <section class="section-padding section-anchor">
             <div class="container">
                 <div class="fade-in" style="max-width: 820px; margin: 0 auto; text-align: center;">
                     <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-                        Every optical sensing system in existence — from airspace surveillance to autonomous vehicles — makes safety-critical decisions based on pixels rather than geometry. When the image can be deceived, the system fails.
+                        The aerial threat spectrum runs from a $300 FPV drone to a Mach 20 hypersonic reentry vehicle. Every threat on that spectrum — from the cheapest to the most lethal — shares one property: physical geometry that obeys the laws of physics.
                     </p>
                     <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-                        SkyGuard Labs builds the geometry intelligence layer that makes optical sensing trustworthy. Our software verifies physical structure in real time — providing ground truth that pixel-based systems cannot spoof, jam, or defeat.
+                        Every defense system currently deployed makes life-and-death decisions based on pixel patterns, RF signals, or GPS coordinates. Those are inputs the adversary controls. They are being exploited — systematically, at scale, right now.
+                    </p>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                        SkyGuard Labs built O.T.I.S.: the geometry intelligence layer that operates on the one input the adversary cannot control. Physics.
                     </p>
                     <p style="font-size: 1rem; color: var(--accent-blue); letter-spacing: 0.12em; font-family: var(--font-head); font-weight: 600;">
-                        PATENT PENDING &nbsp;·&nbsp; SOFTWARE-FIRST &nbsp;·&nbsp; DOMAIN-AGNOSTIC
+                        PATENT PENDING &nbsp;·&nbsp; SOFTWARE-FIRST &nbsp;·&nbsp; FULL THREAT SPECTRUM
                     </p>
                 </div>
             </div>
@@ -272,100 +386,172 @@
                     <p class="section-subtitle">Optical Threat Isolation System</p>
                 </div>
 
-                <!-- What OTIS Is -->
+                <!-- THREAT SECTION HEADER -->
+                <div class="fade-in" style="max-width: 820px; margin: 0 auto 2.5rem; text-align: center;">
+                    <h3 style="font-family: var(--font-head), 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 0.16em; color: #ff4444; text-transform: uppercase; line-height: 1.5; margin-bottom: 0;">
+                        THE THREATS THAT ARE DEFEATING EVERY SENSOR STACK IN THEATER.<br>RIGHT NOW.
+                    </h3>
+                </div>
+
+                <!-- THREAT CHALLENGE GRID -->
+                <div class="threat-grid fade-in delay-100">
+
+                    <div class="threat-item">
+                        <div class="threat-num">01</div>
+                        <div class="threat-body">
+                            <h4>Glide Bombs (KAB-Class, JDAM-ER)</h4>
+                            <p>The most lethal standoff weapon in active use. Released beyond intercept range. Unpowered terminal phase — no heat signature to track, no RF to jam. EO/IR seekers make them resistant to every electronic countermeasure currently deployed. 230+ launched in a single quarter. 94 killed. 367 wounded.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">02</div>
+                        <div class="threat-body">
+                            <h4>Subsonic Cruise Missiles (Shahed-Class, X-101, Kalibr)</h4>
+                            <p>540+ launched in a single quarter. 162 killed. 721 wounded. Deliberately timed with drone swarms to simultaneously saturate every layer of the intercept stack. The volume problem that no current classifier can keep pace with.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">03</div>
+                        <div class="threat-body">
+                            <h4>Hypersonic Missiles — Terminal Phase</h4>
+                            <p>Mach 5–20. Seven football fields every 300 milliseconds. Decoys and real warheads are optically indistinguishable to every pixel-based classifier in existence. Terminal phase discrimination is the unsolved core of the Golden Dome problem. There is no current optical solution. Until now.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">04</div>
+                        <div class="threat-body">
+                            <h4>RF-Silent Loitering Munitions</h4>
+                            <p>5,800+ launched in a single quarter. 810 in a single night. ATG terminal approach — RF off, GPS off, altitude low. Designed specifically to defeat every passive RF and radar layer simultaneously. The primary driver of the $13.36B anti-drone market — and the threat that market still cannot solve.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">05</div>
+                        <div class="threat-body">
+                            <h4>Fiber Optic-Guided FPV &nbsp;/&nbsp; "Dark Drone"</h4>
+                            <p>No RF signal. No GPS uplink. No control link to jam, detect, or spoof. Physically tethered to its operator by fiber — completely invisible to every passive RF sensor and direction-finding system ever deployed. The "dark drone" threat class: zero electromagnetic signature, zero detectable emissions, zero countermeasure surface. Causing more civilian casualties in the Ukrainian theater than any other single weapon class.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">06</div>
+                        <div class="threat-body">
+                            <h4>Adversarially Modified Platforms &amp; Optical Decoys</h4>
+                            <p>A $3 printed adversarial pattern defeats every published EO/IR drone classifier — 100% success rate, proven at NDSS 2026 (UC Irvine). Visual decoys cause real interceptors to be fired at nothing. Adversarial patches cause real threats to be ignored. Zero published defense exists against this class. OTIS is the exception.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">07</div>
+                        <div class="threat-body">
+                            <h4>GPS-Spoofed / GPS-Denied Operations</h4>
+                            <p>122,000+ flights affected in just 4 months of 2025. GPS jamming up 220% since 2024. Every GPS-referenced sensor fusion stack, intercept cueing system, and engagement geometry calculation degraded simultaneously. A force multiplier for every other threat class on this list.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PAYOFF BLOCK -->
+                <div class="payoff-block fade-in">
+                    <p>Every threat on this list defeats every currently deployed optical sensor system in live battle.</p>
+                    <p>Not one of them defeats the long-established laws of physics.</p>
+                    <span class="payoff-anchor">That is the only foundation OTIS operates on.</span>
+                </div>
+
+                <!-- OTIS INTRO -->
                 <div class="otis-intro fade-in">
                     <p>
-                        Most detection systems try to learn what a threat <em>looks</em> like. OTIS works differently — it knows what a threat <em>must behave like</em>, based on the laws of physics. That distinction changes everything.
+                        Most detection systems try to learn what a threat <em>looks</em> like. Adversaries spend $3 and defeat them.
                     </p>
                     <p>
-                        At the heart of OTIS is a proprietary threat model catalog — a structured knowledge base developed by SkyGuard Labs from physical first principles and validated field data. This catalog defines the precise boundaries of how any threat-class object must look, move, and radiate energy given its design and operating environment. No guesswork. No statistical pattern matching on images. The rules come from physics — and physics doesn't change.
+                        OTIS operates differently. It knows what a threat must physically be — based on immutable laws of physics. Adversarial patches change pixels. They do not change the physical properties of the object. OTIS tests those properties. That distinction is not incremental. It is categorical.
                     </p>
                     <p>
-                        This catalog comes baked into OTIS from day one. But OTIS doesn't stop there. Every confirmed observation — across every deployment, every integration, every unit in the field — makes OTIS more precise. It isn't learning new rules. It is getting measurably better at the rules it already knows, informed by real-world observations drawn from every OTIS system operating anywhere. The result is a platform that grows more accurate and more confident with every interaction — not because it is being retrained, but because it is being refined.
+                        At the heart of OTIS is a proprietary threat model catalog — a structured library of physical parameter envelopes built by SkyGuard Labs directly from the laws of physics. Not learned from images. Not trained on historical data. Derived from the immutable physical properties that every threat class must obey — properties that no adversarial modification, novel airframe, or electronic countermeasure can alter.
+                    </p>
+                    <p>
+                        These envelopes define what each threat class can and cannot physically be. They do not change when an adversary repaints an airframe. They do not degrade when a new drone model enters the field. And they cannot be defeated by a printed pattern, an RF jammer, or a GPS spoofer — because none of those tools change the underlying physics of the object.
+                    </p>
+                    <p>
+                        OTIS ships with this catalog baked in from day one. Every confirmed observation — across every deployment, every integration, every unit in the field worldwide — makes OTIS measurably more precise. Not by learning new rules. By sharpening its certainty around the physics it already knows. The entire deployed fleet improves with every engagement. Simultaneously. Without retraining.
                     </p>
                     <p class="tagline">EO/IR &nbsp;·&nbsp; SENSOR-AGNOSTIC &nbsp;·&nbsp; DDIL-READY &nbsp;·&nbsp; GEOMETRY-FIRST</p>
                 </div>
 
-                <!-- Three Core Pillars -->
+                <!-- THREE PILLARS -->
                 <div class="otis-pillars fade-in delay-100">
                     <div class="otis-pillar">
                         <h4>Physics-Grounded</h4>
-                        <p>Classification logic is derived from immutable physical laws — not trained on image datasets. OTIS tests real-world measurements against physics-constrained threat models. Novel airframes, adversarial camouflage, and RF-silent drones cannot defeat rules written by physics.</p>
+                        <p>Classification logic is derived from immutable physical laws — not trained on image datasets that adversaries have already learned to defeat. OTIS tests real-world measurements against physics-constrained threat models. A novel airframe cannot defeat it. Adversarial camouflage cannot defeat it. An RF-silent drone operating in GPS-denied airspace cannot defeat it. To defeat OTIS, an adversary must violate the laws of physics. That is not a gap they can close.</p>
                     </div>
                     <div class="otis-pillar">
-                        <h4>Self-Refining</h4>
-                        <p>OTIS becomes more precise with every deployment. The underlying mechanism is proprietary — but the result is a system that gets measurably better across its installed base without updates, patches, or retraining cycles.</p>
+                        <h4>Self-Refining — Fleet-Wide</h4>
+                        <p>Every OTIS integration in the field — every engagement, every confirmed detection, every near-miss — contributes to continuous global refinement of the underlying threat model catalog. Not per-device. Not per-update cycle. Fleet-wide, in real time, across every deployed unit simultaneously. OTIS in its 100th deployment is measurably more precise than OTIS in its first. The adversary's threat pool grows. So does OTIS's certainty.</p>
                     </div>
                     <div class="otis-pillar">
-                        <h4>Fully Explainable</h4>
-                        <p>Every confidence output maps directly to a physical measurement and a physics-derived bound — not a neural network activation. OTIS satisfies DoD explainable AI requirements for autonomous engagement decisions. When it flags a threat, it can show exactly why.</p>
+                        <h4>Fully Explainable — DoD XAI</h4>
+                        <p>Every OTIS output maps directly to a physical measurement and a physics-derived bound — not a neural network activation that no one can audit. When OTIS flags a threat, it can show exactly which physical property triggered the classification, which bound was violated, and what that means for rules of engagement. This is not a feature. In autonomous engagement architectures, it is a legal and operational requirement. OTIS satisfies it categorically.</p>
                     </div>
                 </div>
 
-                <!-- Detection Architecture -->
-                <h3 class="otis-how-title fade-in">Detection Architecture</h3>
-
-                <div class="otis-channels fade-in delay-100">
-                    <div class="otis-channel">
-                        <div class="ch-label">Input Channel 01</div>
-                        <h4>EO / IR Optical Feed</h4>
-                        <p>Continuous calibrated visible-spectrum or thermal infrared image stream. Used as a precision measurement instrument — not a classifier input. Operates day, night, and in adverse conditions without RF or network dependency.</p>
-                    </div>
-                    <div class="otis-channel">
-                        <div class="ch-label">Input Channel 02</div>
-                        <h4>Upstream Track Cue</h4>
-                        <p>An initial bearing from any upstream sensor — radar, RF, acoustic, or operator designation. OTIS applies its own independent calibration and verification pipeline from that point forward. The cue locates; OTIS identifies.</p>
-                    </div>
-                    <div class="otis-channel">
-                        <div class="ch-label">Input Channel 03</div>
-                        <h4>Geometric Observables</h4>
-                        <p>From the cued optical stream, OTIS extracts a suite of geometry-derived physical measurements — spanning motion, structure, thermal behavior, and mechanical signature — and evaluates each against physics-grounded threat class models.</p>
-                    </div>
-                    <div class="otis-channel">
-                        <div class="ch-label">Input Channel 04</div>
-                        <h4>Confidence Output</h4>
-                        <p>All observables are evaluated against physics-constrained threat models. The resulting confidence output is passed to the operator interface or downstream engagement system per configured rules of engagement.</p>
-                    </div>
-                </div>
-
-                <!-- Categorical Discrimination — IP-safe abstract version -->
-                <h3 class="otis-how-title fade-in">Categorical Discrimination</h3>
-                <div class="otis-intro fade-in" style="margin-bottom: 2rem;">
-                    <p>
-                        OTIS applies a set of physics-derived categorical tests — not probabilistic scores — that no camouflage, novel airframe design, or adversarial modification can defeat without violating the laws of physics itself. These tests operate across motion, structure, and energy signature domains simultaneously.
-                    </p>
-                    <p>
-                        Unlike machine learning classifiers that can be fooled by inputs outside their training distribution, OTIS categorical gates are absolute. An object either satisfies the physics of its claimed class or it does not. The specific observables, thresholds, and decision logic are proprietary and disclosed only under executed NDA.
-                    </p>
-                </div>
-
-                <!-- Operational Characteristics -->
+                <!-- OPERATIONAL CHARACTERISTICS -->
                 <h3 class="otis-how-title fade-in">Operational Characteristics</h3>
 
                 <div class="otis-ops-grid fade-in delay-100">
                     <div class="otis-ops-item">
                         <div class="ops-key">Network Dependency</div>
-                        <div class="ops-val">None — fully self-contained</div>
+                        <div class="ops-val">None — air-gap ready, DDIL-native</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">RF Dependency</div>
-                        <div class="ops-val">None — operates against RF-silent &amp; GPS-spoofed UAS</div>
+                        <div class="ops-val">None — passive, zero-emission, presents no signature to anti-radiation targeting systems</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">Explainability</div>
-                        <div class="ops-val">Full — every output maps to a physical measurement</div>
+                        <div class="ops-val">Full — every output auditable against a physics-derived bound. Meets DoD XAI requirements.</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">Novel Airframes</div>
-                        <div class="ops-val">Physics-based — not fooled by new or unseen designs</div>
+                        <div class="ops-val">Physics-based — novel airframes obey the same physics as known ones. OTIS does not need to have seen it before.</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">DDIL Suitability</div>
-                        <div class="ops-val">Yes — no external data required at runtime</div>
+                        <div class="ops-val">Zero external data dependencies at runtime. Operates identically in clean and fully contested environments.</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">Continuous Improvement</div>
-                        <div class="ops-val">Gets more precise across its installed base — no retraining required</div>
+                        <div class="ops-val">Fleet-wide refinement — every deployed unit improves every other deployed unit. No retraining. No update cycles.</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">Human-in-the-Loop</div>
@@ -373,31 +559,56 @@
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">Sensor Input</div>
-                        <div class="ops-val">Any optical input — monocular, stereo, ToF, LiDAR, or equivalent</div>
+                        <div class="ops-val">Any optical input — monocular camera through full LiDAR suite. Hardware-agnostic by design.</div>
                     </div>
                 </div>
 
-                <!-- Application Areas -->
+                <!-- APPLICATION AREAS -->
                 <h3 class="otis-how-title fade-in">Application Areas</h3>
-                <div class="otis-apps fade-in delay-100">
-                    <span class="otis-app-tag">Layered C-UAS Architectures</span>
-                    <span class="otis-app-tag">Air &amp; Missile Defense</span>
-                    <span class="otis-app-tag">Autonomous Convoy Protection</span>
-                    <span class="otis-app-tag">Fixed-Site Defense</span>
-                    <span class="otis-app-tag">Unmanned Platform Perception</span>
-                    <span class="otis-app-tag">Critical Infrastructure</span>
-                    <span class="otis-app-tag">Event Security</span>
+
+                <div class="otis-channels fade-in delay-100">
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 01</div>
+                        <h4>Layered C-UAS Architectures</h4>
+                        <p>The optical verification layer that completes the sensor stack — covering every threat RF and radar cannot classify.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 02</div>
+                        <h4>Air &amp; Missile Defense / Golden Dome</h4>
+                        <p>Terminal phase discrimination between real warheads and decoys. The problem that existing interceptor stacks cannot solve. The problem OTIS was built to solve.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 03</div>
+                        <h4>Autonomous Convoy &amp; Platform Protection</h4>
+                        <p>Physics-grounded threat verification for unmanned ground and air platforms operating in contested, GPS-denied environments.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 04</div>
+                        <h4>Fixed-Site &amp; Critical Infrastructure Defense</h4>
+                        <p>Continuous, passive, zero-RF-emission optical monitoring. Presents no signature to anti-radiation targeting systems. Operates where radar cannot survive.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 05</div>
+                        <h4>EO/IR Sensor Mesh Ground Truth</h4>
+                        <p>The geometry verification layer for proliferated sensor architectures — ensuring every node in the mesh is making decisions based on physics, not pixels.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 06</div>
+                        <h4>Autonomous Vehicle Safety</h4>
+                        <p>The same pixel-based failure that causes camera-equipped vehicles to miss threats exists in every AV perception stack. OTIS applies the same physics-grounded verification to ground-domain autonomy.</p>
+                    </div>
                 </div>
 
             </div>
         </section>
 
+        <!-- CONTACT -->
         <section id="contact" class="section-padding bg-darker section-anchor">
             <div class="container">
                 <div class="section-header fade-in">
-                    <h2 class="section-title">CONTACT US</h2>
+                    <h2 class="section-title">INTEGRATION INQUIRIES</h2>
                     <div class="section-line"></div>
-                    <p class="section-subtitle">Secure communications channel. Inquire about custom facility defense architectures.</p>
+                    <p class="section-subtitle">OTIS is available for integration via SDK and API under executed NDA. We work directly with defense primes, C-UAS integrators, autonomous systems developers, and government program offices. If you are building a sensor stack and need ground truth that the adversary cannot manipulate — this is the conversation to have.</p>
                 </div>
 
                 <div class="contact-grid">
@@ -407,9 +618,10 @@
                         <h2 class="section-title" style="font-size: 1.8rem;">SKYGUARD LABS, LLC</h2>
                         <p style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 1.5rem;">Location Details</p>
                         <p style="margin-bottom: 1rem;">Denver, Colorado, USA</p>
+                        <p style="margin-bottom: 1rem;"><strong>Email:</strong> integration@skyguarddefense.com</p>
                         <p style="margin-bottom: 2rem;"><strong>Comms:</strong> Intel-Support Line (24/7)</p>
                         <p style="font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.4; font-style: italic; border-top: 1px solid var(--border-light); padding-top: 1rem;">
-                            Notice: All inquiries are subject to strict confidentiality agreements (NDA) prior to technical briefing.</p>
+                            All technical briefings are conducted under executed NDA. Patent Pending. All rights reserved.</p>
                     </div>
 
                     <div class="hud-card fade-in delay-200">
@@ -426,8 +638,8 @@
                                 <input type="email" name="email" class="form-input" placeholder="RECIPIENT@AGENCY.GOV" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">MISSION PARAMETERS &amp; FACILITY SPECS</label>
-                                <textarea name="message" class="form-input" style="min-height: 120px; resize: none;" placeholder="DESCRIBE THREAT PROFILE..." required></textarea>
+                                <label class="form-label">MISSION PARAMETERS &amp; INTEGRATION REQUIREMENTS</label>
+                                <textarea name="message" class="form-input" style="min-height: 120px; resize: none;" placeholder="DESCRIBE THREAT PROFILE AND SENSOR STACK..." required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">TRANSMIT ENCRYPTED DATA</button>
                         </form>
@@ -447,9 +659,12 @@
             <div style="text-align: center; padding: 3rem 0 2rem;">
                 <img src="skyguard_logo.png" alt="SkyGuard Defense Logomark" style="width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px; border: 1px solid rgba(0,255,204,0.5);">
                 <h3 style="font-family: 'Rajdhani', sans-serif; color: #fff; font-size: 1.5rem; margin-top: 0.5rem;">SKYGUARD LABS, LLC</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic; max-width: 640px; margin: 1rem auto 0; line-height: 1.7;">
+                    "We are the geometry intelligence layer that makes optical airspace sensing trustworthy — from first detection through intercept cueing."
+                </p>
             </div>
             <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
-                <p>&copy; 2026 SkyGuard Labs, LLC</p>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary);">Patent Pending &nbsp;·&nbsp; &copy; 2026 SkyGuard Labs, LLC &nbsp;·&nbsp; Denver, Colorado &nbsp;·&nbsp; integration@skyguarddefense.com</p>
             </div>
         </div>
     </footer>
