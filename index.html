@@ -503,8 +503,9 @@
                     <p>
                         These envelopes define what each threat class can and cannot physically be. They do not change when an adversary repaints an airframe. They do not degrade when a new drone model enters the field. And they cannot be defeated by a printed pattern, an RF jammer, or a GPS spoofer — because none of those tools change the underlying physics of the object.
                     </p>
+                    <!-- EDIT 1: Updated final catalog paragraph -->
                     <p>
-                        OTIS ships with this catalog baked in from day one. Every confirmed observation — across every deployment, every integration, every unit in the field worldwide — makes OTIS measurably more precise. Not by learning new rules. By sharpening its certainty around the physics it already knows. The entire deployed fleet improves with every engagement. Simultaneously. Without retraining.
+                        OTIS ships with this catalog baked in from day one. Every confirmed observation accumulates against the underlying catalog — sharpening certainty around the physics it already knows. Not by learning new rules. Not by retraining. OTIS operates with full autonomy at runtime, with no network dependency on the engagement path. Catalog refinement is asynchronous and integration-configurable — from fully air-gapped local accumulation to classified network sync, depending on program requirements. Every deployment starts from the same physics-derived foundation. Strong from day one.
                     </p>
                     <p class="tagline">EO/IR &nbsp;·&nbsp; SENSOR-AGNOSTIC &nbsp;·&nbsp; DDIL-READY &nbsp;·&nbsp; GEOMETRY-FIRST</p>
                 </div>
@@ -515,9 +516,10 @@
                         <h4>Physics-Grounded</h4>
                         <p>Classification logic is derived from immutable physical laws — not trained on image datasets that adversaries have already learned to defeat. OTIS tests real-world measurements against physics-constrained threat models. A novel airframe cannot defeat it. Adversarial camouflage cannot defeat it. An RF-silent drone operating in GPS-denied airspace cannot defeat it. To defeat OTIS, an adversary must violate the laws of physics. That is not a gap they can close.</p>
                     </div>
+                    <!-- EDIT 2: Updated Self-Refining pillar -->
                     <div class="otis-pillar">
-                        <h4>Self-Refining — Fleet-Wide</h4>
-                        <p>Every OTIS integration in the field — every engagement, every confirmed detection, every near-miss — contributes to continuous global refinement of the underlying threat model catalog. Not per-device. Not per-update cycle. Fleet-wide, in real time, across every deployed unit simultaneously. OTIS in its 100th deployment is measurably more precise than OTIS in its first. The adversary's threat pool grows. So does OTIS's certainty.</p>
+                        <h4>Self-Refining — Autonomy-First</h4>
+                        <p>OTIS operates with full autonomy at runtime — no network dependency on the engagement path. Every confirmed observation accumulates locally against the physics-derived catalog, sharpening certainty over time without retraining or update cycles. Catalog refinement is asynchronous and integration-configurable: from fully air-gapped local accumulation to classified network sync, depending on program requirements. OTIS in its 100th deployment is measurably more precise than OTIS in its first. The adversary's threat pool grows. So does OTIS's certainty.</p>
                     </div>
                     <div class="otis-pillar">
                         <h4>Fully Explainable — DoD XAI</h4>
@@ -529,9 +531,10 @@
                 <h3 class="otis-how-title fade-in">Operational Characteristics</h3>
 
                 <div class="otis-ops-grid fade-in delay-100">
+                    <!-- EDIT 3A: Updated Network Dependency -->
                     <div class="otis-ops-item">
                         <div class="ops-key">Network Dependency</div>
-                        <div class="ops-val">None — air-gap ready, DDIL-native</div>
+                        <div class="ops-val">None on the engagement path — air-gap ready, DDIL-native. Catalog refinement is asynchronous and occurs outside the engagement envelope.</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">RF Dependency</div>
@@ -549,9 +552,15 @@
                         <div class="ops-key">DDIL Suitability</div>
                         <div class="ops-val">Zero external data dependencies at runtime. Operates identically in clean and fully contested environments.</div>
                     </div>
+                    <!-- EDIT 3B: Updated Continuous Improvement -->
                     <div class="otis-ops-item">
                         <div class="ops-key">Continuous Improvement</div>
-                        <div class="ops-val">Fleet-wide refinement — every deployed unit improves every other deployed unit. No retraining. No update cycles.</div>
+                        <div class="ops-val">Integration-configurable — from fully air-gapped local accumulation to classified network sync. No retraining. No real-time network dependency. Every unit starts from the same physics-derived foundation, strong from day one.</div>
+                    </div>
+                    <!-- EDIT 3C: New Refinement Models row -->
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Refinement Models</div>
+                        <div class="ops-val">Air-gapped local &nbsp;·&nbsp; Sneakernet / physical media &nbsp;·&nbsp; Sync-on-connect &nbsp;·&nbsp; NIPR / SIPR / JWICS &nbsp;·&nbsp; Commercial API — configured per integration requirement.</div>
                     </div>
                     <div class="otis-ops-item">
                         <div class="ops-key">Human-in-the-Loop</div>
