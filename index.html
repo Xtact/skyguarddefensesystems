@@ -16,12 +16,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.jpg">
+    <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+</video>
     <link rel="stylesheet" href="styles.css">
 
     <style>
         /* ── OTIS Section ── */
         #otis {
             background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,10,20,0.6) 100%);
+        }
+
+        /* ── Physics Lesson Caption ── */
+        .otis-physics-caption {
+            height: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .otis-physics-caption span {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #7fe8ff;
+            text-shadow: 0 0 6px rgba(0,255,204,0.55), 0 0 18px rgba(0,200,255,0.35);
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .otis-physics-caption span.visible {
+            opacity: 1;
         }
 
         .otis-intro {
@@ -335,14 +363,19 @@
     </header>
 
     <main>
-       <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="/sources/images/Sky_Open_1.jpg">
-    <source src="/sources/images/Sky_Open_1.mp4" type="video/mp4">
+        <section class="hero section-anchor" style="position: relative; overflow: hidden; height: 78vh; min-height: 460px; display: block; background: linear-gradient(160deg, #001018 0%, #000814 100%);">
+       <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="https://cdn.jsdelivr.net/gh/Xtact/skyguarddefensesystems@main/sources/images/Sky_Open_1.jpg" onerror="this.style.display='none';" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+    <source src="https://cdn.jsdelivr.net/gh/Xtact/skyguarddefensesystems@main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
             </video>
-            <div class="hero-overlay"></div>
-            <div class="hero-text fade-in">
-                <h1>SkyGuard Labs, LLC</h1>
-                <!-- EDIT 1: Reworded H2 for better flow -->
-                <h2>GEOMETRY INTELLIGENCE ACROSS THE FULL THREAT SPECTRUM</h2>
+            <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+            <div class="hero-text fade-in" style="position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); z-index: 2; width: 100%; text-align: center; padding: 0 1.5rem;">
+                <h1 style="font-family: 'Inter', 'Rajdhani', sans-serif; font-weight: 300; font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.15; color: #ffffff; margin: 0 0 1.1rem; text-shadow: 0 2px 20px rgba(0,0,0,0.55);">
+                    Geometry Intelligence for<br>Optical Airspace Sensing
+                </h1>
+                <p style="max-width: 620px; margin: 0 auto; font-size: clamp(0.95rem, 1.6vw, 1.15rem); font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.88); text-shadow: 0 1px 12px rgba(0,0,0,0.6);">
+                    SkyGuard Labs engineers physics-grounded decision layers for next-generation optical sensing platforms.
+                </p>
             </div>
         </section>
 
@@ -351,19 +384,19 @@
         </div>
 
         <!-- HERO SUMMARY -->
-        <section class="section-padding section-anchor">
+        <section class="section-padding section-anchor" style="padding-top: 2.5rem; padding-bottom: 1rem;">
             <div class="container">
                 <div class="fade-in" style="max-width: 820px; margin: 0 auto; text-align: center;">
-                    <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
                         The aerial threat spectrum runs from a $300 FPV drone to a Mach 20 hypersonic reentry vehicle. Every threat on that spectrum — from the cheapest to the most lethal — shares one property: physical geometry that obeys the laws of physics.
                     </p>
-                    <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
                         Every defense system currently deployed makes life-and-death decisions based on pixel patterns, RF signals, or GPS coordinates. Those are inputs the adversary controls. They are being exploited — systematically, at scale, right now.
                     </p>
-                    <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
                         SkyGuard Labs built O.T.I.S.: the GeoIntel&#8482; layer that operates on the one input the adversary cannot control. Physics.
                     </p>
-                    <p style="font-size: 1rem; color: var(--accent-blue); letter-spacing: 0.12em; font-family: var(--font-head); font-weight: 600;">
+                    <p style="font-size: 0.95rem; color: var(--accent-blue); letter-spacing: 0.12em; font-family: var(--font-head); font-weight: 600; margin-bottom: 0;">
                         PATENT PENDING &nbsp;·&nbsp; SOFTWARE-FIRST &nbsp;·&nbsp; FULL THREAT SPECTRUM
                     </p>
                 </div>
@@ -372,24 +405,28 @@
 
         <!-- OTIS SECTION -->
         <div style="width: 100%; padding: 0; line-height: 0; font-size: 0;">
-            <div class="section-divider"></div>
+            <div class="section-divider" style="margin: 0.5rem auto 1.25rem;"></div>
         </div>
 
-        <section id="otis" class="section-padding bg-darker section-anchor">
+        <section id="otis" class="section-padding bg-darker section-anchor" style="padding-top: 1rem;">
             <div class="container">
 
-                <div class="section-header fade-in">
-                    <h2 class="section-title">O.T.I.S.</h2>
-                    <div class="section-line"></div>
-                    <p class="section-subtitle">Optical Threat Isolation System</p>
+                <div class="section-header fade-in" style="margin-bottom: 1.5rem;">
+                    <h2 class="section-title" style="margin-bottom: 0.25rem;">O.T.I.S.</h2>
+                    <div class="section-line" style="margin: 0.5rem auto;"></div>
+                    <p class="section-subtitle" style="margin: 0;">Optical Threat Isolation System</p>
                 </div>
 
                 <!-- OTIS PHYSICS LESSON VIDEO -->
-                <div class="fade-in" style="max-width: 900px; margin: 0 auto 3rem; text-align: center;">
-                    <video autoplay muted loop playsinline webkit-playsinline preload="auto"
-                           style="width: 100%; border: 1px solid rgba(0,255,204,0.25); box-shadow: 0 0 25px rgba(0,255,204,0.12);">
+                <div class="fade-in" style="max-width: 900px; margin: 0 auto 2rem; text-align: center;">
+                    <div id="otis-physics-caption" class="otis-physics-caption">
+                        <span id="otis-physics-caption-text">GRAVITY IS UNIVERSAL.</span>
+                    </div>
+                    <video id="otis-physics-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+                           style="width: 100%; display: block; border: 1px solid rgba(0,255,204,0.25); box-shadow: 0 0 25px rgba(0,255,204,0.12);">
                         <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/OTIS_physics_lesson_full_v3.mp4" type="video/mp4">
                     </video>
+                    <p style="font-size: 0.85rem; color: var(--text-tertiary); letter-spacing: 0.08em; margin-top: 0.6rem; text-transform: uppercase;">The physics behind O.T.I.S. — geometry that cannot be spoofed</p>
                 </div>
 
                 <!-- THREAT SECTION HEADER -->
@@ -401,6 +438,7 @@
 
                 <!-- THREAT CHALLENGE GRID -->
                 <div class="threat-grid fade-in delay-100">
+
                     <div class="threat-item">
                         <div class="threat-num">01</div>
                         <div class="threat-body">
@@ -484,6 +522,7 @@
                             <span class="check">✓</span>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- PAYOFF BLOCK -->
@@ -707,6 +746,42 @@
         }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        const otisPhysicsVideo = document.getElementById('otis-physics-video');
+        const otisCaptionText = document.getElementById('otis-physics-caption-text');
+
+        if (otisPhysicsVideo && otisCaptionText) {
+            const otisBeats = [
+                { start: 0,  end: 8,  text: 'GRAVITY IS UNIVERSAL.' },
+                { start: 8,  end: 18, text: 'MASS AND VELOCITY OBEY THE SAME LAWS.' },
+                { start: 18, end: 27, text: 'TERMINAL PHASE FOLLOWS PHYSICS, NOT PIXELS.' },
+                { start: 27, end: 32, text: 'EVEN IN NATURE, GEOMETRY DOES NOT LIE.' }
+            ];
+
+            let otisActiveBeat = -1;
+
+            const setOtisCaption = (beatIndex) => {
+                if (beatIndex === otisActiveBeat) return;
+                otisActiveBeat = beatIndex;
+                otisCaptionText.classList.remove('visible');
+                window.setTimeout(() => {
+                    if (beatIndex >= 0) {
+                        otisCaptionText.textContent = otisBeats[beatIndex].text;
+                        requestAnimationFrame(() => otisCaptionText.classList.add('visible'));
+                    }
+                }, 350);
+            };
+
+            otisPhysicsVideo.addEventListener('timeupdate', () => {
+                const t = otisPhysicsVideo.currentTime;
+                const idx = otisBeats.findIndex(b => t >= b.start && t < b.end);
+                setOtisCaption(idx === -1 ? otisBeats.length - 1 : idx);
+            });
+
+            otisPhysicsVideo.addEventListener('seeked', () => {
+                otisActiveBeat = -1;
+            });
+        }
     </script>
 </body>
 </html>
