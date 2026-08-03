@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://skyguarddefense.com/" />
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="yySe8ZFhDyj+X65/ICB9gA" async></script>
+    <meta name="ahrefs-site-verification" content="e3a44d7d0d77d338da47c0d60bd5a474ba9ad81e92b7d6b59cc28243f8ef9c19">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyGuard Labs, LLC</title>
+    <meta name="description" content="SkyGuard Labs builds GeoIntel™ — the geometry intelligence layer that makes optical airspace sensing trustworthy from first detection through intercept cueing.">
+    <meta property="og:title" content="SkyGuard Labs, LLC">
+    <meta property="og:description" content="SkyGuard Labs builds GeoIntel™ — the geometry intelligence layer that makes optical airspace sensing trustworthy from first detection through intercept cueing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skyguarddefense.com">
+    <meta property="og:image" content="https://skyguarddefense.com/trans_sky_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.jpg">
+    <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+</video>
+    <link rel="stylesheet" href="styles.css">
+ 
+    <style>
+        /* ── Section Labels ── */
+        .sec-label {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .sec-label-wrap {
+            margin-bottom: 1.1rem;
+        }
+
+        /* Current State — amber/red, urgency framing */
+        .sec-label--state {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            color: #ff9d4d;
+            text-shadow: 0 0 10px rgba(255,130,40,0.45);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .sec-label--state::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 46px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff9d4d, transparent);
+        }
+
+        /* The Solution — teal/cyan, resolution framing */
+        .sec-label--solution {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            color: var(--accent-teal, #00ffcc);
+            text-shadow: 0 0 10px rgba(0,255,204,0.45);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .sec-label--solution::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 46px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffcc, transparent);
+        }
+
+        /* The OTIS Difference — gold, differentiation framing */
+        .sec-label--difference {
+            font-size: 0.9rem;
+            letter-spacing: 0.24em;
+            color: var(--accent-gold, #ffd700);
+            text-shadow: 0 0 10px rgba(255,215,0,0.4);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .sec-label--difference::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 46px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        }
+
+        /* ── OTIS Section ── */
+        #otis {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,10,20,0.6) 100%);
+        }
+
+        /* ── Physics Lesson Caption ── */
+        .otis-physics-caption {
+            height: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .otis-physics-caption span {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #7fe8ff;
+            text-shadow: 0 0 6px rgba(0,255,204,0.55), 0 0 18px rgba(0,200,255,0.35);
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .otis-physics-caption span.visible {
+            opacity: 1;
+        }
+
+        .otis-intro {
+            max-width: 820px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+        }
+
+        .otis-intro p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+
+        .otis-intro .tagline {
+            font-size: 1rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.14em;
+            font-family: var(--font-head);
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        .otis-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .otis-pillar {
+            position: relative;
+            padding: 2rem;
+            background: rgba(0, 20, 40, 0.55);
+            border: 1px solid rgba(0,255,204,0.12);
+            border-top: 2px solid var(--accent-teal, #00ffcc);
+        }
+
+        .otis-pillar h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-teal, #00ffcc);
+            margin: 0 0 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .otis-pillar p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .otis-how-title {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.18em;
+            color: var(--accent-gold, #ffd700);
+            text-align: center;
+            margin: 3rem 0 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .otis-channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .otis-channel {
+            padding: 1.5rem;
+            background: rgba(0,10,30,0.6);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 3px solid var(--accent-gold, #ffd700);
+        }
+
+        .otis-channel .ch-label {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            color: var(--accent-gold, #ffd700);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .otis-channel h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            color: #fff;
+            margin: 0 0 0.5rem;
+        }
+
+        .otis-channel p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .otis-discriminators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .otis-disc {
+            padding: 1.5rem 1.75rem;
+            background: rgba(255,0,50,0.04);
+            border: 1px solid rgba(255,51,51,0.18);
+            border-top: 2px solid #ff3333;
+        }
+
+        .otis-disc h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
+            color: #ff6666;
+            margin: 0 0 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .otis-disc p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .otis-ops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            border: 1px solid rgba(0,255,204,0.12);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .otis-ops-item {
+            padding: 1.25rem 1.5rem;
+            background: rgba(0,15,30,0.7);
+            border-bottom: 1px solid rgba(0,255,204,0.08);
+        }
+
+        .otis-ops-item .ops-key {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            color: var(--accent-teal, #00ffcc);
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .otis-ops-item .ops-val {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .otis-apps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .otis-app-tag {
+            padding: 0.45rem 1rem;
+            border: 1px solid rgba(0,255,204,0.25);
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-teal, #00ffcc);
+            text-transform: uppercase;
+            background: rgba(0,255,204,0.04);
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold, #ffd700);
+            margin: 0 auto 3rem;
+            box-shadow: 0 0 10px var(--accent-gold, #ffd700);
+        }
+
+        /* ── Threat Grid ── */
+        .threat-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid rgba(255, 51, 51, 0.25);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .threat-item {
+            padding: 2rem 2.25rem;
+            background: rgba(255, 0, 30, 0.03);
+            border-bottom: 1px solid rgba(255, 51, 51, 0.15);
+            display: grid;
+            grid-template-columns: 2.5rem 1fr auto;
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        .threat-item:last-child {
+            border-bottom: none;
+        }
+
+        .threat-num {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            color: rgba(255, 51, 51, 0.5);
+            padding-top: 0.2rem;
+        }
+
+        .threat-body h4 {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.14em;
+            color: #ff6666;
+            margin: 0 0 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .threat-body p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .threat-verdict {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-teal, #00ffcc);
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding-top: 0.2rem;
+            text-align: right;
+        }
+
+        .threat-verdict .check {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--accent-teal, #00ffcc);
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+
+        .payoff-block {
+            max-width: 680px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 2.5rem 1rem;
+        }
+
+        .payoff-block p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        .payoff-block p + p {
+            margin-top: 1.2rem;
+        }
+
+        .payoff-block .payoff-anchor {
+            font-family: var(--font-head), 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.16em;
+            color: var(--accent-gold, #ffd700);
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .threat-item {
+                grid-template-columns: 2rem 1fr;
+                grid-template-rows: auto auto;
+            }
+            .threat-verdict {
+                grid-column: 2;
+                text-align: left;
+                margin-top: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body id="home">
+    <div class="grid-overlay"></div>
+    <header style="background: linear-gradient(135deg, #061a24 0%, #0a2a38 50%, #061a24 100%) !important; display: flex !important; align-items: center !important; height: auto !important; min-height: unset !important; border-radius: 40px !important; margin: 15px !important; padding: 0.75rem 1.5rem !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative !important; z-index: 1000 !important;">
+        <div class="container">
+            <nav style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+                <a href="#home" class="logo" style="display: flex; align-items: center; text-decoration: none;" aria-label="SkyGuard Labs, LLC Home">
+                    <img src="trans_sky_logo.png" alt="SkyGuard Labs, LLC Logo" style="height: 60px; width: auto; max-width: 220px; display: block; object-fit: contain;">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero section-anchor" style="position: relative; overflow: hidden; height: 78vh; min-height: 460px; display: block; background: linear-gradient(160deg, #001018 0%, #000814 100%);">
+       <video autoplay muted loop playsinline webkit-playsinline class="hero-video" preload="auto" poster="https://cdn.jsdelivr.net/gh/Xtact/skyguarddefensesystems@main/sources/images/Sky_Open_1.jpg" onerror="this.style.display='none';" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+    <source src="https://cdn.jsdelivr.net/gh/Xtact/skyguarddefensesystems@main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+            <div class="hero-text fade-in" style="position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); z-index: 2; width: 100%; text-align: center; padding: 0 1.5rem;">
+                <h1 style="font-family: 'Inter', 'Rajdhani', sans-serif; font-weight: 300; font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.15; color: #ffffff; margin: 0 0 1.1rem; text-shadow: 0 2px 20px rgba(0,0,0,0.55);">
+                    Geometry Intelligence for<br>Optical Airspace Sensing
+                </h1>
+                <p style="max-width: 620px; margin: 0 auto; font-size: clamp(0.95rem, 1.6vw, 1.15rem); font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.88); text-shadow: 0 1px 12px rgba(0,0,0,0.6);">
+                    SkyGuard Labs engineers physics-grounded decision layers for next-generation optical sensing platforms.
+                </p>
+            </div>
+        </section>
+
+        <div style="width: 100%; padding: 0; line-height: 0; font-size: 0;">
+            <div style="width: 80px; height: 3px; background: var(--accent-gold); margin: 0 auto; box-shadow: 0 0 10px var(--accent-gold);"></div>
+        </div>
+
+        <!-- HERO SUMMARY -->
+        <section class="section-padding section-anchor" style="padding-top: 2.5rem; padding-bottom: 1rem;">
+            <div class="container">
+                <div class="fade-in" style="max-width: 820px; margin: 0 auto; text-align: center;">
+                    <div class="sec-label-wrap" style="text-align: center;">
+                        <span class="sec-label sec-label--state">Current State</span>
+                    </div>
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
+                        The aerial threat spectrum runs from a low-cost FPV drone to a Mach 20 hypersonic reentry vehicle. Every threat on that spectrum — from the cheapest to the most lethal — shares universal properties: physical geometry attributes that obey the precise laws of physics.
+                    </p>
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
+                        Every defense system currently deployed makes life-and-death decisions based on pixel patterns, RF signals, or GPS coordinates. Those are inputs the adversary controls. They are being exploited — systematically, at scale, right now.
+                    </p>
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
+                        SkyGuard Labs built O.T.I.S.: the GeoIntel&#8482; layer that operates on the one input the adversary cannot control. Physics.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--accent-blue); letter-spacing: 0.12em; font-family: var(--font-head); font-weight: 600; margin-bottom: 0;">
+                        PATENT PENDING &nbsp;·&nbsp; SOFTWARE-FIRST &nbsp;·&nbsp; FULL THREAT SPECTRUM
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTIS SECTION -->
+        <div style="width: 100%; padding: 0; line-height: 0; font-size: 0;">
+            <div class="section-divider" style="margin: 0.5rem auto 1.25rem;"></div>
+        </div>
+
+        <section id="otis" class="section-padding bg-darker section-anchor" style="padding-top: 1rem;">
+            <div class="container">
+
+                <div class="section-header fade-in" style="margin-bottom: 1.5rem;">
+                    <h2 class="section-title" style="margin-bottom: 0.25rem;">O.T.I.S.</h2>
+                    <div class="section-line" style="margin: 0.5rem auto;"></div>
+                    <p class="section-subtitle" style="margin: 0;">Optical Threat Isolation System</p>
+                </div>
+
+                <!-- OTIS PHYSICS LESSON VIDEO -->
+                <div class="fade-in" style="max-width: 900px; margin: 0 auto 2rem; text-align: center;">
+                    <div id="otis-physics-caption" class="otis-physics-caption">
+                        <span id="otis-physics-caption-text">GRAVITY IS UNIVERSAL.</span>
+                    </div>
+                    <video id="otis-physics-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+                           style="width: 100%; display: block; border: 1px solid rgba(0,255,204,0.25); box-shadow: 0 0 25px rgba(0,255,204,0.12);">
+                        <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/OTIS_physics_lesson_full_v3.mp4" type="video/mp4">
+                    </video>
+                    <p style="font-size: 0.85rem; color: var(--text-tertiary); letter-spacing: 0.08em; margin-top: 0.6rem; text-transform: uppercase;">The physics behind O.T.I.S. — geometry, decoded</p>
+                </div>
+
+                <!-- THREAT SECTION HEADER -->
+                <div class="fade-in" style="max-width: 820px; margin: 0 auto 2.5rem; text-align: center;">
+                    <h3 style="font-family: var(--font-head), 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 0.16em; color: #ff4444; text-transform: uppercase; line-height: 1.5; margin-bottom: 0;">
+                        THE THREATS THAT ARE DEFEATING EVERY SENSOR STACK IN THEATER.<br>RIGHT NOW.
+                    </h3>
+                </div>
+
+                <!-- THREAT CHALLENGE GRID -->
+                <div class="threat-grid fade-in delay-100">
+
+                    <div class="threat-item">
+                        <div class="threat-num">01</div>
+                        <div class="threat-body">
+                            <h4>Glide Bombs (KAB-Class, JDAM-ER)</h4>
+                            <p>Released beyond intercept range with an unpowered terminal phase — no heat signature, no RF to jam. Resistant to every electronic countermeasure fielded today.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">02</div>
+                        <div class="threat-body">
+                            <h4>Subsonic Cruise Missiles (Shahed-Class, X-101, Kalibr)</h4>
+                            <p>Launched in high volume, often timed with drone swarms to saturate every layer of the intercept stack simultaneously.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">03</div>
+                        <div class="threat-body">
+                            <h4>Hypersonic Missiles — Terminal Phase</h4>
+                            <p>Mach 5–20 terminal phase. Decoys and real warheads look identical to every pixel-based classifier — the unsolved core of the Golden Dome problem.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">04</div>
+                        <div class="threat-body">
+                            <h4>RF-Silent Loitering Munitions</h4>
+                            <p>RF off, GPS off, altitude low — built to defeat every passive RF and radar layer at once. The core threat the anti-drone market still cannot solve.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">05</div>
+                        <div class="threat-body">
+                            <h4>Fiber Optic-Guided FPV &nbsp;/&nbsp; "Dark Drone"</h4>
+                            <p>No RF, no GPS uplink, no control link to detect or jam — tethered by fiber, invisible to every passive RF sensor ever deployed.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">06</div>
+                        <div class="threat-body">
+                            <h4>Adversarially Modified Platforms &amp; Optical Decoys</h4>
+                            <p>Low-cost printed patterns defeat published EO/IR classifiers outright — causing real threats to be ignored and interceptors fired at nothing.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="threat-item">
+                        <div class="threat-num">07</div>
+                        <div class="threat-body">
+                            <h4>GPS-Spoofed / GPS-Denied Operations</h4>
+                            <p>GPS jamming is rising sharply and degrades every GPS-referenced fusion stack and cueing system at once — a force multiplier for every other threat on this list.</p>
+                        </div>
+                        <div class="threat-verdict">
+                            DETECTED. CLASSIFIED. CUED.
+                            <span class="check">✓</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PAYOFF BLOCK -->
+                <div class="payoff-block fade-in">
+                    <p>Every threat on this list defeats every currently deployed optical sensor system in live battle.</p>
+                    <p>Not one of them defeats the long-established laws of physics.</p>
+                    <span class="payoff-anchor">This is OTIS's operational foundation.</span>
+                </div>
+
+                <!-- OTIS INTRO -->
+                <div class="otis-intro fade-in">
+                    <div class="sec-label-wrap" style="text-align: center;">
+                        <span class="sec-label sec-label--solution">The Solution</span>
+                    </div>
+                    <p>
+                        Current EO/IR systems rely on AI, ML, and computer-vision image libraries to recognize what a threat <em>looks</em> like — an approach adversaries can defeat for the cost of a printed pattern.
+                    </p>
+                    <p>
+                        OTIS applies ground-truth physics and geometry instead. Accuracy comes from Newton's fundamental laws, not learned pixels — freeing up the compute those AI/ML pipelines demand, and letting OTIS run autonomously beyond the edge in contested, DDIL environments.
+                    </p>
+                    <div class="sec-label-wrap" style="text-align: center; margin-top: 2rem;">
+                        <span class="sec-label sec-label--difference">The OTIS Difference</span>
+                    </div>
+                    <p>
+                        OTIS operates differently. It verifies what a threat must physically be, using the PhysicsPrint&#8482; Threat Catalog — physical parameter envelopes derived directly from the laws of physics, not learned from images or historical data. Adversarial patches, novel airframes, and electronic countermeasures change pixels. They cannot change physics.
+                    </p>
+                    <p>
+                        Every confirmed observation sharpens that foundation over time via AdaptCal&#8482; — asynchronous, integration-configurable, and never dependent on a live network connection during engagement. Every deployment starts strong, from day one.
+                    </p>
+                    <p class="tagline" style="text-align: center;">EO/IR &nbsp;·&nbsp; SENSOR-AGNOSTIC &nbsp;·&nbsp; DDIL-READY &nbsp;·&nbsp; GEOMETRY-FIRST</p>
+                </div>
+
+                <!-- THREE PILLARS -->
+                <div class="otis-pillars fade-in delay-100">
+                    <div class="otis-pillar">
+                        <h4>Physics-Grounded — GeoVerify&#8482;</h4>
+                        <p>GeoVerify&#8482; classification logic is derived from immutable physical laws, not image datasets adversaries have already learned to defeat. Novel airframes, camouflage, and RF-silent drones in GPS-denied airspace all still obey physics — so none of them can defeat it.</p>
+                    </div>
+                    <div class="otis-pillar">
+                        <h4>Self-Refining — AdaptCal&#8482;</h4>
+                        <p>OTIS runs fully autonomously at runtime, with no network dependency on the engagement path. Every confirmed observation sharpens certainty against the PhysicsPrint&#8482; Threat Catalog over time — no retraining required. OTIS's 100th deployment is measurably more precise than its first.</p>
+                    </div>
+                    <div class="otis-pillar">
+                        <h4>Fully Explainable — ClearCue&#8482;</h4>
+                        <p>Every OTIS decision is backed by ClearCue&#8482; — auditable output mapped to a physical measurement and a physics-derived bound, not an opaque neural network activation. It shows exactly which property triggered the call, a legal and operational requirement for autonomous engagement architectures.</p>
+                    </div>
+                </div>
+
+                <!-- OPERATIONAL CHARACTERISTICS -->
+                <h3 class="otis-how-title fade-in">Operational Characteristics</h3>
+
+                <div class="otis-ops-grid fade-in delay-100">
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Network Dependency</div>
+                        <div class="ops-val">None on the engagement path — air-gap ready, DDIL-native.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">RF Dependency</div>
+                        <div class="ops-val">None — zero-emission passive optical monitoring, no signature to anti-radiation targeting.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Explainability</div>
+                        <div class="ops-val">Full — every decision auditable against a physics-derived bound, meeting DoD XAI standards.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Novel Airframes</div>
+                        <div class="ops-val">Physics-based classification generalizes to unseen airframes automatically.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">DDIL Suitability</div>
+                        <div class="ops-val">Zero external data dependencies at runtime — identical performance in clean or contested environments.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Continuous Improvement</div>
+                        <div class="ops-val">Configurable from air-gapped local accumulation to classified network sync — no retraining required.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Refinement Models</div>
+                        <div class="ops-val">Air-gapped &nbsp;·&nbsp; Sneakernet &nbsp;·&nbsp; Sync-on-connect &nbsp;·&nbsp; NIPR/SIPR/JWICS &nbsp;·&nbsp; Commercial API</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Human-in-the-Loop</div>
+                        <div class="ops-val">Configurable confidence threshold per rules of engagement.</div>
+                    </div>
+                    <div class="otis-ops-item">
+                        <div class="ops-key">Sensor Input</div>
+                        <div class="ops-val">Any optical input, monocular through full LiDAR — hardware-agnostic by design.</div>
+                    </div>
+                </div>
+
+                <!-- APPLICATION AREAS -->
+                <h3 class="otis-how-title fade-in">Application Areas</h3>
+
+                <div class="otis-channels fade-in delay-100">
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 01</div>
+                        <h4>Layered C-UAS Architectures</h4>
+                        <p>The GeoIntel&#8482; verification layer that completes the sensor stack — covering every threat RF and radar cannot classify.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 02</div>
+                        <h4>Air &amp; Missile Defense / Golden Dome</h4>
+                        <p>GeoVerify&#8482; terminal phase discrimination between real warheads and decoys. The problem that existing interceptor stacks cannot solve. The problem OTIS was built to solve.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 03</div>
+                        <h4>Autonomous Convoy &amp; Platform Protection</h4>
+                        <p>GeoVerify&#8482; threat verification for unmanned ground and air platforms operating in contested, GPS-denied environments.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 04</div>
+                        <h4>Fixed-Site &amp; Critical Infrastructure Defense</h4>
+                        <p>SilentWatch&#8482; continuous passive optical monitoring. Zero RF emission. Presents no signature to anti-radiation targeting systems. Operates where radar cannot survive.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 05</div>
+                        <h4>EO/IR Sensor Mesh Ground Truth</h4>
+                        <p>The GeoIntel&#8482; verification layer for proliferated sensor architectures — ensuring every node in the mesh is making decisions based on physics, not pixels.</p>
+                    </div>
+                    <div class="otis-channel">
+                        <div class="ch-label">Domain 06</div>
+                        <h4>Autonomous Vehicle Safety</h4>
+                        <p>The same pixel-based failure that causes camera-equipped vehicles to miss threats exists in every AV perception stack. GeoVerify&#8482; applies physics-grounded verification to ground-domain autonomy.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section-padding bg-darker section-anchor" style="padding-top: 0.25rem; margin-top: -2.5rem;">
+            <div class="container">
+                <div class="section-header fade-in" style="margin-bottom: 2rem;">
+                    <h2 class="section-title">INTEGRATION INQUIRIES</h2>
+                    <div class="section-line"></div>
+                    <p class="section-subtitle">OTIS is available for integration via SDK and API under executed NDA. We work directly with defense primes, C-UAS integrators, autonomous systems developers, and government program offices. If you are building a sensor stack and need ground truth that the adversary cannot manipulate — this is the conversation to have.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="hud-card fade-in delay-100">
+                        <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
+                        <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
+                        <h2 class="section-title" style="font-size: 1.8rem;">SKYGUARD LABS, LLC</h2>
+                        <p style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 1.5rem;">Location Details</p>
+                        <p style="margin-bottom: 1rem;">Denver, Colorado, USA</p>
+                        <p style="margin-bottom: 1rem;"><strong>Email:</strong> integration@skyguarddefense.com</p>
+                        <p style="margin-bottom: 2rem;"><strong>Comms:</strong> Intel-Support Line (24/7) &nbsp;·&nbsp; (720) 667-8447</p>
+                        <p style="font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.4; font-style: italic; border-top: 1px solid var(--border-light); padding-top: 1rem;">
+                            All technical briefings are conducted under executed NDA. Patent Pending. All rights reserved.</p>
+                    </div>
+
+                    <div class="hud-card fade-in delay-200">
+                        <div class="card-corner top-left"></div><div class="card-corner top-right"></div>
+                        <div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
+                        <form name="contact" method="POST" data-netlify="true" netlify>
+                            <input type="hidden" name="form-name" value="contact" />
+                            <div class="form-group">
+                                <label class="form-label">IDENTITY / CALLSIGN</label>
+                                <input type="text" name="identity" class="form-input" placeholder="e.g. MAJ. J. MILLER" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">SECURE EMAIL CHANNEL</label>
+                                <input type="email" name="email" class="form-input" placeholder="RECIPIENT@AGENCY.GOV" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">MISSION PARAMETERS &amp; INTEGRATION REQUIREMENTS</label>
+                                <textarea name="message" class="form-input" style="min-height: 120px; resize: none;" placeholder="DESCRIBE THREAT PROFILE AND SENSOR STACK..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">TRANSMIT ENCRYPTED DATA</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Return to top">
+        <span class="btn-icon">&#9650;</span>
+        <span class="btn-text">TOP</span>
+    </button>
+
+    <footer style="margin-top: -1.5rem;">
+        <div class="container">
+            <div style="text-align: center; padding: 1.5rem 0 2rem;">
+                <img src="trans_sky_logo.png" alt="SkyGuard Labs, LLC Logo" style="height: 60px; width: auto; max-width: 220px; display: block; margin: 0 auto 1rem auto; object-fit: contain;">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic; max-width: 640px; margin: 1rem auto 0; line-height: 1.7;">
+                    "We are the GeoIntel&#8482; layer that makes optical airspace sensing trustworthy — from first detection through intercept cueing."
+                </p>
+            </div>
+            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 1.2rem;">
+                    UEI: PCGZWJ6WQG34 &nbsp;·&nbsp; CAGE CODE: 21SW6
+                </p>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary);">
+                    GeoIntel&#8482; &nbsp;·&nbsp; PhysicsPrint&#8482; &nbsp;·&nbsp; GeoVerify&#8482; &nbsp;·&nbsp; AdaptCal&#8482; &nbsp;·&nbsp; SilentWatch&#8482; &nbsp;·&nbsp; ClearCue&#8482;<br>
+                    Patent Pending &nbsp;·&nbsp; &copy; 2026 SkyGuard Labs, LLC &nbsp;·&nbsp; Denver, Colorado &nbsp;·&nbsp; integration@skyguarddefense.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const scrollTopBtn = document.getElementById('scroll-top-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        const otisPhysicsVideo = document.getElementById('otis-physics-video');
+        const otisCaptionText = document.getElementById('otis-physics-caption-text');
+
+        if (otisPhysicsVideo && otisCaptionText) {
+            const otisBeats = [
+                { start: 0,  end: 8,  text: 'GRAVITY IS UNIVERSAL.' },
+                { start: 8,  end: 18, text: 'MASS AND VELOCITY OBEY THE SAME LAWS.' },
+                { start: 18, end: 27, text: 'TERMINAL PHASE FOLLOWS PHYSICS, NOT PIXELS.' },
+                { start: 27, end: 32, text: 'EVEN IN NATURE, GEOMETRY HOLDS TRUE.' }
+            ];
+
+            let otisActiveBeat = -1;
+
+            const setOtisCaption = (beatIndex) => {
+                if (beatIndex === otisActiveBeat) return;
+                otisActiveBeat = beatIndex;
+                otisCaptionText.classList.remove('visible');
+                window.setTimeout(() => {
+                    if (beatIndex >= 0) {
+                        otisCaptionText.textContent = otisBeats[beatIndex].text;
+                        requestAnimationFrame(() => otisCaptionText.classList.add('visible'));
+                    }
+                }, 350);
+            };
+
+            otisPhysicsVideo.addEventListener('timeupdate', () => {
+                const t = otisPhysicsVideo.currentTime;
+                const idx = otisBeats.findIndex(b => t >= b.start && t < b.end);
+                setOtisCaption(idx === -1 ? otisBeats.length - 1 : idx);
+            });
+
+            otisPhysicsVideo.addEventListener('seeked', () => {
+                otisActiveBeat = -1;
+            });
+        }
+    </script>
+</body>
+</html>
