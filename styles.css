@@ -13,19 +13,15 @@
     --accent-blue-dim: rgba(0, 240, 255, 0.2);
     
     --text-primary: #FFFFFF;
-    /* Increased brightness for better legibility on dark backgrounds */
     --text-secondary: #CBD5E1; 
-    /* Lighter tertiary for improved accessibility */
     --text-tertiary: #94A3B8; 
     
     --border-light: rgba(255, 255, 255, 0.15);
     --border-tech: rgba(0, 240, 255, 0.3);
     
-    /* Typography */
     --font-head: 'Rajdhani', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    /* Spacing */
     --container-width: 1200px;
     --header-height: 80px;
 }
@@ -36,16 +32,14 @@
     box-sizing: border-box;
 }
 
-html { 
-    scroll-behavior: smooth; 
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: var(--font-body);
     background-color: var(--bg-dark);
     color: var(--text-primary);
-    line-height: 1.7; /* Increased line-height for comfort */
-    letter-spacing: 0.02em; /* Added breathing room for Inter font */
+    line-height: 1.7;
+    letter-spacing: 0.02em;
     font-size: 16px;
     overflow-x: hidden;
     min-height: 100vh;
@@ -57,7 +51,6 @@ main { flex: 1; }
 a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 ul { list-style: none; }
 
-/* Background Grid Effect */
 .grid-overlay {
     position: fixed;
     top: -50px; left: 0; width: 100%; height: 120%;
@@ -84,15 +77,8 @@ h1, h2, h3, h4, .btn, nav a, .stat-value, .badge, .form-label {
     letter-spacing: 0.05em;
 }
 
-h1 { 
-    font-weight: 700; 
-    line-height: 1.1; 
-    letter-spacing: 0.02em; /* Tighter for large headlines */
-}
-h2 { 
-    font-weight: 600; 
-    letter-spacing: 0.08em; /* Expanded for subheads */
-}
+h1 { font-weight: 700; line-height: 1.1; letter-spacing: 0.02em; }
+h2 { font-weight: 600; letter-spacing: 0.08em; }
 
 .text-gradient {
     background: linear-gradient(90deg, #fff, var(--accent-blue));
@@ -109,7 +95,7 @@ h2 {
     padding: 0 2rem;
 }
 
-/* Header container override: logo must sit flush left inside the rounded nav bar,
+/* Header container override: logo must sit flush left/right inside the rounded nav bar,
    not centered within a 1200px container. */
 header .container {
     max-width: none;
@@ -125,7 +111,6 @@ header .container {
 .section-anchor { scroll-margin-top: var(--header-height); }
 .bg-darker { background: rgba(0,0,0,0.3); }
 
-/* Tactical Corners */
 .tactical-cut {
     clip-path: polygon(
         12px 0, 100% 0, 
@@ -136,14 +121,13 @@ header .container {
     );
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.9rem 2.2rem;
     font-size: 1rem;
-    font-weight: 700; /* Increased weight */
+    font-weight: 700;
     letter-spacing: 0.1em;
     border: none;
     cursor: pointer;
@@ -167,7 +151,6 @@ header .container {
     background: transparent;
     border: 1px solid var(--accent-blue);
     color: var(--accent-blue);
-    border: 1px solid var(--accent-blue);
     clip-path: none; 
     position: relative;
     overflow: hidden;
@@ -195,13 +178,22 @@ header .container {
    3. Navigation
    ========================================= */
 header {
-    position: sticky;
+    position: relative;
     top: 0;
-    height: var(--header-height);
+    height: auto;
+    display: flex;
+    align-items: center;
     z-index: 1000;
-    background: rgba(5, 11, 20, 0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background-color: #0a1a33;
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 40px;
+    margin: 15px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-bottom: none;
+    isolation: isolate;
 }
 
 nav {
@@ -212,6 +204,14 @@ nav {
 }
 
 .logo { display: flex; align-items: center; gap: 1rem; }
+header .logo img {
+    height: 60px;
+    width: auto;
+    max-width: 220px;
+    display: block;
+    object-fit: contain;
+}
+
 .logo-mark {
     width: 40px; height: 40px;
     background: var(--accent-gold);
@@ -225,171 +225,4 @@ nav {
     clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
 }
 
-.logo-text h1 { font-size: 1.4rem; color: #fff; line-height: 1; margin-bottom: 0; }
-.logo-text span { font-size: 0.7rem; color: var(--accent-gold); display: block; letter-spacing: 0.25em; }
-
-.nav-links { display: flex; gap: 3rem; }
-.nav-links a { 
-    font-size: 0.95rem; /* Increased size */
-    font-weight: 600; 
-    color: var(--text-secondary); 
-    position: relative; 
-    padding: 0.5rem 0; 
-}
-.nav-links a:hover, .nav-links a.active { color: var(--accent-blue); }
-.nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -28px; left: 0;
-    width: 100%; height: 2px;
-    background: var(--accent-blue);
-    box-shadow: 0 0 10px var(--accent-blue);
-}
-
-/* Mobile Menu Toggle */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: var(--accent-gold);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Mobile Nav Styles */
-@media (max-width: 768px) {
-    .menu-toggle { display: flex; }
-    
-    .nav-links {
-        position: absolute;
-        top: var(--header-height);
-        left: 0;
-        width: 100%;
-        background: rgba(5, 11, 20, 0.98);
-        backdrop-filter: blur(20px);
-        border-bottom: 2px solid var(--accent-gold);
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding: 3rem 0;
-        transform: translateY(-150%);
-        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-        z-index: 999;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    
-    .nav-links.active {
-        transform: translateY(0);
-    }
-    
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .nav-links a {
-        display: block;
-        font-size: 1.2rem;
-        padding: 1rem 0;
-    }
-
-    /* Hamburger Animation */
-    .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-}
-
-/* =========================================
-   4. Hero & Products Grid
-   ========================================= */
-.hero-container { 
-    position: relative; 
-    height: 100vh; 
-    width: 100%;
-    overflow: hidden; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-}
-
-.hero-text {
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-}
-
-.hero-text h1 { font-size: 4rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
-.hero-text h2 { color: var(--accent-gold); font-size: 1.5rem; letter-spacing: 4px; font-weight: 500; }
-
-.section-header { text-align: center; margin-bottom: 4rem; }
-.section-title { font-size: 2.5rem; margin-bottom: 1rem; }
-.section-line { width: 60px; height: 3px; background: var(--accent-gold); margin: 0 auto 1.5rem; box-shadow: 0 0 10px var(--accent-gold); }
-.section-subtitle { 
-    color: var(--text-secondary); 
-    max-width: 700px; 
-    margin: 0 auto; 
-    font-size: 1.2rem; /* Increased from 1.1rem */
-    line-height: 1.6;
-}
-
-.grid-4 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-/* Advanced Glassmorphism HUD Card */
-.hud-card {
-    /* Glass Base & Gradient */
-    background: rgba(13, 25, 41, 0.7);
-    background-image: linear-gradient(
-        135deg, 
-        rgba(255, 255, 255, 0.03) 0%, 
-        rgba(255, 255, 255, 0.0) 100%
-    );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    
-    /* Refined Tech Borders */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Specular highlight */
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
-    
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden; /* Contains the sheen effect */
-    
-    /* Smooth Physics Transition */
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    
-    /* Deep Multi-layered Shadows (Ambien
+.logo-tex
