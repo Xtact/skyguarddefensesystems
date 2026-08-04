@@ -95,8 +95,6 @@ h2 { font-weight: 600; letter-spacing: 0.08em; }
     padding: 0 2rem;
 }
 
-/* Header container override: logo must sit flush left inside the rounded nav bar,
-   not centered within a 1200px container. */
 header .container {
     max-width: none;
     margin: 0;
@@ -181,6 +179,7 @@ header {
     position: relative;
     top: 0;
     height: auto;
+    min-height: 220px;
     display: flex;
     align-items: center;
     z-index: 1000;
@@ -205,9 +204,9 @@ nav {
 
 .logo { display: flex; align-items: center; gap: 1rem; }
 header .logo img {
-    height: 60px;
+    height: 200px;
     width: auto;
-    max-width: 220px;
+    max-width: 600px;
     display: block;
     object-fit: contain;
 }
