@@ -414,15 +414,16 @@
 </head>
 <body id="home">
     <div class="grid-overlay"></div>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#home" class="logo" aria-label="SkyGuard Labs, LLC Home">
-                    <img src="skyguard_logo.png" alt="SkyGuard Labs, LLC Logo">
-                </a>
-            </nav>
-        </div>
-    </header>
+    <header style="position:relative; top:0; height:auto; display:flex; align-items:center; z-index:1000; background-color:#0a1a33; border-radius:40px; margin:15px; padding:1rem 1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.3); isolation:isolate;">
+    <div class="container">
+        <nav>
+            <a href="#home" class="logo" aria-label="SkyGuard Labs, LLC Home" style="display:flex; align-items:center; gap:1rem;">
+                <img src="skyguard_logo.png" alt="SkyGuard Labs, LLC Logo" style="height:200px !important; width:auto !important; max-width:none !important; max-height:none !important; display:block; object-fit:contain;">
+            </a>
+        </nav>
+    </div>
+</header>
+
 
     <main>
         <section class="hero section-anchor" style="position: relative; overflow: hidden; height: 78vh; min-height: 460px; display: block; background: linear-gradient(160deg, #001018 0%, #000814 100%);">
