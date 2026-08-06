@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Rajdhani:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="otis-site-nav-v3.css" rel="stylesheet"/>
+<link href="otis-site-nav-v4.css" rel="stylesheet"/>
 <style>
         /* ── Section Labels ── */
         .sec-label {
@@ -832,6 +832,43 @@ if (siteHeader && menuToggle && primaryNav) {
     lastScrollY = currentScrollY;
   }, { passive: true });
 }
+
+
+// Navigation refinement: mobile right-aligned dropdown, close on scroll/outside interaction.
+(() => {
+  const header = document.getElementById('siteHeader');
+  const oldToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('primaryNav');
+  if (!header || !oldToggle || !nav) return;
+  const toggle = oldToggle.cloneNode(true);
+  oldToggle.replaceWith(toggle);
+  const closeMenu = () => {
+    nav.classList.remove('active');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+  };
+  toggle.addEventListener('click', event => {
+    event.stopPropagation();
+    const open = !nav.classList.contains('active');
+    nav.classList.toggle('active', open);
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('click', event => { if (!header.contains(event.target)) closeMenu(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (Math.abs(y - lastY) > 4) closeMenu();
+    if (y <= 16) header.classList.remove('is-hidden');
+    else if (y > lastY + 10) header.classList.add('is-hidden');
+    else if (y < lastY - 10) header.classList.remove('is-hidden');
+    lastY = y;
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
