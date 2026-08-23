@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyGuard Labs, LLC | OTIS</title>
+  <meta name="description" content="OTIS sets the physical standard for airspace sensing across RF-silent, GPS-denied, signal-denied, and adversarial conditions.">
+  <meta property="og:title" content="SkyGuard Labs, LLC | OTIS">
+  <meta property="og:description" content="OTIS sets the physical standard for airspace sensing across RF-silent, GPS-denied, signal-denied, and adversarial conditions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://skyguarddefense.com">
+  <meta property="og:image" content="https://skyguarddefense.com/trans_sky_logo.png">
+  <link rel="canonical" href="https://skyguarddefense.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="otis-site-nav-v4.css">
+  <style>
+    .copy-section { position: relative; }
+    .copy-section .container { max-width: 1000px; }
+    .copy-intro { max-width: 820px; margin: 0 auto; text-align: center; }
+    .copy-intro p { color: var(--text-secondary); font-size: 1.08rem; line-height: 1.8; margin: 0 0 1.15rem; }
+    .eyebrow { display: inline-block; margin-bottom: 1rem; font-family: var(--font-head); font-size: .8rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-gold); }
+    .section-title-wide { max-width: 920px; margin: 0 auto 1.35rem; font-family: var(--font-head); font-size: clamp(1.85rem, 4vw, 3rem); font-weight: 700; letter-spacing: .08em; line-height: 1.16; text-align: center; text-transform: uppercase; }
+    .copy-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .copy-card { padding: 1.55rem; border: 1px solid rgba(0, 240, 255, .2); background: rgba(8, 22, 37, .66); }
+    .copy-card h3 { margin: 0 0 .65rem; font-family: var(--font-head); font-size: 1.05rem; letter-spacing: .12em; color: var(--accent-blue); text-transform: uppercase; }
+    .copy-card p { margin: 0; color: var(--text-secondary); font-size: .94rem; line-height: 1.7; }
+    .threat-list { margin-top: 2.25rem; border: 1px solid rgba(255, 80, 80, .28); }
+    .threat-row { display: grid; grid-template-columns: 52px 1fr; gap: 1rem; padding: 1.4rem 1.6rem; border-bottom: 1px solid rgba(255, 80, 80, .18); background: rgba(65, 5, 15, .08); }
+    .threat-row:last-child { border-bottom: 0; }
+    .threat-index { padding-top: .1rem; font-family: var(--font-head); color: rgba(255, 100, 100, .75); font-size: .82rem; letter-spacing: .15em; }
+    .threat-row h3 { margin: 0 0 .35rem; font-family: var(--font-head); font-size: 1.08rem; letter-spacing: .1em; color: #ff7777; text-transform: uppercase; }
+    .threat-row p { margin: 0; color: var(--text-secondary); line-height: 1.7; }
+    .standard-panel { max-width: 820px; margin: 2.5rem auto 0; padding: 2rem; border-top: 2px solid var(--accent-gold); border-bottom: 1px solid rgba(255,255,255,.12); text-align: center; }
+    .standard-panel p { margin: 0; color: var(--text-secondary); font-size: 1.13rem; line-height: 1.85; }
+    .standard-line { display: block; margin-top: 1.15rem; color: var(--accent-gold); font-family: var(--font-head); font-size: 1rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .physics-wrap { max-width: 900px; margin: 0 auto 2.5rem; text-align: center; }
+    .otis-physics-caption { min-height: 2.3rem; display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+    .otis-physics-caption span { color: #7fe8ff; font-family: var(--font-head); font-size: .95rem; font-weight: 600; letter-spacing: .22em; opacity: 0; text-transform: uppercase; transition: opacity .55s ease; }
+    .otis-physics-caption span.visible { opacity: 1; }
+    .physics-wrap video { display: block; width: 100%; border: 1px solid rgba(0,255,204,.25); box-shadow: 0 0 25px rgba(0,255,204,.12); }
+    .physics-wrap figcaption { margin-top: .7rem; color: var(--text-tertiary); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; }
+    .authority-list { max-width: 820px; margin: 2rem auto; padding: 0; list-style: none; }
+    .authority-list li { margin: 0; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.1); color: var(--text-secondary); line-height: 1.7; }
+    .authority-list strong { color: var(--accent-blue); font-family: var(--font-head); letter-spacing: .09em; text-transform: uppercase; }
+    .trademark-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .tm-card { padding: 1.45rem; background: rgba(0, 18, 34, .72); border-left: 3px solid var(--accent-gold); }
+    .tm-card h3 { margin: 0 0 .5rem; color: var(--accent-gold); font-family: var(--font-head); font-size: 1.05rem; letter-spacing: .12em; }
+    .tm-card p { margin: 0; color: var(--text-secondary); font-size: .93rem; line-height: 1.7; }
+    .integration-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem 1.2rem; max-width: 820px; margin: 2rem auto 0; padding: 0; list-style: none; }
+    .integration-list li { padding: .85rem 1rem; border: 1px solid rgba(0,240,255,.16); color: var(--text-secondary); }
+    .hero-overlay { background: linear-gradient(180deg, rgba(0,4,10,.25), rgba(0,4,10,.78)); }
+    @media (max-width: 760px) {
+      .copy-grid, .trademark-grid { grid-template-columns: 1fr; }
+      .integration-list { grid-template-columns: 1fr; }
+      .threat-row { padding: 1.2rem 1rem; grid-template-columns: 38px 1fr; }
+      .copy-section { padding-top: 4rem; padding-bottom: 4rem; }
+    }
+  </style>
+</head>
+<body id="home">
+  <div class="grid-overlay"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-shell">
+      <a class="logo" href="#home" aria-label="SkyGuard Labs, LLC home">
+        <img src="trans_sky_logo.png" alt="SkyGuard Labs, LLC Logo">
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNav"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="#product">Product</a>
+        <a href="#threats">Threats</a>
+        <a href="#innovation">Innovation</a>
+        <a href="#platform">Platform</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-anchor" id="home" style="position:relative; overflow:hidden; height:78vh; min-height:460px; display:block; background:linear-gradient(160deg,#001018 0%,#000814 100%);">
+      <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="hero-video" poster="https://cdn.jsdelivr.net/gh/Xtact/skyguarddefensesystems@main/sources/images/Sky_Open_1.jpg" onerror="this.style.display='none';" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+        <source src="https://cdn.jsdelivr.net/gh/Xtact/skyguarddefensesystems@main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/sources/images/Sky_Open_1.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
+      <div class="hero-text fade-in" style="position:absolute; bottom:8%; left:50%; transform:translateX(-50%); z-index:2; width:100%; text-align:center; padding:0 1.5rem;">
+        <h1 style="font-family:'Inter','Rajdhani',sans-serif; font-weight:300; font-size:clamp(2.1rem,5vw,3.4rem); line-height:1.15; color:#fff; margin:0 0 1.1rem; text-shadow:0 2px 20px rgba(0,0,0,.55);">OTIS Sets the Physical Standard<br>for Airspace Sensing</h1>
+        <p style="max-width:680px; margin:0 auto; font-size:clamp(.95rem,1.6vw,1.15rem); font-weight:300; line-height:1.6; color:rgba(255,255,255,.88); text-shadow:0 1px 12px rgba(0,0,0,.6);">Physics authority for the RF-silent, GPS-denied, signal-denied, and adversarial conditions that conventional sensing cannot resolve.</p>
+      </div>
+    </section>
+
+    <section class="section-padding section-anchor copy-section" id="product">
+      <div class="container">
+        <div class="copy-intro fade-in">
+          <span class="eyebrow">Product</span>
+          <h2 class="section-title-wide">OTIS Establishes Physical Evidence Where Signals, GPS, and Pixels Fail.</h2>
+          <div class="section-line"></div>
+          <p>Modern sensing systems detect, classify, track, and fuse what their sensors observe. Their outputs are trained on enormous image datasets, weighted by confidence, and relied upon to shape the operational picture.</p>
+          <p>That architecture has a structural gap: a weighted optical observation can enter the decision chain without first demonstrating that it adheres to the laws of physics.</p>
+          <p>Decision pollution begins when false, manipulated, degraded, or physically unproven observations enter the operational picture and consume compute, communications bandwidth, operator attention, time, and interceptor inventory.</p>
+          <p>OTIS is not another classifier, confidence score, or fusion weight. It is the physics authority at the boundary between optical observation and operational action.</p>
+        </div>
+        <div class="copy-grid fade-in">
+          <article class="copy-card"><h3>GeoIntel™</h3><p>The geometry intelligence layer that establishes the physical basis for operational optical evidence.</p></article>
+          <article class="copy-card"><h3>GeoVerify™</h3><p>Applies a physics-based standard to geometric continuity, structural behavior, and constrained motion.</p></article>
+          <article class="copy-card"><h3>Hard-Zero Control</h3><p>Geometry-failed optical evidence is excluded before it can alter cueing, tracking, fusion, or engagement-support workflows.</p></article>
+        </div>
+        <div class="standard-panel fade-in"><p>Observations that adhere to the laws of matter and motion may proceed into downstream workflows. Geometry-failed evidence is hard-zeroed before it can alter the mission.</p><span class="standard-line">No adherence to physics. No operational consequence.</span></div>
+      </div>
+    </section>
+
+    <section class="section-padding bg-darker section-anchor copy-section" id="threats">
+      <div class="container">
+        <div class="copy-intro fade-in">
+          <span class="eyebrow">Threats</span>
+          <h2 class="section-title-wide">The Threats That Silence, Degrade, or Weaponize Conventional Sensors.</h2>
+          <div class="section-line"></div>
+          <p>Fiber-optic guided munitions, glide threats, RF-silent autonomous drones, GPS-spoofed craft, and adversarial optical threats each remove, degrade, corrupt, or weaponize a conventional confirmation pathway.</p>
+          <p>RF sensors need emissions. GPS-referenced systems need reliable navigation data. Propulsion-led detection needs a signature. Image-led classifiers need pixels that correspond to reality.</p>
+          <p>OTIS applies the remaining standard: whether the observed target adheres to the strict laws of matter and motion.</p>
+        </div>
+        <div class="threat-list fade-in">
+          <article class="threat-row"><span class="threat-index">01</span><div><h3>Fiber-Optic Guided Munitions</h3><p>These systems can operate without RF control links, GPS dependence, or usable electronic signatures. OTIS applies physics to the target information available through the optical sensor.</p></div></article>
+          <article class="threat-row"><span class="threat-index">02</span><div><h3>Glide Threats</h3><p>Critical terminal phases can present without a propulsion signature. OTIS evaluates adherence to the strict laws of matter and motion—not merely an image-derived threat profile.</p></div></article>
+          <article class="threat-row"><span class="threat-index">03</span><div><h3>RF-Silent Autonomous Drones</h3><p>Autonomous platforms can navigate and execute without active telemetry. OTIS determines whether passive optical evidence can drive downstream operational workflows.</p></div></article>
+          <article class="threat-row"><span class="threat-index">04</span><div><h3>GPS-Spoofed and Adversarially Navigated Craft</h3><p>Manipulated or degraded position and intent cannot be treated as ground truth. OTIS applies the physical standard to the optical observation instead.</p></div></article>
+          <article class="threat-row"><span class="threat-index">05</span><div><h3>Adversarial Optical Spoofing</h3><p>Camouflage, patches, and optical manipulation change pixels. They cannot change the physical geometry and motion constraints that matter must obey.</p></div></article>
+          <article class="threat-row"><span class="threat-index">06</span><div><h3>FlyTrap-Class Printed Spoofs</h3><p>Published physical attacks show that image-led systems can be manipulated into accepting evidence that does not adhere to physical reality. FlyTrap is one proof point; decision pollution is the full problem class.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding section-anchor copy-section" id="innovation">
+      <div class="container">
+        <div class="copy-intro fade-in">
+          <span class="eyebrow">Innovation</span>
+          <h2 class="section-title-wide">Pixels Suggest. Physics Sets the Standard.</h2>
+          <div class="section-line"></div>
+        </div>
+        <figure class="physics-wrap fade-in">
+          <div class="otis-physics-caption"><span id="otis-physics-caption-text">GRAVITY IS UNIVERSAL.</span></div>
+          <video id="otis-physics-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+            <source src="https://raw.githubusercontent.com/Xtact/skyguarddefensesystems/main/OTIS_physics_lesson_full_v3.mp4" type="video/mp4">
+          </video>
+          <figcaption>The physics behind O.T.I.S. — geometry, decoded</figcaption>
+        </figure>
+        <div class="copy-intro fade-in">
+          <p>An image can be altered. A pixel pattern can be designed to deceive. Training data can be incomplete. A weighted model can be highly confident and still be wrong. Fusion can spread that error across the operational picture.</p>
+          <p>OTIS does not sit beside those systems as another opinion. It is the authority that determines whether image-derived evidence crosses into operational consequence.</p>
+        </div>
+        <ul class="authority-list fade-in">
+          <li><strong>GeoVerify™:</strong> Measures adherence to the laws of matter through geometric continuity, physically constrained motion, and structural behavior that an adversarial optical presentation cannot supply.</li>
+          <li><strong>PhysicsPrint™:</strong> Provides physical parameter envelopes derived from the laws of physics rather than learned image examples, supporting assessment of novel airframes, altered appearances, and signal-denied targets.</li>
+          <li><strong>ClearCue™:</strong> Produces auditable output tied to the physical measurement and decision standard that determined the observation state.</li>
+          <li><strong>Decision state:</strong> Physics-adherent observations may proceed into cueing, tracking, fusion, and engagement-support workflows. Geometry-failed observations are hard-zeroed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-padding bg-darker section-anchor copy-section" id="platform">
+      <div class="container">
+        <div class="copy-intro fade-in">
+          <span class="eyebrow">Platform</span>
+          <h2 class="section-title-wide">Software That Sets the Optical-to-Operational Standard.</h2>
+          <div class="section-line"></div>
+          <p>OTIS is a software-first, sensor-agnostic geometry intelligence layer for the passive optical sensing architectures entering the field now.</p>
+          <p>It is built for AI-native EO/IR, event-based sensing, next-generation IRST, and distributed airspace-sensing meshes. OTIS does not replace detection, battle management, or command-and-control. It establishes whether passive optical evidence is allowed to affect them.</p>
+        </div>
+        <div class="trademark-grid fade-in">
+          <article class="tm-card"><h3>AdaptCal™</h3><p>Refines the PhysicsPrint™ implementation through confirmed observations without dependence on a live network connection in the engagement path.</p></article>
+          <article class="tm-card"><h3>SilentWatch™</h3><p>Extends the passive optical approach to continuous, zero-RF-emission monitoring for fixed-site and critical-infrastructure environments.</p></article>
+          <article class="tm-card"><h3>Integration</h3><p>Provides decision-eligible optical evidence to compatible radar-connected, battle-management, fusion, and mission-system architectures.</p></article>
+        </div>
+        <ul class="integration-list fade-in">
+          <li>Passive optical airspace-sensing platforms</li>
+          <li>Counter-UAS and air-and-missile-defense sensor stacks</li>
+          <li>Radar-connected and battle-management architectures</li>
+          <li>Distributed EO/IR sensing meshes</li>
+          <li>Autonomous ground and air platforms</li>
+          <li>Fixed-site and critical-infrastructure protection systems</li>
+        </ul>
+        <div class="standard-panel fade-in"><p>OTIS reserves compute, bandwidth, operator attention, time, and interceptor inventory for observations that meet the physical standard.</p></div>
+      </div>
+    </section>
+
+    <section class="section-padding bg-darker section-anchor" id="contact" style="padding-top:3.5rem;">
+      <div class="container">
+        <div class="section-header fade-in" style="margin-bottom:2rem;">
+          <h2 class="section-title">Stop Decision Pollution at the Sensor Boundary.</h2>
+          <div class="section-line"></div>
+          <p class="section-subtitle">SkyGuard Labs works with defense primes, passive-sensing platform integrators, autonomy developers, and government program offices operating in RF-silent, GPS-denied, degraded, and adversarial conditions. If your system relies on passive optical evidence, OTIS is the physics authority that determines whether that evidence can drive the mission.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="hud-card fade-in delay-100">
+            <div class="card-corner top-left"></div><div class="card-corner top-right"></div><div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
+            <h2 class="section-title" style="font-size:1.8rem;">SkyGuard Labs, LLC</h2>
+            <p style="font-size:.95rem; color:var(--accent-gold); margin-bottom:1.5rem;">Location Details</p>
+            <p style="margin-bottom:1rem;">Denver, Colorado, USA</p>
+            <p style="margin-bottom:1rem;"><strong>Email:</strong> integration@skyguarddefense.com</p>
+            <p style="margin-bottom:2rem;"><strong>Comms:</strong> Intel-Support Line (24/7) · (720) 667-8447</p>
+            <p style="font-size:.8rem; color:var(--text-tertiary); line-height:1.4; font-style:italic; border-top:1px solid var(--border-light); padding-top:1rem;">All technical briefings are conducted under executed NDA. Patent Pending. All rights reserved.</p>
+          </div>
+          <div class="hud-card fade-in delay-200">
+            <div class="card-corner top-left"></div><div class="card-corner top-right"></div><div class="card-corner bottom-left"></div><div class="card-corner bottom-right"></div>
+            <form name="contact" method="POST" data-netlify="true" netlify>
+              <input type="hidden" name="form-name" value="contact">
+              <div class="form-group"><label class="form-label">IDENTITY / CALLSIGN</label><input type="text" name="identity" class="form-input" placeholder="e.g. MAJ. J. MILLER" required></div>
+              <div class="form-group"><label class="form-label">SECURE EMAIL CHANNEL</label><input type="email" name="email" class="form-input" placeholder="RECIPIENT@AGENCY.GOV" required></div>
+              <div class="form-group"><label class="form-label">MISSION PARAMETERS &amp; INTEGRATION REQUIREMENTS</label><textarea name="message" class="form-input" style="min-height:120px; resize:none;" placeholder="DESCRIBE THREAT PROFILE AND SENSOR STACK..." required></textarea></div>
+              <button type="submit" class="btn btn-primary btn-block">TRANSMIT ENCRYPTED DATA</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Return to top"><span class="btn-icon">▲</span><span class="btn-text">TOP</span></button>
+
+  <footer style="margin-top:-1.5rem;">
+    <div class="container">
+      <div style="text-align:center; padding:1.5rem 0 2rem;">
+        <img src="trans_sky_logo.png" class="footer-logo" alt="SkyGuard Labs, LLC Logo">
+        <p style="font-size:.9rem; color:var(--text-secondary); font-style:italic; max-width:640px; margin:1rem auto 0; line-height:1.7;">OTIS is the physics authority for optical evidence before it reaches the mission.</p>
+      </div>
+      <div style="text-align:center; border-top:1px solid rgba(255,255,255,.05); padding-top:2rem;">
+        <p style="text-align:center; font-size:.8rem; color:var(--text-tertiary); letter-spacing:.05em; margin-bottom:1.2rem;">UEI: PCGZWJ6WQG34 · CAGE CODE: 21SW6</p>
+        <p style="font-size:.8rem; color:var(--text-tertiary);">GeoIntel™ · PhysicsPrint™ · GeoVerify™ · AdaptCal™ · SilentWatch™ · ClearCue™<br>Patent Pending · © 2026 SkyGuard Labs, LLC · Denver, Colorado · integration@skyguarddefense.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('visible', window.scrollY > 400), { passive: true });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    const otisPhysicsVideo = document.getElementById('otis-physics-video');
+    const otisCaptionText = document.getElementById('otis-physics-caption-text');
+    if (otisPhysicsVideo && otisCaptionText) {
+      const otisBeats = [
+        { start: 0, end: 8, text: 'GRAVITY IS UNIVERSAL.' },
+        { start: 8, end: 18, text: 'MASS AND VELOCITY OBEY THE SAME LAWS.' },
+        { start: 18, end: 27, text: 'TERMINAL PHASE FOLLOWS PHYSICS, NOT PIXELS.' },
+        { start: 27, end: 32, text: 'EVEN IN NATURE, GEOMETRY HOLDS TRUE.' }
+      ];
+      let activeBeat = -1;
+      const setCaption = index => {
+        if (index === activeBeat) return;
+        activeBeat = index;
+        otisCaptionText.classList.remove('visible');
+        window.setTimeout(() => {
+          otisCaptionText.textContent = otisBeats[index].text;
+          requestAnimationFrame(() => otisCaptionText.classList.add('visible'));
+        }, 350);
+      };
+      otisPhysicsVideo.addEventListener('timeupdate', () => {
+        const time = otisPhysicsVideo.currentTime;
+        const index = otisBeats.findIndex(beat => time >= beat.start && time < beat.end);
+        setCaption(index === -1 ? otisBeats.length - 1 : index);
+      });
+      otisPhysicsVideo.addEventListener('seeked', () => { activeBeat = -1; });
+    }
+
+    const header = document.getElementById('siteHeader');
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('primaryNav');
+    if (header && toggle && nav) {
+      let lastY = window.scrollY;
+      const closeMenu = () => {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+      };
+      toggle.addEventListener('click', event => {
+        event.stopPropagation();
+        const open = !nav.classList.contains('active');
+        nav.classList.toggle('active', open);
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('click', event => { if (!header.contains(event.target)) closeMenu(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        header.classList.toggle('is-scrolled', y > 8);
+        if (Math.abs(y - lastY) > 4) closeMenu();
+        if (y <= 16) header.classList.remove('is-hidden');
+        else if (y > lastY + 10) header.classList.add('is-hidden');
+        else if (y < lastY - 10) header.classList.remove('is-hidden');
+        lastY = y;
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
