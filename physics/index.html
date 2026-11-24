@@ -25,9 +25,10 @@
         html, body { background: var(--color-bg); margin: 0; }
         body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
         .deck { width: 100vw; height: 100vh; position: relative; }
+        @supports (height: 100dvh) { body, .deck { height: 100dvh; } }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; overflow: hidden; }
         .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
-        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1100px; padding: clamp(1.2rem, 3vw, 2.6rem) clamp(1.2rem, 3.5vw, 3.5rem) var(--nav-h); margin-top: clamp(3vh, 6vh, 8vh); max-height: calc(100vh - 2vh); overflow-y: auto; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1100px; padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1.2rem, 3.5vw, 3.5rem) 1rem; margin-top: 0; max-height: calc(100% - var(--nav-h)); min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; }
         .slide > .content::-webkit-scrollbar { width: 0px; }
         .nav-controls { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; z-index: 100; background: rgba(10,22,40,0.75); backdrop-filter: blur(10px); padding: 5px 12px; border-radius: 30px; border: 1px solid rgba(0,168,232,0.15); }
         .nav-btn { width: 26px; height: 26px; border: none; background: rgba(0,168,232,0.12); color: #00A8E8; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
@@ -91,7 +92,7 @@
     <div style="position:absolute;top:18%;left:7%;width:80px;height:80px;border:1.5px solid rgba(0,168,232,0.18);border-radius:50%;animation:pulse-ring 4s ease-in-out infinite;z-index:2;"></div>
     <div style="position:absolute;bottom:22%;right:8%;width:50px;height:50px;border:1.5px solid rgba(56,217,245,0.15);transform:rotate(45deg);animation:pulse-ring 5s ease-in-out infinite 1s;z-index:2;"></div>
     <div style="position:absolute;top:30%;right:14%;width:28px;height:28px;background:rgba(0,168,232,0.15);border-radius:50%;z-index:2;"></div>
-    <div class="content" style="text-align:center; margin-top:8vh;">
+    <div class="content" style="text-align:center;">
         <img src="/skyguard_logo.png" class="logo-mark reveal" style="width:150px;height:auto;margin:0 auto 8px;display:block;" alt="SkyGuard Labs">
         <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#00A8E8;margin-bottom:10px;" class="reveal">SkyGuard Labs, LLC</div>
         <h1 style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(3.2rem,7vw,5.8rem);font-weight:400;line-height:1.05;background:linear-gradient(135deg,#00A8E8,#38d9f5,#e8f4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 18px;letter-spacing:-0.02em;" class="reveal">O.T.I.S.</h1>
@@ -157,7 +158,7 @@
             <div class="threat-row" style="grid-column: 1 / -1;"><div class="threat-icon"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4 L28 4 L28 28 L4 28 Z" stroke="#00A8E8" stroke-width="1.2" fill="none" stroke-dasharray="3 2"/><path d="M9 12 L14 20 L23 9" stroke="#38d9f5" stroke-width="1.3" fill="none"/><circle cx="9" cy="12" r="1.5" fill="#38d9f5"/></svg></div><div><div class="threat-label">Adversarial Optical Spoofing</div><div class="threat-sub">Camouflage, patches, and printed covers defeat pixel-based classifiers — including sub-$5 physical spoofs with up to 100% success against every published defense system (NDSS 2026, UC Irvine).</div></div></div>
         </div>
         <div style="margin-top:16px;text-align:center;" class="reveal">
-            <span style="font-size:0.75rem;color:#7a9bb5;letter-spacing:0.06em;">RF-dependent and appearance-based systems are blind to threats 1–3. <strong style="color:#00A8E8;">O.T.I.S. is not.</strong></span>
+            <span style="font-size:0.75rem;color:#7a9bb5;letter-spacing:0.06em;">RF-dependent and appearance-based systems are blind to threats 1–3. <strong style="color:#00A8E8;">O.T.I.S. is not.</strong> Against GPS and optical spoofing, O.T.I.S. bases verification on physical geometry—not on reported coordinates or appearances alone.</span>
         </div>
     </div>
 </div>
